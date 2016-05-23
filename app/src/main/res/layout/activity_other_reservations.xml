@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Other Reservations"
+        android:id="@+id/textViewOtherResLabel"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Enter Start Date and Time"
+        android:id="@+id/textViewOtherResStartTimeDate"
+        android:layout_below="@+id/textViewOtherResLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp" />
+
+    <DatePicker
+        android:layout_width="175dp"
+        android:layout_height="70dp"
+        android:id="@+id/otherStartDatePicker"
+        android:layout_below="@+id/textViewOtherResStartTimeDate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp" />
+
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:id="@+id/otherStartTimePicker"
+        android:layout_below="@id/textViewOtherResStartTimeDate"
+        android:layout_toRightOf="@+id/otherStartDatePicker"
+        android:layout_toEndOf="@+id/otherStartDatePicker"
+        android:layout_alignBaseline="@+id/otherStartDatePicker"
+        android:layout_margin="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Enter End Date and Time"
+        android:id="@+id/textViewOtherResEndDateTime"
+        android:layout_below="@+id/otherStartDatePicker"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp" />
+
+    <DatePicker
+        android:layout_width="175dp"
+        android:layout_height="70dp"
+        android:id="@+id/otherEndatePicker"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/textViewOtherResEndDateTime"
+        android:layout_margin="5dp" />
+
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:id="@+id/toTimePicker"
+        android:layout_toRightOf="@+id/otherEndatePicker"
+        android:layout_below="@id/textViewOtherResEndDateTime"
+        android:layout_margin="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Type of Event"
+        android:id="@+id/textViewTypeOfEvent"
+        android:layout_below="@+id/otherEndatePicker"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/editText2"
+        android:layout_toRightOf="@+id/textViewTypeOfEvent"
+        android:layout_below="@id/otherEndatePicker"
+        android:layout_margin="5dp"
+        android:maxHeight="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Address"
+        android:id="@+id/OtherResAddress"
+        android:layout_below="@+id/editText2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:inputType="textPostalAddress"
+        android:ems="10"
+        android:id="@+id/editTextAddress"
+        android:layout_below="@+id/editText2"
+        android:layout_toRightOf="@+id/textViewTypeOfEvent"
+        android:layout_toEndOf="@+id/textViewTypeOfEvent"
+        android:layout_alignBaseline="@id/OtherResAddress"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"
+        android:maxHeight="40dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="City"
+        android:id="@+id/textViewOtherResCity"
+        android:layout_below="@+id/editTextAddress"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/editTextOtherResCity"
+        android:layout_below="@+id/editTextAddress"
+        android:layout_toRightOf="@+id/textViewTypeOfEvent"
+        android:layout_margin="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="State"
+        android:id="@+id/textViewOtherResState"
+        android:layout_below="@+id/textViewOtherResCity"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:id="@+id/editTextOtherResState"
+        android:layout_below="@+id/editTextOtherResCity"
+        android:layout_toRightOf="@+id/textViewTypeOfEvent"
+        android:layout_toEndOf="@+id/textViewTypeOfEvent"
+        android:layout_alignParentRight="true"
+        android:layout_alignBaseline="@+id/textViewOtherResState"
+        android:layout_margin="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Country"
+        android:id="@+id/textViewOtherResCountry"
+        android:layout_below="@+id/textViewOtherResState"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:id="@+id/editTextOtherResCountry"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editTextOtherResState"
+        android:layout_toRightOf="@+id/textViewTypeOfEvent"
+        android:layout_toEndOf="@+id/textViewTypeOfEvent"
+        android:layout_alignBaseline="@+id/textViewOtherResCountry"
+        android:layout_margin="5dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Attachments"
+        android:id="@+id/button3"
+        android:layout_below="@+id/editTextOtherResCountry"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Note"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/button3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/editText3"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/button4"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3"
+        android:maxHeight="30dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/button4"
+        android:layout_alignBottom="@+id/button3"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+</RelativeLayout>

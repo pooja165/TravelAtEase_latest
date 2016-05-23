@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="edu.scu.pnanjundaswamy.travelease.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD/EDIT EVENT"
+        android:id="@+id/textView1"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="START DATE"
+        android:id="@+id/textViewAddEditEventstartDate"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+    <EditText
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextAddEditEventstartDate"
+        android:layout_gravity="right"
+        />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="END DATE"
+        android:id="@+id/textViewAddEditEventendDate"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+    <EditText
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextAddEditEventendDate"
+        android:layout_gravity="right"
+        />
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADDRESS"
+        android:id="@+id/textViewAddEditEventaddress"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+
+        />
+
+    <EditText
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextAddEditEventaddress"
+        android:layout_gravity="right"
+        />
+</LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CITY"
+        android:id="@+id/textViewAddEditEventcity"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+
+    <EditText
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextAddEditEventcity"
+        android:layout_gravity="right"
+        />
+</LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="STATE"
+        android:id="@+id/textViewAddEditEventstate"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+    <EditText
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextAddEditEventstate"
+        android:layout_gravity="right"
+        />
+</LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="COUNTRY"
+        android:id="@+id/textViewAddEditEventcountry"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+
+    <EditText
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextAddEditEventcountry"
+        android:layout_gravity="right"
+        />
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SAVE"
+            android:id="@+id/buttonAddEditEventsave"
+            android:layout_gravity="center_horizontal"
+            />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HOTEL"
+            android:id="@+id/buttonAddEditEventhotel"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TRANSPORT"
+            android:id="@+id/buttonAddEditEventtransport" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OTHER RESERVATIONS"
+            android:id="@+id/buttonAddEditEventother"
+            android:layout_gravity="center_horizontal"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CHECK WEATHER"
+            android:id="@+id/buttonAddEditEventweather"
+
+            />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set Planning Reminders"
+        android:id="@+id/buttonAddEditEventplanningReminders"
+
+        />
+
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Transport Details"
+        android:id="@+id/transportDetailsActivity"
+        android:layout_above="@+id/FromPlace"
+        android:layout_centerHorizontal="true"
+        android:textSize="45sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/FromPlace"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:hint="From"
+        android:padding="10dp"
+        android:layout_margin="10dp" />
+
+    <DatePicker
+        android:layout_width="175dp"
+        android:layout_height="70dp"
+        android:id="@+id/fromDatePicker"
+        android:layout_below="@+id/FromPlace"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="10dp" />
+
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:id="@+id/FromTimePicker"
+        android:layout_below="@+id/FromPlace"
+        android:layout_toRightOf="@+id/fromDatePicker"
+        android:layout_toEndOf="@+id/fromDatePicker"
+        android:layout_alignBaseline="@+id/fromDatePicker"
+        android:layout_margin="10dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ToPlace"
+        android:layout_below="@+id/fromDatePicker"
+        android:layout_centerHorizontal="true"
+        android:hint="To"
+        android:layout_alignParentLeft="false"
+        android:layout_margin="10dp" />
+
+    <DatePicker
+        android:layout_width="175dp"
+        android:layout_height="70dp"
+        android:id="@+id/TodatePicker"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/ToPlace"
+        android:layout_margin="10dp" />
+
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:id="@+id/toTimePicker"
+        android:layout_toRightOf="@+id/TodatePicker"
+        android:layout_below="@id/ToPlace"
+        android:layout_margin="10dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Flight No."
+        android:id="@+id/FlightStatusflightnumber"
+        android:layout_below="@+id/TodatePicker"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="10dp" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/FlightNumber"
+        android:layout_below="@+id/TodatePicker"
+        android:layout_toRightOf="@+id/FlightStatusflightnumber"
+        android:layout_alignRight="@+id/editText4"
+        android:layout_alignEnd="@+id/editText4"
+        android:layout_margin="10dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Airline"
+        android:id="@+id/FlightStatusTextViewAirline"
+        android:layout_below="@+id/FlightNumber"
+        android:layout_toRightOf="@+id/FlightStatusflightnumber"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="5dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText4"
+        android:layout_below="@+id/FlightNumber"
+        android:layout_toRightOf="@+id/FlightStatusTextViewAirline"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="If within 4 hours of Departure?"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/editText4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check Status"
+        android:id="@+id/button5"
+        android:layout_below="@+id/checkBox"
+        android:layout_alignRight="@+id/editText4"
+        android:layout_alignEnd="@+id/editText4"
+        android:layout_margin="5dp" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yes"
+        android:id="@+id/checkBox"
+        android:layout_below="@+id/editText4"
+        android:layout_toRightOf="@+id/textView5"
+        android:layout_toEndOf="@+id/textView5"
+        android:layout_alignBaseline="@id/textView5"
+        android:layout_margin="5dp" />
+
+</RelativeLayout>
