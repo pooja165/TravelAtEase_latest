@@ -42,7 +42,7 @@ public class AlarmReceiver extends BroadcastReceiver{
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context)
                         .setSmallIcon(R.drawable.jinggling_on)
-                        .setContentTitle("A simple notification!")
+                        .setContentTitle("Its time.. Start Planning your trip...!")
                         .setContentText(intent.getStringExtra("tripTitle"))
                         .setContentIntent(resultPendingIntent)
                         .setAutoCancel(true);
