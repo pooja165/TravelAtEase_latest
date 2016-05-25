@@ -2,20 +2,24 @@ package lshankarrao.travelatease1;
 
 public class EventInfo {
    // protected int id;
+    protected String title;
     protected String city;
     protected String state;
     protected String country;
     protected String address;
     protected String startDate;
     protected String endDate;
+    protected String startTime;
+    protected String endTime;
     protected long tripId;
 
     public EventInfo() {
 
     }
 
-    public EventInfo(String startDate, String endDate, String address, String city, String state, String country, long tripId) {
+    public EventInfo(String title, String startDate, String endDate, String startTime, String endTime, String address, String city, String state, String country, long tripId) {
         //this.id = id;
+        this.title = title;
         this.address = address;
         this.city = city;
         this.state = state;
@@ -23,6 +27,8 @@ public class EventInfo {
         this.startDate = startDate;
         this.endDate = endDate;
         this.tripId = tripId;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 /*
     public int getId() {
@@ -33,6 +39,15 @@ public class EventInfo {
     public void setId(int id) {
         this.id = id;
     }*/
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
 
     public String getAddress() {
         return address;
@@ -80,6 +95,22 @@ public class EventInfo {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
     public long getTripId() {
