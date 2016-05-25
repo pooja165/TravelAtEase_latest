@@ -27,6 +27,7 @@ public class EventListAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         //get title
         Log.i("bV ", cursor.getCount() + "");
+        Log.i("BV event id ", cursor.getInt(cursor.getColumnIndex("_id"))+"");
 
         String eventTitle = cursor.getString(cursor.getColumnIndex("title"));
         Log.i("new trip name displayed", eventTitle);
