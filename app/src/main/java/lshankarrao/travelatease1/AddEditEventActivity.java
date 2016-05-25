@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 
 /**
  * Created by pooja on 5/21/16.
@@ -15,19 +17,35 @@ public class AddEditEventActivity extends AppCompatActivity implements View.OnCl
 
     TripDbHelper db;
 
-    String city, state, country, address;
-    String startDate, endDate;
+    String city, state, country, address, title;
+    String startDate, endDate, startTime, endTime;
     long tripId=0;
-    long eventId=0;
+    static long eventId=0;
+    TimePicker timePicker1, timePicker2;
+    DatePicker datePicker1, datePicker2;
+    Button hotelReservationbutton, transportReservationbutton, otherReservationbutton;
+    Button checkweather, planningRem, tripDonebutton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_event);
 
-        Button tripDonebutton = (Button) findViewById(R.id.buttonAddEditEventsave);
+        timePicker1 = (TimePicker)findViewById(R.id.TimePickerAddEditEventstime);
+        datePicker1 = (DatePicker)findViewById(R.id.DatePickerAddEditEventsdate);
+
+        timePicker2 = (TimePicker)findViewById(R.id.TimePickerAddEditEventetime);
+        datePicker2 = (DatePicker)findViewById(R.id.DatePickerAddEditEventedate);
+
+        timePicker1.setIs24HourView(true);
+        timePicker2.setIs24HourView(true);
+
+        checkweather = (Button) findViewById(R.id.buttonAddEditEventweather);
+        planningRem = (Button) findViewById(R.id.buttonAddEditEventplanningReminders);
+
+        tripDonebutton = (Button) findViewById(R.id.buttonAddEditEventsave);
         tripDonebutton.setOnClickListener(this);
 
-        Button hotelReservationbutton = (Button) findViewById(R.id.buttonAddEditEventhotel);
+        hotelReservationbutton = (Button) findViewById(R.id.buttonAddEditEventhotel);
 
         //hotelReservationbutton.setEnabled(false);
         hotelReservationbutton.setOnClickListener(new View.OnClickListener() {
@@ -40,7 +58,7 @@ public class AddEditEventActivity extends AppCompatActivity implements View.OnCl
         });
 
 
-        Button transportReservationbutton = (Button) findViewById(R.id.buttonAddEditEventtransport);
+        transportReservationbutton = (Button) findViewById(R.id.buttonAddEditEventtransport);
         //transportReservationbutton.setEnabled(false);
         transportReservationbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +68,7 @@ public class AddEditEventActivity extends AppCompatActivity implements View.OnCl
                 startActivity(intent);
             }
         });
-        Button otherReservationbutton = (Button) findViewById(R.id.buttonAddEditEventother);
+        otherReservationbutton = (Button) findViewById(R.id.buttonAddEditEventother);
         //otherReservationbutton.setEnabled(false);
         otherReservationbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,16 +79,23 @@ public class AddEditEventActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
+        hotelReservationbutton.setEnabled(false);
+        transportReservationbutton.setEnabled(false);
+        otherReservationbutton.setEnabled(false);
+        checkweather.setEnabled(false);
+        planningRem.setEnabled(false);
+
     }
 
     public void onClick(View v) {
 
         db = new TripDbHelper(this);
 
-        EditText eStartDate = (EditText) findViewById(R.id.editTextAddEditEventstartDate);
-        startDate = eStartDate.getText().toString();
+        EditText eStartDate = (EditText) findViewById(R.id.editTextAddEditEventtitle);
+        title = eStartDate.getText().toString();
+        /*
         EditText eEndDate = (EditText) findViewById(R.id.editTextAddEditEventendDate);
-        endDate = eEndDate.getText().toString();
+        endDate = eEndDate.getText().toString();*/
         EditText eAddress = (EditText) findViewById(R.id.editTextAddEditEventaddress);
         address = eAddress.getText().toString();
         EditText eCity = (EditText) findViewById(R.id.editTextAddEditEventcity);
@@ -80,25 +105,44 @@ public class AddEditEventActivity extends AppCompatActivity implements View.OnCl
         EditText eCountry = (EditText) findViewById(R.id.editTextAddEditEventcountry);
         country = eCountry.getText().toString();
 
+        startDate = (datePicker1.getMonth()+1)+":"+datePicker1.getDayOfMonth()+":"+datePicker1.getYear();
+        startTime = timePicker1.getCurrentHour()+":"+timePicker1.getCurrentMinute();
+
+        endDate = (datePicker2.getMonth()+1)+":"+datePicker2.getDayOfMonth()+":"+datePicker2.getYear();
+        endTime = timePicker2.getCurrentHour()+":"+timePicker2.getCurrentMinute();
+
         EventInfo info = new EventInfo();
 
+        info.title =title;
         info.address = address;
         info.city =  city;
         info.state = state;
         info.country = country;
         info.startDate = startDate;
         info.endDate = endDate;
+        info.startTime = startTime;
+        info.endTime = endTime;
         info.tripId =  Long.parseLong(getIntent().getExtras().get("id").toString());
 
         eventId = db.addEventInfo(info);
 
+        title = null;
         address = null;
         city = null;
         state = null;
         country = null;
         startDate = null;
         endDate = null;
-        tripId=0;
+        startTime = null;
+        endTime = null;
+        tripId = 0;
+
+        hotelReservationbutton.setEnabled(true);
+        transportReservationbutton.setEnabled(true);
+        otherReservationbutton.setEnabled(true);
+        checkweather.setEnabled(true);
+        planningRem.setEnabled(true);
+        tripDonebutton.setEnabled(false);
 
         //Log.i("pooja", "in addEventInfo id : " + getIntent().getExtras().get("id"));
         /*

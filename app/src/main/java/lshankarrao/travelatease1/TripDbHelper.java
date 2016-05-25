@@ -21,13 +21,18 @@ public class TripDbHelper extends SQLiteOpenHelper {
             "  country TEXT," +
             "  startDate TEXT," +
             "  endDate TEXT," +
+            "  startTime TEXT," +
+            "  endTime TEXT," +
             "  notes TEXT);";
 
     static private final String SQL_CREATE_EVENT_TABLE =
             "CREATE TABLE eventInfo (" +
                     "  _id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "  title TEXT," +
                     "  startDate TEXT," +
                     "  endDate TEXT," +
+                    "  startTime TEXT," +
+                    "  endTime TEXT," +
                     "  address TEXT," +
                     "  city TEXT," +
                     "  state TEXT," +
@@ -39,9 +44,41 @@ public class TripDbHelper extends SQLiteOpenHelper {
                     "  _id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "  hotel TEXT," +
                     "  address TEXT," +
-                    "  checkin TEXT," +
-                    "  checkout TEXT," +
+                    "  checkin_date TEXT," +
+                    "  checkout_date TEXT," +
+                    "  checkin_time TEXT," +
+                    "  checkout_time TEXT," +
                     "  confirmationNo TEXT," +
+                    "  notes TEXT," +
+                    "  eventId INTEGER);";
+
+    static private final String SQL_CREATE_TRANSPORT_TABLE =
+            "CREATE TABLE transportInfo (" +
+                    "  _id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "  fromPlace TEXT," +
+                    "  fromDate TEXT," +
+                    "  fromTime TEXT," +
+                    "  toPlace TEXT," +
+                    "  toDate TEXT," +
+                    "  toTime TEXT," +
+                    "  typeofTransport TEXT," +
+                    "  confNo TEXT," +
+                    "  flightNo TEXT," +
+                    "  notes TEXT," +
+                    "  eventId INTEGER);";
+
+    static private final String SQL_CREATE_OTHER_RES_TABLE =
+            "CREATE TABLE otherResInfo (" +
+                    "  _id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "  startDate TEXT," +
+                    "  startTime TEXT," +
+                    "  endDate TEXT," +
+                    "  endTime TEXT," +
+                    "  typeOfEvent TEXT," +
+                    "  address TEXT," +
+                    "  city TEXT," +
+                    "  state TEXT," +
+                    "  country TEXT," +
                     "  notes TEXT," +
                     "  eventId INTEGER);";
 
@@ -61,6 +98,8 @@ public class TripDbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_TRIP_TABLE);
         db.execSQL(SQL_CREATE_EVENT_TABLE);
         db.execSQL(SQL_CREATE_HOTEL_TABLE);
+        db.execSQL(SQL_CREATE_TRANSPORT_TABLE);
+        db.execSQL(SQL_CREATE_OTHER_RES_TABLE);
     }
 
     @Override
@@ -68,6 +107,10 @@ public class TripDbHelper extends SQLiteOpenHelper {
         // a simple crude implementation that does not preserve data on upgrade
         db.execSQL(SQL_DROP_TABLE);
         db.execSQL(SQL_CREATE_TRIP_TABLE);
+        db.execSQL(SQL_CREATE_EVENT_TABLE);
+        db.execSQL(SQL_CREATE_HOTEL_TABLE);
+        db.execSQL(SQL_CREATE_TRANSPORT_TABLE);
+        db.execSQL(SQL_CREATE_OTHER_RES_TABLE);
 
         Toast.makeText(context, "Upgrading DB and dropping data!!!", Toast.LENGTH_SHORT).show();
     }
@@ -99,6 +142,8 @@ public class TripDbHelper extends SQLiteOpenHelper {
         contentValues.put("country", ci.country);
         contentValues.put("startDate", ci.startDate);
         contentValues.put("endDate", ci.endDate);
+        contentValues.put("startTime", ci.startTime);
+        contentValues.put("endTime", ci.endTime);
         contentValues.put("notes", ci.notes);
         //contentValues.put("events", ci.events);
         return db.insert("tripInfo", null, contentValues);
@@ -113,6 +158,8 @@ public class TripDbHelper extends SQLiteOpenHelper {
         contentValues.put("country", ci.country);
         contentValues.put("startDate", ci.startDate);
         contentValues.put("endDate", ci.endDate);
+        contentValues.put("startTime", ci.startTime);
+        contentValues.put("endTime", ci.endTime);
         contentValues.put("tripId", ci.tripId);
         return db.insert("eventInfo", null, contentValues);
     }
@@ -123,14 +170,51 @@ public class TripDbHelper extends SQLiteOpenHelper {
         //contentValues.put("_id", ci.id);
         contentValues.put("hotel", ci.hotel);
         contentValues.put("address", ci.address);
-        contentValues.put("checkin", ci.checkin);
-        contentValues.put("checkout", ci.checkout);
+        contentValues.put("checkin_date", ci.checkin_date);
+        contentValues.put("checkout_date", ci.checkout_date);
+        contentValues.put("checkin_time", ci.checkin_time);
+        contentValues.put("checkout_time", ci.checkout_time);
         contentValues.put("confirmationNo", ci.confirmationNo);
         contentValues.put("notes", ci.notes);
         contentValues.put("eventId", ci.eventId);
         db.insert("hotelInfo", null, contentValues);
     }
 
+    public void addTransportInfo(TransportInfo ci) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ContentValues contentValues = new ContentValues();
+        //contentValues.put("_id", ci.id);
+        contentValues.put("fromPlace", ci.fromPlace);
+        contentValues.put("fromDate", ci.fromDate);
+        contentValues.put("fromTime", ci.fromTime);
+        contentValues.put("toPlace", ci.toPlace);
+        contentValues.put("toDate", ci.toDate);
+        contentValues.put("toTime", ci.toTime);
+        contentValues.put("notes", ci.notes);
+        contentValues.put("typeofTransport", ci.typeofTransport);
+        contentValues.put("confNo", ci.confNo);
+        contentValues.put("flightNo", ci.flightNo);
+        contentValues.put("eventId", ci.eventId);
+        db.insert("transportInfo", null, contentValues);
+    }
+
+    public void addOtherResInfo(OtherResInfo ci) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ContentValues contentValues = new ContentValues();
+        //contentValues.put("_id", ci.id);
+        contentValues.put("startDate", ci.startDate);
+        contentValues.put("startTime", ci.startTime);
+        contentValues.put("endDate", ci.endDate);
+        contentValues.put("endTime", ci.endTime);
+        contentValues.put("typeOfEvent", ci.typeofEvent);
+        contentValues.put("address", ci.address);
+        contentValues.put("city", ci.city);
+        contentValues.put("state", ci.state);
+        contentValues.put("country", ci.country);
+        contentValues.put("notes", ci.notes);
+        contentValues.put("eventId", ci.eventId);
+        db.insert("otherResInfo", null, contentValues);
+    }
 
     public void delete(int id) {
         SQLiteDatabase db = this.getReadableDatabase();

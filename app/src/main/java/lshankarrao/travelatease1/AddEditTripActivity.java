@@ -13,7 +13,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.io.File;
@@ -24,13 +26,25 @@ public class AddEditTripActivity extends AppCompatActivity implements View.OnCli
     TripDbHelper db;
 
     String title, city, state, country, notes;
-    String startDate, endDate;
+    String startDate, endDate, startTime, endTime;
+    TimePicker timePicker1, timePicker2;
+    DatePicker datePicker1, datePicker2;
     //String id_time;
     //static int id = 0;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_trip);
+
+        timePicker1 = (TimePicker)findViewById(R.id.TimePickerAddEditTripstime);
+        datePicker1 = (DatePicker)findViewById(R.id.DatePickerAddEditTripsdate);
+
+        timePicker2 = (TimePicker)findViewById(R.id.TimePickerAddEditTripetime);
+        datePicker2 = (DatePicker)findViewById(R.id.DatePickerAddEditTripedate);
+
+        timePicker1.setIs24HourView(true);
+        timePicker2.setIs24HourView(true);
+
 
         Button tripDonebutton = (Button) findViewById(R.id.buttonAddEditTripdone);
         tripDonebutton.setOnClickListener(this);
@@ -52,11 +66,19 @@ public class AddEditTripActivity extends AppCompatActivity implements View.OnCli
         country = eCountry.getText().toString();
         EditText eNotes = (EditText) findViewById(R.id.editTextAddEditTripnotes);
         notes = eNotes.getText().toString();
+
+        startDate = (datePicker1.getMonth()+1)+":"+datePicker1.getDayOfMonth()+":"+datePicker1.getYear();
+        startTime = timePicker1.getCurrentHour()+":"+timePicker1.getCurrentMinute();
+
+        endDate = (datePicker2.getMonth()+1)+":"+datePicker2.getDayOfMonth()+":"+datePicker2.getYear();
+        endTime = timePicker2.getCurrentHour()+":"+timePicker2.getCurrentMinute();
+
+        /*
         EditText eStartDate = (EditText) findViewById(R.id.editTextAddEditTripsdate);
         startDate = eStartDate.getText().toString();
         EditText eEndDate = (EditText) findViewById(R.id.editTextAddEditTripedate);
         endDate = eEndDate.getText().toString();
-
+        */
         TripInfo info = new TripInfo();
 
         //info.id = id;
@@ -67,6 +89,8 @@ public class AddEditTripActivity extends AppCompatActivity implements View.OnCli
         info.notes = notes;
         info.startDate = startDate;
         info.endDate = endDate;
+        info.startTime = startTime;
+        info.endTime = endTime;
         //info.events = null;
 
         long id = db.addTripInfo(info);
@@ -78,6 +102,8 @@ public class AddEditTripActivity extends AppCompatActivity implements View.OnCli
         notes = null;
         startDate = null;
         endDate = null;
+        startTime = null;
+        endTime = null;
 
         Log.i("pooja", "addTripInfo id : "+id);
 

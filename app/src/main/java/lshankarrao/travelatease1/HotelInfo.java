@@ -3,8 +3,8 @@ package lshankarrao.travelatease1;
 public class HotelInfo {
     // protected int id;
     protected String hotel;
-    protected String checkin;
-    protected String checkout;
+    protected String checkin_date, checkin_time;
+    protected String checkout_date, checkout_time;
     protected String address;
     protected String confirmationNo;
     protected String notes;
@@ -14,12 +14,14 @@ public class HotelInfo {
 
     }
 
-    public HotelInfo(String hotel, String address, String checkin, String checkout, String confirmationNo, String notes, long eventId) {
+    public HotelInfo(String hotel, String address, String checkin_date, String checkout_date, String checkin_time, String checkout_time, String confirmationNo, String notes, long eventId) {
         //this.id = id;
         this.address = address;
         this.hotel = hotel;
-        this.checkin = checkin;
-        this.checkout = checkout;
+        this.checkin_date = checkin_date;
+        this.checkout_date = checkout_date;
+        this.checkin_time = checkin_time;
+        this.checkout_time = checkout_time;
         this.confirmationNo = confirmationNo;
         this.notes = notes;
         this.eventId = eventId;
@@ -50,20 +52,36 @@ public class HotelInfo {
         this.hotel = hotel;
     }
 
-    public String getCheckin() {
-        return checkin;
+    public String getCheckin_date() {
+        return checkin_date;
     }
 
-    public void setCheckin(String checkin) {
-        this.checkin = checkin;
+    public void setCheckin_date(String checkin_date) {
+        this.checkin_date = checkin_date;
     }
 
-    public String getCheckout() {
-        return checkout;
+    public String getCheckout_date() {
+        return checkout_date;
     }
 
-    public void setCheckout(String checkout) {
-        this.checkout = checkout;
+    public void setCheckout_date(String checkout_date) {
+        this.checkout_date = checkout_date;
+    }
+
+    public String getCheckin_time() {
+        return checkin_time;
+    }
+
+    public void setCheckin_time(String checkin_time) {
+        this.checkin_time = checkin_time;
+    }
+
+    public String getCheckout_time() {
+        return checkout_time;
+    }
+
+    public void setCheckout_time(String checkout_time) {
+        this.checkout_time = checkout_time;
     }
 
     public String getConfirmationNo() {
