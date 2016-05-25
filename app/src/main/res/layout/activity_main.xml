@@ -14,7 +14,7 @@
     <Button
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="MY TRIPS"
+        android:text="My Trips"
         android:id="@+id/button_upcomingTrips"
         android:layout_gravity="center_horizontal"
         android:layout_margin="45dp"
