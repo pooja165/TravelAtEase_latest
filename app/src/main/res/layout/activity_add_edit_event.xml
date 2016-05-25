@@ -303,6 +303,10 @@
         android:id="@+id/buttonAddEditEventDone"
         android:layout_gravity="right" />
 
+    <Space
+        android:layout_width="20px"
+        android:layout_height="20px" />
+
 
 </LinearLayout>
 </ScrollView>
