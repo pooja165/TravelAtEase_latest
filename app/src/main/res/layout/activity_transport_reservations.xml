@@ -164,7 +164,7 @@
         android:layout_below="@+id/EditTextTransportReservationConfirmationNo"
         android:layout_toRightOf="@+id/TextViewTransportReservationConfNo"
         android:layout_alignBaseline="@+id/TextViewTransportReservationFlightNo"/>
-<!--
+<!---
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -186,7 +186,7 @@
         android:layout_toEndOf="@+id/textViewOtherResTypeofEvent"
         android:layout_alignBaseline="@+id/textViewOtherResCountry"
         android:layout_margin="5dp" />
-<!--
+<!---
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
