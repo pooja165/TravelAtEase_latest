@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
 
     <TextView
         android:layout_width="wrap_content"
@@ -25,21 +33,21 @@
 
     <DatePicker
         android:layout_width="175dp"
-        android:layout_height="70dp"
-        android:id="@+id/otherStartDatePicker"
+        android:layout_height="450dp"
+        android:id="@+id/datePickerOtherResStartDate"
         android:layout_below="@+id/textViewOtherResStartTimeDate"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_margin="5dp" />
 
     <TimePicker
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:id="@+id/otherStartTimePicker"
+        android:layout_width="185dp"
+        android:layout_height="400dp"
+        android:id="@+id/timePickerotherResStartTime"
         android:layout_below="@id/textViewOtherResStartTimeDate"
-        android:layout_toRightOf="@+id/otherStartDatePicker"
-        android:layout_toEndOf="@+id/otherStartDatePicker"
-        android:layout_alignBaseline="@+id/otherStartDatePicker"
+        android:layout_toRightOf="@+id/datePickerOtherResStartDate"
+        android:layout_toEndOf="@+id/datePickerOtherResStartDate"
+        android:layout_alignBaseline="@+id/datePickerOtherResStartDate"
         android:layout_margin="5dp" />
 
     <TextView
@@ -48,15 +56,15 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Enter End Date and Time"
         android:id="@+id/textViewOtherResEndDateTime"
-        android:layout_below="@+id/otherStartDatePicker"
+        android:layout_below="@+id/datePickerOtherResStartDate"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_margin="5dp" />
 
     <DatePicker
         android:layout_width="175dp"
-        android:layout_height="70dp"
-        android:id="@+id/otherEndatePicker"
+        android:layout_height="450dp"
+        android:id="@+id/datePickerOtherResEndDate"
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -64,10 +72,10 @@
         android:layout_margin="5dp" />
 
     <TimePicker
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:id="@+id/toTimePicker"
-        android:layout_toRightOf="@+id/otherEndatePicker"
+        android:layout_width="185dp"
+        android:layout_height="400dp"
+        android:id="@+id/timePickerOtherResEndTime"
+        android:layout_toRightOf="@+id/datePickerOtherResEndDate"
         android:layout_below="@id/textViewOtherResEndDateTime"
         android:layout_margin="5dp" />
 
@@ -76,8 +84,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Type of Event"
-        android:id="@+id/textViewTypeOfEvent"
-        android:layout_below="@+id/otherEndatePicker"
+        android:id="@+id/textViewOtherResTypeofEvent"
+        android:layout_below="@+id/datePickerOtherResEndDate"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_margin="5dp" />
@@ -85,9 +93,9 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:id="@+id/editText2"
-        android:layout_toRightOf="@+id/textViewTypeOfEvent"
-        android:layout_below="@id/otherEndatePicker"
+        android:id="@+id/editTextOtherResTypeofEvent"
+        android:layout_toRightOf="@+id/textViewOtherResTypeofEvent"
+        android:layout_below="@id/datePickerOtherResEndDate"
         android:layout_margin="5dp"
         android:maxHeight="30dp" />
 
@@ -97,7 +105,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Address"
         android:id="@+id/OtherResAddress"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/editTextOtherResTypeofEvent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_margin="5dp" />
@@ -107,10 +115,10 @@
         android:layout_height="40dp"
         android:inputType="textPostalAddress"
         android:ems="10"
-        android:id="@+id/editTextAddress"
-        android:layout_below="@+id/editText2"
-        android:layout_toRightOf="@+id/textViewTypeOfEvent"
-        android:layout_toEndOf="@+id/textViewTypeOfEvent"
+        android:id="@+id/editTextOtherResAddress"
+        android:layout_below="@+id/editTextOtherResTypeofEvent"
+        android:layout_toRightOf="@+id/textViewOtherResTypeofEvent"
+        android:layout_toEndOf="@+id/textViewOtherResTypeofEvent"
         android:layout_alignBaseline="@id/OtherResAddress"
         android:layout_alignParentRight="true"
         android:layout_margin="5dp"
@@ -122,7 +130,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="City"
         android:id="@+id/textViewOtherResCity"
-        android:layout_below="@+id/editTextAddress"
+        android:layout_below="@+id/editTextOtherResAddress"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_margin="5dp" />
@@ -131,8 +139,8 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:id="@+id/editTextOtherResCity"
-        android:layout_below="@+id/editTextAddress"
-        android:layout_toRightOf="@+id/textViewTypeOfEvent"
+        android:layout_below="@+id/editTextOtherResAddress"
+        android:layout_toRightOf="@+id/textViewOtherResTypeofEvent"
         android:layout_margin="5dp" />
 
     <TextView
@@ -151,8 +159,8 @@
         android:layout_height="30dp"
         android:id="@+id/editTextOtherResState"
         android:layout_below="@+id/editTextOtherResCity"
-        android:layout_toRightOf="@+id/textViewTypeOfEvent"
-        android:layout_toEndOf="@+id/textViewTypeOfEvent"
+        android:layout_toRightOf="@+id/textViewOtherResTypeofEvent"
+        android:layout_toEndOf="@+id/textViewOtherResTypeofEvent"
         android:layout_alignParentRight="true"
         android:layout_alignBaseline="@+id/textViewOtherResState"
         android:layout_margin="5dp" />
@@ -174,11 +182,11 @@
         android:id="@+id/editTextOtherResCountry"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/editTextOtherResState"
-        android:layout_toRightOf="@+id/textViewTypeOfEvent"
-        android:layout_toEndOf="@+id/textViewTypeOfEvent"
+        android:layout_toRightOf="@+id/textViewOtherResTypeofEvent"
+        android:layout_toEndOf="@+id/textViewOtherResTypeofEvent"
         android:layout_alignBaseline="@+id/textViewOtherResCountry"
         android:layout_margin="5dp" />
-
+<!--
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -186,36 +194,39 @@
         android:id="@+id/button3"
         android:layout_below="@+id/editTextOtherResCountry"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true" />-->
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Note"
+        android:text="Notes"
         android:id="@+id/textView3"
-        android:layout_below="@+id/button3"
+        android:layout_below="@+id/editTextOtherResCountry"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:id="@+id/editText3"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/button4"
-        android:layout_toRightOf="@+id/textView3"
-        android:layout_toEndOf="@+id/textView3"
-        android:maxHeight="30dp" />
+        android:id="@+id/editTextOtherResNotes"
+        android:maxHeight="30dp"
+        android:layout_below="@+id/textViewOtherResCountry"
+        android:layout_alignRight="@+id/editTextOtherResCountry"
+        android:layout_alignEnd="@+id/editTextOtherResCountry"
+        android:layout_alignLeft="@+id/buttonOtherResSave"
+        android:layout_alignStart="@+id/buttonOtherResSave" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save"
-        android:id="@+id/button4"
-        android:layout_alignBottom="@+id/button3"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:id="@+id/buttonOtherResSave"
+        android:layout_below="@+id/editTextOtherResNotes"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/textViewOtherResStartTimeDate"
+        android:layout_alignEnd="@+id/textViewOtherResStartTimeDate" />
 
 
 </RelativeLayout>
+</ScrollView>
