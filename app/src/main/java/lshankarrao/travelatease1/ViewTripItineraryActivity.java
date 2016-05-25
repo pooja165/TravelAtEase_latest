@@ -1,6 +1,5 @@
 package lshankarrao.travelatease1;
 
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -99,8 +98,8 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
             return true;
         }else if(id == R.id.setTripPlanningReminders){
             //calling set planning reminder activity
-            Intent newIntent = new Intent(ViewTripItineraryActivity.this,SetTripPlanningReminderActivity.class);
-            startActivityForResult(newIntent,REMINDER_DURATION);
+            //Intent newIntent = new Intent(ViewTripItineraryActivity.this,SetTripPlanningReminderActivity.class);
+            //startActivityForResult(newIntent,REMINDER_DURATION);
 
             Random r = new Random();
             int x = (r.nextInt(100) + 1);
@@ -140,25 +139,24 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode != 1234) {
-            toast("Reply is not from expected activity");
-            return;
-        }
-
-        if (resultCode != Activity.RESULT_OK) {
-            if (resultCode == Activity.RESULT_CANCELED) {
-                toast("Result code is not OK : RESULT_CANCELED");
-            } else {
-                toast("Result code is not OK : " + resultCode);
-            }
-            return;
-        }
-
-        choice = data.getDataString();
-
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        if (requestCode != 1234) {
+//            toast("Reply is not from expected activity");
+//            return;
+//        }
+//
+//        if (resultCode != Activity.RESULT_OK) {
+//            if (resultCode == Activity.RESULT_CANCELED) {
+//                toast("Result code is not OK : RESULT_CANCELED");
+//            } else {
+//                toast("Result code is not OK : " + resultCode);
+//            }
+//            return;
+//        }
+//
+//        choice = data.getDataString();
+//    }
 
     private void toast(String msg) {
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();

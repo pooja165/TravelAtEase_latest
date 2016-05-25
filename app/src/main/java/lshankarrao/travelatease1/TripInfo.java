@@ -17,7 +17,8 @@ public class TripInfo {
 
     }
 
-    public TripInfo(String title, String city, String state, String country, String startDate, String endDate, String startTime, String endTime, String notes) {
+    public TripInfo(String title, String city, String state, String country,
+                    String startDate, String endDate, String startTime, String endTime, String notes) {
         //this.id = id;
         this.title = title;
         this.city = city;
@@ -120,4 +121,9 @@ public class TripInfo {
     public void setEvents(String events) {
         this.events = events;
     }*/
+
+    @Override
+    public String toString(){
+        return "";
+    }
 }

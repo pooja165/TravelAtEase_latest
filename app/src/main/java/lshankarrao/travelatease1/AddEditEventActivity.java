@@ -78,6 +78,15 @@ public class AddEditEventActivity extends AppCompatActivity implements View.OnCl
                 startActivity(intent);
             }
         });
+        Button done = (Button) findViewById(R.id.buttonAddEditEventDone);
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddEditEventActivity.this, TripListActivity.class);
+                intent.putExtra("eventId", eventId);
+                startActivity(intent);
+            }
+        });
 
         hotelReservationbutton.setEnabled(false);
         transportReservationbutton.setEnabled(false);
@@ -91,8 +100,8 @@ public class AddEditEventActivity extends AppCompatActivity implements View.OnCl
 
         db = new TripDbHelper(this);
 
-        EditText eStartDate = (EditText) findViewById(R.id.editTextAddEditEventtitle);
-        title = eStartDate.getText().toString();
+        EditText etitle = (EditText) findViewById(R.id.editTextAddEditEventtitle);
+        title = etitle.getText().toString();
         /*
         EditText eEndDate = (EditText) findViewById(R.id.editTextAddEditEventendDate);
         endDate = eEndDate.getText().toString();*/
@@ -122,7 +131,11 @@ public class AddEditEventActivity extends AppCompatActivity implements View.OnCl
         info.endDate = endDate;
         info.startTime = startTime;
         info.endTime = endTime;
-        info.tripId =  Long.parseLong(getIntent().getExtras().get("id").toString());
+        info.tripId =  getIntent().getIntExtra("id", -1);
+        if(tripId == -1){
+            Log.i("invalid trip ID",tripId+"");
+            return;
+        } ;//Integer.parseInt(getIntent().getExtras().get("id").toString());
 
         eventId = db.addEventInfo(info);
 

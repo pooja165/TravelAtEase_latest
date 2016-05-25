@@ -5,12 +5,16 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TripDbHelper extends SQLiteOpenHelper {
 
-    static private final int VERSION=3;
-    static private final String DB_NAME="TripDatabase.db";
+    static private final int VERSION = 3;
+    static private final String DB_NAME = "TripDatabase.db";
 
     static private final String SQL_CREATE_TRIP_TABLE =
             "CREATE TABLE tripInfo (" +
@@ -127,11 +131,14 @@ public class TripDbHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor fetchAll() {
+    public Cursor fetchAllTrips() {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM tripInfo;", null);
     }
-
+    public Cursor fetchAllEventsForTrip(int tripId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM eventInfo WHERE tripId=" + tripId + ";", null);
+    }
     public long addTripInfo(TripInfo ci) {
         SQLiteDatabase db = this.getReadableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -152,6 +159,7 @@ public class TripDbHelper extends SQLiteOpenHelper {
     public long addEventInfo(EventInfo ci) {
         SQLiteDatabase db = this.getReadableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put("title", ci.title);
         contentValues.put("address", ci.address);
         contentValues.put("city", ci.city);
         contentValues.put("state", ci.state);
@@ -225,4 +233,72 @@ public class TripDbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE);
          */
     }
+
+    public TripInfo getTripInfo(int id) {
+        Log.i("id", id + "");
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        //query for basic trip details
+        Cursor c = db.rawQuery("SELECT * FROM tripInfo WHERE _id=" + id + ";", null);
+        if (c == null || c.getCount() < 1) {
+            Log.i("kirik", "agide");
+            return new TripInfo();
+        }
+        c.moveToFirst();
+        Log.i("count = ", c.getCount() + "");
+        Log.i("index = ", c.getColumnIndex("title") + "");
+
+
+        Log.i("title TripDBhelper", c.getInt(c.getColumnIndex("_id")) + "");
+        //need to query for events with this trip id stored.
+        //get the event ids for all the trips which have the current "id" stored in the trip id field.
+        //Cursor d = db.rawQuery("SELECT * FROM eventInfo WHERE tripId=" +id+"", null);
+        TripInfo tripInfo = new TripInfo(c.getString(c.getColumnIndex("title")),
+                c.getString(c.getColumnIndex("city")),
+                c.getString(c.getColumnIndex("state")),
+                c.getString(c.getColumnIndex("country")),
+                c.getString(c.getColumnIndex("startDate")),
+                c.getString(c.getColumnIndex("endDate")),
+                c.getString(c.getColumnIndex("startTime")),
+                c.getString(c.getColumnIndex("endTime")),
+                c.getString(c.getColumnIndex("notes"))
+        );
+
+
+        return tripInfo;
+    }
+
+    public List<EventInfo> getEventInfo(int id) {
+
+        Log.i("id", id + "");
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        //query for basic trip details
+        Cursor c = db.rawQuery("SELECT * FROM eventInfo WHERE tripId=" + id + ";", null);
+        if (c == null || c.getCount() < 1) {
+            Log.i("kirik", "aagide");
+            return null;
+        }
+        c.moveToFirst();
+        Log.i("count = ", c.getCount() + "");
+        List<EventInfo> infos = new ArrayList<EventInfo>();
+        while (!c.isAfterLast()) {
+            EventInfo eventInfo = new EventInfo(c.getString(c.getColumnIndex("title")),
+                    c.getString(c.getColumnIndex("startDate")),
+                    c.getString(c.getColumnIndex("endDate")),
+                    c.getString(c.getColumnIndex("startTime")),
+                    c.getString(c.getColumnIndex("endTime")),
+                    c.getString(c.getColumnIndex("address")),
+                    c.getString(c.getColumnIndex("city")),
+                    c.getString(c.getColumnIndex("state")),
+                    c.getString(c.getColumnIndex("country")),
+                    c.getInt(c.getColumnIndex("tripId")));
+            c.moveToNext();
+            infos.add(eventInfo);
+        }
+
+        return infos;
+    }
+
+
 }

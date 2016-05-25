@@ -1,14 +1,8 @@
 package lshankarrao.travelatease1;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.ThumbnailUtils;
-import android.net.Uri;
+import android.database.Cursor;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -16,14 +10,14 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
-import android.widget.Toast;
-
-import java.io.File;
-import java.io.FileOutputStream;
 
 public class AddEditTripActivity extends AppCompatActivity implements View.OnClickListener{
 
     TripDbHelper db;
+    //tripDB could be replaced be db.
+    TripDbHelper tripDB;
+    Cursor cursor;
+
 
     String title, city, state, country, notes;
     String startDate, endDate, startTime, endTime;
@@ -33,6 +27,7 @@ public class AddEditTripActivity extends AppCompatActivity implements View.OnCli
     //static int id = 0;
 
     protected void onCreate(Bundle savedInstanceState) {
+        tripDB = new TripDbHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_trip);
 
@@ -48,6 +43,7 @@ public class AddEditTripActivity extends AppCompatActivity implements View.OnCli
 
         Button tripDonebutton = (Button) findViewById(R.id.buttonAddEditTripdone);
         tripDonebutton.setOnClickListener(this);
+
 
     }
 
@@ -108,8 +104,8 @@ public class AddEditTripActivity extends AppCompatActivity implements View.OnCli
         Log.i("pooja", "addTripInfo id : "+id);
 
 
-        Intent intent = new Intent(AddEditTripActivity.this, AddEditEventActivity.class);
-        intent.putExtra("id", id);
+        Intent intent = new Intent(AddEditTripActivity.this, TripListActivity.class);
+        //intent.putExtra("id", id);
         startActivity(intent);
     }
 }

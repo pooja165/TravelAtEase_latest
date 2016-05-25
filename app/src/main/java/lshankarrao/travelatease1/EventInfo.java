@@ -9,15 +9,17 @@ public class EventInfo {
     protected String address;
     protected String startDate;
     protected String endDate;
+    protected int tripId;
     protected String startTime;
     protected String endTime;
-    protected long tripId;
 
     public EventInfo() {
 
     }
 
-    public EventInfo(String title, String startDate, String endDate, String startTime, String endTime, String address, String city, String state, String country, long tripId) {
+    public EventInfo(String title, String startDate, String endDate,
+                     String startTime, String endTime, String address,
+                     String city, String state, String country, int tripId) {
         //this.id = id;
         this.title = title;
         this.address = address;
@@ -39,15 +41,13 @@ public class EventInfo {
     public void setId(int id) {
         this.id = id;
     }*/
-
     public String getTitle() {
-        return title;
-    }
+    return title;
+}
 
     public void setTitle(String title) {
         this.title = title;
     }
-
 
     public String getAddress() {
         return address;
@@ -117,7 +117,7 @@ public class EventInfo {
         return tripId;
     }
 
-    public void setEndDate(long tripId) {
+    public void setEndDate(int tripId) {
         this.tripId = tripId;
     }
 }

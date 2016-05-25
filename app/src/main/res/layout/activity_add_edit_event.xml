@@ -296,7 +296,12 @@
 
     </LinearLayout>
 
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DONE"
+        android:id="@+id/buttonAddEditEventDone"
+        android:layout_gravity="right" />
 
 
 </LinearLayout>
