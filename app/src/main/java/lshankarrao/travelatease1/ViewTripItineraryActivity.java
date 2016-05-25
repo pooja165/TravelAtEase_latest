@@ -1,8 +1,5 @@
 package lshankarrao.travelatease1;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -15,11 +12,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Calendar;
-import java.util.Random;
-
 /**
- * Created by vijay on 5/23/2016.
+ * Created by lakshmi on 5/23/2016.
  */
 public class ViewTripItineraryActivity extends AppCompatActivity{
 
@@ -29,6 +23,8 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
     int tripId;
     //private int x = 0;
     String tripTitle;
+    String tripStartDate;
+    String tripStartTime;
     final int REMINDER_DURATION =12345;
     String choice;
 
@@ -55,6 +51,8 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
         Log.i("string:  ",s);
 
         tripTitle = tripInfo.getTitle();
+        tripStartDate = tripInfo.getStartDate();
+        tripStartTime = tripInfo.getStartTime();
 
         ListView eventListView = (ListView) findViewById(R.id.listViewTLAEventList);
         cursor = tripDb.fetchAllEventsForTrip(tripId);
@@ -92,47 +90,51 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
         else if (id == R.id.addEvent) {
 
             Intent intent = new Intent(ViewTripItineraryActivity.this, AddEditEventActivity.class);
+            intent.putExtra("id", tripId);
             startActivity(intent); //startActivityForResult
-
-
             return true;
+
         }else if(id == R.id.setTripPlanningReminders){
             //calling set planning reminder activity
-            //Intent newIntent = new Intent(ViewTripItineraryActivity.this,SetTripPlanningReminderActivity.class);
-            //startActivityForResult(newIntent,REMINDER_DURATION);
-
-            Random r = new Random();
-            int x = (r.nextInt(100) + 1);
-            cursor = tripDb.fetchAllTrips();
-            Calendar calendar =  Calendar.getInstance();
-            //calendar.set(2014,Calendar.getInstance().get(Calendar.MONTH),Calendar.SUNDAY , 8, 00, 00);
-            int seconds = calendar.get(Calendar.SECOND);
-            int hour = calendar.get(Calendar.HOUR_OF_DAY);
-            int minute = calendar.get(Calendar.MINUTE);
-            int day = calendar.get(Calendar.DAY_OF_MONTH);
-            int month = calendar.get(Calendar.MONTH);
-            int year = calendar.get(Calendar.YEAR);
-            calendar.set(year,month,day,hour,minute+1,seconds);
-            long when = calendar.getTimeInMillis();         // notification time
+            Intent newIntent = new Intent(ViewTripItineraryActivity.this,SetTripPlanningReminderActivity.class);
+            newIntent.putExtra("StartDate", tripStartDate);
+            newIntent.putExtra("StartTime", tripStartTime);
+            newIntent.putExtra("Id", tripId);
+            newIntent.putExtra("Title", tripTitle);
+            startActivity(newIntent);
 
 
-            Log.i("time", when+" ");
-
-            Intent intentAlarm = new Intent(getApplicationContext(), AlarmReceiver.class);
-
-            intentAlarm.putExtra("tripId",tripId);
-            intentAlarm.putExtra("tripTitle", tripTitle + x);
-            intentAlarm.putExtra("notificationID", + x);
-
-
-
-            // create the object
-            AlarmManager alarmManager = (AlarmManager)getApplicationContext().getSystemService(Context.ALARM_SERVICE);
-
-            //set the alarm for particular time
-            alarmManager.set(AlarmManager.RTC_WAKEUP,when, PendingIntent.getBroadcast(getApplicationContext(),x,  intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA));
-            Toast.makeText(getApplicationContext(), "Alarm Set 2 " + x, Toast.LENGTH_SHORT).show();
-            x++;
+//            Calendar calendar =  Calendar.getInstance();
+//            //calendar.set(2014,Calendar.getInstance().get(Calendar.MONTH),Calendar.SUNDAY , 8, 00, 00);
+//            int seconds = calendar.get(Calendar.SECOND);
+//            int hour = calendar.get(Calendar.HOUR_OF_DAY);
+//            int minute = calendar.get(Calendar.MINUTE);
+//            int day = calendar.get(Calendar.DAY_OF_MONTH);
+//            int month = calendar.get(Calendar.MONTH);
+//            int year = calendar.get(Calendar.YEAR);
+//            calendar.set(year,month,day,hour,minute+1,seconds);
+//
+//            long when = calendar.getTimeInMillis();         // notification time
+//            Random r = new Random();
+//            int x = (r.nextInt(100) + 1);
+//
+//            Log.i("time", when+" ");
+//
+//            Intent intentAlarm = new Intent(getApplicationContext(), AlarmReceiver.class);
+//
+//            intentAlarm.putExtra("tripId",tripId);
+//            intentAlarm.putExtra("tripTitle", tripTitle + x);
+//            intentAlarm.putExtra("notificationID", + x);
+//
+//
+//
+//            // create the object
+//            AlarmManager alarmManager = (AlarmManager)getApplicationContext().getSystemService(Context.ALARM_SERVICE);
+//
+//            //set the alarm for particular time
+//            alarmManager.set(AlarmManager.RTC_WAKEUP,when, PendingIntent.getBroadcast(getApplicationContext(),x,  intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA));
+//            Toast.makeText(getApplicationContext(), "Alarm Set 2 " + x, Toast.LENGTH_SHORT).show();
+//            x++;
 
             // ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).cancel(notificationId);
         }

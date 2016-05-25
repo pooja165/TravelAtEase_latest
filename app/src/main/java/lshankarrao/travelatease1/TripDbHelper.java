@@ -137,6 +137,7 @@ public class TripDbHelper extends SQLiteOpenHelper {
     }
     public Cursor fetchAllEventsForTrip(int tripId) {
         SQLiteDatabase db = this.getReadableDatabase();
+        //return db.rawQuery("SELECT * FROM eventInfo;", null);
         return db.rawQuery("SELECT * FROM eventInfo WHERE tripId=" + tripId + ";", null);
     }
     public long addTripInfo(TripInfo ci) {

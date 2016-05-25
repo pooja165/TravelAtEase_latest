@@ -10,7 +10,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 /**
- * Created by vijay on 5/23/2016.
+ * Created by lakshmi on 5/23/2016.
  */
 public class AlarmReceiver extends BroadcastReceiver{
 

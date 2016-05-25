@@ -19,8 +19,8 @@ public class AddEditEventActivity extends AppCompatActivity implements View.OnCl
 
     String city, state, country, address, title;
     String startDate, endDate, startTime, endTime;
-    long tripId=0;
-    static long eventId=0;
+    int tripId=0;
+    long eventId=0;
     TimePicker timePicker1, timePicker2;
     DatePicker datePicker1, datePicker2;
     Button hotelReservationbutton, transportReservationbutton, otherReservationbutton;

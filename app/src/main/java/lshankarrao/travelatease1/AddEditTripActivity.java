@@ -11,7 +11,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
-public class AddEditTripActivity extends AppCompatActivity implements View.OnClickListener{
+public class AddEditTripActivity extends AppCompatActivity implements View.OnClickListener {
 
     TripDbHelper db;
     //tripDB could be replaced be db.
@@ -46,6 +46,15 @@ public class AddEditTripActivity extends AppCompatActivity implements View.OnCli
 
 
     }
+
+//    private String getString(DatePicker d) {
+//        Calendar calendar =  new GregorianCalendar();
+//        calendar.set(d.getYear(), d.getMonth() + 1, d.getDayOfMonth());
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+//        return sdf.format(calendar.getTime());
+//    }
+
+
 
     @Override
     public void onClick(View v) {

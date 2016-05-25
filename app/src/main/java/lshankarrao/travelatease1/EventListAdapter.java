@@ -10,7 +10,7 @@ import android.widget.CursorAdapter;
 import android.widget.TextView;
 
 /**
- * Created by vijay on 5/24/2016.
+ * Created by lakshmi on 5/24/2016.
  */
 public class EventListAdapter extends CursorAdapter {
     public EventListAdapter(Context context, Cursor c, int flags) {
@@ -30,6 +30,9 @@ public class EventListAdapter extends CursorAdapter {
         //        String eventTitle = cursor.getString(cursor.getColumnIndex("city"));
 //        Log.i("new trip name displayed", eventTitle);
 //        ((TextView)view.findViewById(R.id.textViewVTAEventListPlace)).setText(eventTitle);
+        int tripID = cursor.getInt(cursor.getColumnIndex("tripId"));
+        Log.i("bla bla id ", tripID + "");
+
         String eventPlace = cursor.getString(cursor.getColumnIndex("city"));
         Log.i("new trip name displayed", eventPlace);
         ((TextView)view.findViewById(R.id.textViewVTAEventListPlace)).setText(eventPlace);

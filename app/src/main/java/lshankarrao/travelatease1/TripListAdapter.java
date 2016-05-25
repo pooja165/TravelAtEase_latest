@@ -10,7 +10,7 @@ import android.widget.CursorAdapter;
 import android.widget.TextView;
 
 /**
- * Created by vijay on 5/23/2016.
+ * Created by lakshmi on 5/23/2016.
  */
 public class TripListAdapter extends CursorAdapter {
     public TripListAdapter(Context context, Cursor c, int flags) {
