@@ -28,6 +28,12 @@ public class TripListAdapter extends CursorAdapter {
         String tripTitle = cursor.getString(cursor.getColumnIndex("title"));
 
         Log.i("new trip name displayed", tripTitle);
-        ((TextView)view.findViewById(R.id.textViewTLcustomRow)).setText(tripTitle);
+        ((TextView)view.findViewById(R.id.textViewTLcustomRowTitle)).setText(tripTitle);
+
+        String duration = cursor.getString(cursor.getColumnIndex("startDate")) +" to " + cursor.getString(cursor.getColumnIndex("endDate"));
+
+        ((TextView)view.findViewById(R.id.textViewTLcustomRowDuration)).setText(duration);
+
+
     }
 }

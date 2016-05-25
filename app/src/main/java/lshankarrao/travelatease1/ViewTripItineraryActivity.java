@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,13 +42,33 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
             return;
         }
         Log.i("tripId: VTA ", tripId+"");
-        TextView detailsDisplay = (TextView) findViewById(R.id.textViewVTADetailsDisplay);
+
         TripInfo tripInfo = tripDb.getTripInfo(tripId);
-        String s = "TITLE: "+ tripInfo.getTitle() + "\n" +
+        TextView titleDisplay = (TextView) findViewById(R.id.textViewVTATitle);
+        String s = tripInfo.getTitle();
+        titleDisplay.setText(s);
+
+        TextView placeDisplay = (TextView) findViewById(R.id.textViewVTAPlace);
+        String t = tripInfo.getCity() + ", "+ tripInfo.getState() +", " + tripInfo.getCountry();
+        placeDisplay.setText(t);
+        placeDisplay.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        placeDisplay.setSingleLine(true);
+        placeDisplay.setMarqueeRepeatLimit(10);
+        placeDisplay.setSelected(true);
+
+        TextView durationDisplay = (TextView) findViewById(R.id.textViewVTADuration);
+        String u = tripInfo.getStartDate() + " to " + tripInfo.getEndDate();
+        durationDisplay.setText(u);
+//        durationDisplay.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+//        durationDisplay.setSingleLine(true);
+//        durationDisplay.setMarqueeRepeatLimit(6);
+//        durationDisplay.setSelected(true);
+
+        String full = "TITLE: "+ tripInfo.getTitle() + "\n" +
                 "PLACE: "+ tripInfo.getCity() + "\n" +
                 "From: "+ tripInfo.getStartDate() + "\t"+
                 "To: "+ tripInfo.getEndDate();
-        detailsDisplay.setText(s);
+        titleDisplay.setText(s);
         Log.i("string:  ",s);
 
         tripTitle = tripInfo.getTitle();

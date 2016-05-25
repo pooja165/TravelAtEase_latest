@@ -27,9 +27,11 @@ public class EventListAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         //get title
         Log.i("bV ", cursor.getCount() + "");
-        //        String eventTitle = cursor.getString(cursor.getColumnIndex("city"));
-//        Log.i("new trip name displayed", eventTitle);
-//        ((TextView)view.findViewById(R.id.textViewVTAEventListPlace)).setText(eventTitle);
+
+        String eventTitle = cursor.getString(cursor.getColumnIndex("title"));
+        Log.i("new trip name displayed", eventTitle);
+        ((TextView)view.findViewById(R.id.textViewVTAEventListTitle)).setText(eventTitle);
+
         int tripID = cursor.getInt(cursor.getColumnIndex("tripId"));
         Log.i("bla bla id ", tripID + "");
 

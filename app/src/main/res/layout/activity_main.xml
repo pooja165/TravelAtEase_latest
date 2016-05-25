@@ -1,31 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="lshankarrao.travelatease1.MainActivity">
+    tools:context="lshankarrao.travelatease1.MainActivity"
+    android:background="#c7e8f3">
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="UPCOMING TRIPS"
         android:id="@+id/button_upcomingTrips"
         android:layout_gravity="center_horizontal"
-        />
+        android:layout_margin="45dp"
+        android:padding="30dp"
+        android:textSize="25sp"
+        android:background="#79a5fd"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="CURRENT TRIP"
         android:id="@+id/button_currentTrip"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:textSize="25sp"
+        android:padding="30dp"
+        android:layout_margin="45dp"
+        android:textColor="@color/colorPrimary"
+        android:background="#79a5fd"
+        android:textStyle="bold" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="VIEW PAST TRIPS"
+        android:text="PAST TRIPS"
         android:id="@+id/button_pastTrips"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:textSize="25sp"
+        android:layout_margin="45dp"
+        android:padding="30dp"
+        android:textColor="@color/colorPrimary"
+        android:background="#79a5fd"
+        android:textStyle="bold" />
 
 </LinearLayout>
+</ScrollView>
