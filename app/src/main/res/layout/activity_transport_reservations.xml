@@ -4,98 +4,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
-<RelativeLayout
+    <RelativeLayout
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
-
-    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Transport Details"
-        android:id="@+id/transportDetailsActivity"
-        android:layout_above="@+id/EditTextTransportReservationFromPlace"
-        android:layout_centerHorizontal="true"
-        android:textSize="45sp" />
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/EditTextTransportReservationFromPlace"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:hint="From" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Transport Details"
+            android:id="@+id/transportDetailsActivity"
+            android:layout_above="@+id/EditTextTransportReservationFromPlace"
+            android:layout_centerHorizontal="true"
+            android:textSize="45sp" />
 
-    <DatePicker
-        android:layout_width="175dp"
-        android:layout_height="450dp"
-        android:id="@+id/DatePickerTransportReservationFromDate"
-        android:layout_below="@+id/EditTextTransportReservationFromPlace"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/EditTextTransportReservationFromPlace"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:hint="From" />
+
+        <DatePicker
+            android:layout_width="175dp"
+            android:layout_height="450dp"
+            android:id="@+id/DatePickerTransportReservationFromDate"
+            android:layout_below="@+id/EditTextTransportReservationFromPlace"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
 
 
-    <TimePicker
-        android:layout_width="185dp"
-        android:layout_height="400dp"
-        android:id="@+id/TimePickerTransportReservationFromTime"
-        android:layout_below="@+id/EditTextTransportReservationFromPlace"
-        android:layout_toRightOf="@+id/DatePickerTransportReservationFromDate"
-        android:layout_toEndOf="@+id/DatePickerTransportReservationFromDate"
-        android:layout_alignBaseline="@+id/DatePickerTransportReservationFromDate"/>
+        <TimePicker
+            android:layout_width="205dp"
+            android:layout_height="400dp"
+            android:id="@+id/TimePickerTransportReservationFromTime"
+            android:layout_below="@+id/EditTextTransportReservationFromPlace"
+            android:layout_toRightOf="@+id/DatePickerTransportReservationFromDate"
+            android:layout_toEndOf="@+id/DatePickerTransportReservationFromDate"
+            android:layout_alignBaseline="@+id/DatePickerTransportReservationFromDate"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/EditTextTransportReservationToPlace"
-        android:layout_below="@+id/DatePickerTransportReservationFromDate"
-        android:layout_centerHorizontal="true"
-        android:hint="To"
-        android:layout_alignParentLeft="false" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/EditTextTransportReservationToPlace"
+            android:layout_below="@+id/DatePickerTransportReservationFromDate"
+            android:layout_centerHorizontal="true"
+            android:hint="To"
+            android:layout_alignParentLeft="false" />
 
-    <DatePicker
-        android:layout_width="170dp"
-        android:layout_height="400dp"
-        android:id="@+id/DatePickerTransportReservationToDate"
-        android:layout_alignParentTop="false"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/EditTextTransportReservationToPlace"/>
+        <DatePicker
+            android:layout_width="170dp"
+            android:layout_height="450dp"
+            android:id="@+id/DatePickerTransportReservationToDate"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/EditTextTransportReservationToPlace"/>
 
-    <TimePicker
-        android:layout_width="175dp"
-        android:layout_height="400dp"
-        android:id="@+id/TimePickerTransportReservationToTime"
-        android:layout_toRightOf="@+id/DatePickerTransportReservationToDate"
-        android:layout_below="@id/EditTextTransportReservationToPlace"/>
+        <TimePicker
+            android:layout_width="205dp"
+            android:layout_height="400dp"
+            android:id="@+id/TimePickerTransportReservationToTime"
+            android:layout_toRightOf="@+id/DatePickerTransportReservationToDate"
+            android:layout_below="@id/EditTextTransportReservationToPlace"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="TypeOfTransport"
-        android:id="@+id/TextViewTransportReservationTypeOfTransport"
-        android:layout_below="@+id/TimePickerTransportReservationToTime" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="TypeOfTransport"
+            android:id="@+id/TextViewTransportReservationTypeOfTransport"
+            android:layout_below="@+id/DatePickerTransportReservationToDate" />
 
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/TextViewTransportReservationTypeOfTransport"
-        android:id="@+id/RadioGroupTransportReservation">
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/TextViewTransportReservationTypeOfTransport"
+            android:id="@+id/RadioGroupTransportReservation">
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Flight"
                 android:id="@+id/radioButton"
-                 />
+                />
 
             <RadioButton
                 android:layout_width="wrap_content"
@@ -111,7 +111,7 @@
                 android:text="Bus"
                 android:id="@+id/radioButton2"
                 android:layout_alignBaseline="@+id/radioButton"
-                 />
+                />
 
             <RadioButton
                 android:layout_width="wrap_content"
@@ -119,90 +119,90 @@
                 android:text="Train"
                 android:id="@+id/radioButton3"
                 android:layout_alignBaseline="@+id/radioButton"
-                 />
+                />
 
-    </RadioGroup>
+        </RadioGroup>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Confirmation No."
-        android:id="@+id/TextViewTransportReservationConfNo"
-        android:layout_below="@+id/RadioGroupTransportReservation"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Confirmation No."
+            android:id="@+id/TextViewTransportReservationConfNo"
+            android:layout_below="@+id/RadioGroupTransportReservation"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/EditTextTransportReservationConfirmationNo"
-        android:layout_below="@+id/RadioGroupTransportReservation"
-        android:layout_toRightOf="@+id/TextViewTransportReservationTypeOfTransport"
-        android:layout_toEndOf="@+id/TextViewTransportReservationTypeOfTransport"
-        android:hint="#########"
-        android:layout_alignBaseline="@id/TextViewTransportReservationConfNo"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/EditTextTransportReservationConfirmationNo"
+            android:layout_below="@+id/RadioGroupTransportReservation"
+            android:layout_toRightOf="@+id/TextViewTransportReservationTypeOfTransport"
+            android:layout_toEndOf="@+id/TextViewTransportReservationTypeOfTransport"
+            android:hint="#########"
+            android:layout_alignBaseline="@id/TextViewTransportReservationConfNo"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Flight No."
-        android:id="@+id/TextViewTransportReservationFlightNo"
-        android:layout_below="@+id/TextViewTransportReservationConfNo"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Flight No."
+            android:id="@+id/TextViewTransportReservationFlightNo"
+            android:layout_below="@+id/TextViewTransportReservationConfNo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/EditTextTransportReservationFlightNo"
-        android:layout_below="@+id/EditTextTransportReservationConfirmationNo"
-        android:layout_toRightOf="@+id/TextViewTransportReservationConfNo"
-        android:layout_alignBaseline="@+id/TextViewTransportReservationFlightNo"/>
-<!---
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Attachments"
-        android:id="@+id/button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/TextViewTransportReservationFlightNo" />
--->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Notes"
-        android:id="@+id/TextViewTransportReservationNotes"
-        android:layout_below="@+id/TextViewTransportReservationFlightNo"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/EditTextTransportReservationFlightNo"
+            android:layout_below="@+id/EditTextTransportReservationConfirmationNo"
+            android:layout_toRightOf="@+id/TextViewTransportReservationConfNo"
+            android:layout_alignBaseline="@+id/TextViewTransportReservationFlightNo"/>
+        <!---
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Attachments"
+                android:id="@+id/button"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/TextViewTransportReservationFlightNo" />
+        -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Notes"
+            android:id="@+id/TextViewTransportReservationNotes"
+            android:layout_below="@+id/TextViewTransportReservationFlightNo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/EditTextTransportReservationNotes"
-        android:layout_below="@+id/TextViewTransportReservationNotes"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:maxHeight="50dp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/EditTextTransportReservationNotes"
+            android:layout_below="@+id/TextViewTransportReservationNotes"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:maxHeight="50dp" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:text="Save"
-        android:id="@+id/ButtonTransportReservationSave"
-        android:layout_below="@+id/EditTextTransportReservationNotes"
-        android:layout_alignRight="@+id/EditTextTransportReservationFlightNo"
-        android:layout_alignEnd="@+id/EditTextTransportReservationFlightNo" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:text="Save"
+            android:id="@+id/ButtonTransportReservationSave"
+            android:layout_below="@+id/EditTextTransportReservationNotes"
+            android:layout_centerHorizontal="true"
+            />
 
 
-</RelativeLayout>
+    </RelativeLayout>
 </ScrollView>

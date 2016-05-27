@@ -2,8 +2,8 @@ package lshankarrao.travelatease1;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -13,7 +13,7 @@ import android.widget.TimePicker;
 /**
  * Created by pooja on 5/21/16.
  */
-public class AddEditEventActivity extends AppCompatActivity implements View.OnClickListener{
+public class AddEditEventActivity extends ActionBarActivity implements View.OnClickListener{
 
     TripDbHelper db;
 
@@ -162,6 +162,16 @@ public class AddEditEventActivity extends AppCompatActivity implements View.OnCl
         Intent intent = new Intent(AddEditTripActivity.this, AddEditEventActivity.class);
         intent.putExtra("id", id);
         startActivity(intent);*/
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        if (menu != null) {
+
+            menu.findItem(R.id.action_addtrip).setVisible(false);
+        }
+        return true;
     }
 
 }

@@ -3,236 +3,260 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    tools:context="edu.scu.pnanjundaswamy.travelease.MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ADD/EDIT EVENT"
-        android:id="@+id/textView1"
-        android:layout_gravity="center_horizontal"
-        android:textStyle="bold" />
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:orientation="vertical"
+        tools:context="edu.scu.pnanjundaswamy.travelease.MainActivity">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TITLE"
-            android:id="@+id/textViewAddEditEventTitle"
-            android:layout_below="@+id/textView4"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            />
-        <EditText
-            android:layout_width="175dp"
+            android:text="ADD/EDIT EVENT"
+            android:id="@+id/textView1"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/editTextAddEditEventtitle"
-            android:layout_gravity="right"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TITLE"
+                android:id="@+id/textViewAddEditEventTitle"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+
+            <EditText
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextAddEditEventtitle"
+                />
+        </LinearLayout>
+        <!---
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="START DATE"
+                android:id="@+id/textViewAddEditEventstartDate"
+                android:layout_below="@+id/textView4"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                />
+            <EditText
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextAddEditEventstartDate"
+                android:layout_gravity="right"
+                />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="END DATE"
+                android:id="@+id/textViewAddEditEventendDate"
+                android:layout_below="@+id/textView4"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                />
+            <EditText
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextAddEditEventendDate"
+                android:layout_gravity="right"
+                />
+        </LinearLayout>
+        -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="START DATE AND TIME"
+            android:id="@+id/textViewAddEditTripsdate"
             />
-    </LinearLayout>
-<!---
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="START DATE"
-        android:id="@+id/textViewAddEditEventstartDate"
-        android:layout_below="@+id/textView4"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        />
-    <EditText
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextAddEditEventstartDate"
-        android:layout_gravity="right"
-        />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="END DATE"
-        android:id="@+id/textViewAddEditEventendDate"
-        android:layout_below="@+id/textView4"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        />
-    <EditText
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextAddEditEventendDate"
-        android:layout_gravity="right"
-        />
-</LinearLayout>
--->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enter the start date and time"
-        android:id="@+id/textViewAddEditTripsdate"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        <!--
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">-->
         <DatePicker
-            android:layout_width="170dp"
-            android:layout_height="400dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/DatePickerAddEditEventsdate"
+            android:layout_gravity="center_horizontal"
             />
+        <!--
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    />-->
 
         <TimePicker
-            android:layout_width="185dp"
-            android:layout_height="400dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/TimePickerAddEditEventstime"
+            android:layout_gravity="center_horizontal"
             />
 
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enter the end date and time"
-        android:id="@+id/textViewAddEditTripedate"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        <!--</LinearLayout>-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="END DATE AND TIME"
+            android:id="@+id/textViewAddEditTripedate"
+            />
+        <!--
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">-->
         <DatePicker
-            android:layout_width="170dp"
-            android:layout_height="400dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/DatePickerAddEditEventedate"
+            android:layout_gravity="center_horizontal"
             />
-
+        <!--
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    />
+        -->
         <TimePicker
-            android:layout_width="185dp"
-            android:layout_height="400dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/TimePickerAddEditEventetime"
+            android:layout_gravity="center_horizontal"
             />
 
-    </LinearLayout>
+        <!-- </LinearLayout>-->
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ADDRESS"
-        android:id="@+id/textViewAddEditEventaddress"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ADDRESS"
+                android:id="@+id/textViewAddEditEventaddress"
+                />
 
-        />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
 
-    <EditText
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextAddEditEventaddress"
-        android:layout_gravity="right"
-        />
-</LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CITY"
-        android:id="@+id/textViewAddEditEventcity"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        />
-
-    <EditText
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextAddEditEventcity"
-        android:layout_gravity="right"
-        />
-</LinearLayout>
+            <EditText
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextAddEditEventaddress"
+                />
+        </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="STATE"
-        android:id="@+id/textViewAddEditEventstate"
-        android:layout_below="@+id/textView4"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        />
-    <EditText
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextAddEditEventstate"
-        android:layout_gravity="right"
-        />
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CITY"
+                android:id="@+id/textViewAddEditEventcity"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+
+            <EditText
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextAddEditEventcity"
+                />
+        </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="COUNTRY"
-        android:id="@+id/textViewAddEditEventcountry"
-        android:layout_below="@+id/textView4"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="STATE"
+                android:id="@+id/textViewAddEditEventstate"
+                />
 
-    <EditText
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextAddEditEventcountry"
-        android:layout_gravity="right"
-        />
-</LinearLayout>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+            <EditText
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextAddEditEventstate"
+                />
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="COUNTRY"
+                android:id="@+id/textViewAddEditEventcountry"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+
+            <EditText
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextAddEditEventcountry"
+                />
+        </LinearLayout>
+        <!--
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+        -->
 
         <Button
             android:layout_width="wrap_content"
@@ -242,71 +266,63 @@
             android:layout_gravity="center_horizontal"
             />
 
+        <!-- </LinearLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HOTEL"
+                android:id="@+id/buttonAddEditEventhotel"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TRANSPORT"
+                android:id="@+id/buttonAddEditEventtransport" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OTHER RESERVATIONS"
+                android:id="@+id/buttonAddEditEventother"
+                android:layout_gravity="center_horizontal"
+                />
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHECK WEATHER"
+                android:id="@+id/buttonAddEditEventweather"
+
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set Planning Reminders"
+                android:id="@+id/buttonAddEditEventplanningReminders"
+
+                />
+        </LinearLayout>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="HOTEL"
-            android:id="@+id/buttonAddEditEventhotel"
-            />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TRANSPORT"
-            android:id="@+id/buttonAddEditEventtransport" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="OTHER RESERVATIONS"
-            android:id="@+id/buttonAddEditEventother"
-            android:layout_gravity="center_horizontal"
-            />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CHECK WEATHER"
-            android:id="@+id/buttonAddEditEventweather"
-
-            />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Set Planning Reminders"
-        android:id="@+id/buttonAddEditEventplanningReminders"
-
-        />
-
+            android:text="DONE"
+            android:id="@+id/buttonAddEditEventDone"
+            android:layout_gravity="right" />
 
 
     </LinearLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DONE"
-        android:id="@+id/buttonAddEditEventDone"
-        android:layout_gravity="right" />
-
-    <Space
-        android:layout_width="20px"
-        android:layout_height="20px" />
-
-
-</LinearLayout>
 </ScrollView>

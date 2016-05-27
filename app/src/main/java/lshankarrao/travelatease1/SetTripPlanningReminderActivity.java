@@ -97,7 +97,7 @@ public class SetTripPlanningReminderActivity extends AppCompatActivity{
 
                     intentAlarm.putExtra("tripId", tripId);
                     intentAlarm.putExtra("tripTitle", tripTitle + x);
-                    intentAlarm.putExtra("notificationID", +x);
+                    //intentAlarm.putExtra("notificationID", +x);
 
 
                     // create the object

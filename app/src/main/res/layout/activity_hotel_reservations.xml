@@ -3,229 +3,254 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    tools:context="lshankarrao.travelatease1.MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HOTEL"
-        android:id="@+id/textView1"
-        android:layout_gravity="center_horizontal"
-        android:textStyle="bold" />
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HOTEL"
-        android:id="@+id/textViewHotelReservationhotel"
-         />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:orientation="vertical"
+        tools:context="lshankarrao.travelatease1.MainActivity">
 
-    <EditText
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextHotelReservationhotel"
-        android:layout_gravity="right"
-        />
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HOTEL RESERVATION"
+            android:id="@+id/textView1"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HOTEL"
+                android:id="@+id/textViewHotelReservationhotel"
+                />
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
 
+            <EditText
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextHotelReservationhotel"
+                />
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ADDRESS"
-        android:id="@+id/textViewHotelReservationaddress"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ADDRESS"
+                android:id="@+id/textViewHotelReservationaddress"
+                />
 
-    <EditText
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextHotelReservationaddress"
-        android:layout_gravity="right"
-        />
-</LinearLayout>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
 
-<!--
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CHECKIN"
-        android:id="@+id/textViewHotelReservationcheckin"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        />
+            <EditText
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextHotelReservationaddress"
+                />
+        </LinearLayout>
 
-    <EditText
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextHotelReservationcheckin"
-        android:layout_gravity="right"
-        />
-</LinearLayout>
+        <!--
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHECKIN"
+                android:id="@+id/textViewHotelReservationcheckin"
+                android:layout_below="@+id/textView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                />
 
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CHECKOUT"
-        android:id="@+id/textViewHotelReservationcheckout"
-        android:layout_below="@+id/textView4"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        />
-    <EditText
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextHotelReservationcheckout"
-        android:layout_gravity="right"
-        />
-</LinearLayout>
--->
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enter the checkin date and time"
-        android:id="@+id/textViewHotelReservationsdate"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <DatePicker
-            android:layout_width="170dp"
-            android:layout_height="400dp"
-            android:id="@+id/DatePickerHotelReservationsdate"
-            />
-
-        <TimePicker
-            android:layout_width="185dp"
-            android:layout_height="400dp"
-            android:id="@+id/TimePickerHotelReservationstime"
-            />
-
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enter the checkout date and time"
-        android:id="@+id/textViewHotelReservationedate"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <DatePicker
-            android:layout_width="170dp"
-            android:layout_height="400dp"
-            android:id="@+id/DatePickerHotelReservationedate"
-            />
-
-        <TimePicker
-            android:layout_width="185dp"
-            android:layout_height="400dp"
-            android:id="@+id/TimePickerHotelReservationetime"
-            />
-
-    </LinearLayout>
+            <EditText
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextHotelReservationcheckin"
+                android:layout_gravity="right"
+                />
+        </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CONFIRMATION #"
-        android:id="@+id/textViewHotelReservationconfirmationNo"
-        android:layout_below="@+id/textView4"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        />
 
-    <EditText
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextHotelReservationconfirmationNo"
-        android:layout_gravity="right"
-        />
-    </LinearLayout>
-
-    <!---
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ADD ATTACHMENTS"
-        android:id="@+id/buttonHotelReservationaddAttachments"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp"
-        />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHECKOUT"
+                android:id="@+id/textViewHotelReservationcheckout"
+                android:layout_below="@+id/textView4"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                />
+            <EditText
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextHotelReservationcheckout"
+                android:layout_gravity="right"
+                />
+        </LinearLayout>
         -->
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NOTES"
-        android:id="@+id/textViewHotelReservationaddNotes"
-        android:layout_below="@+id/textView4"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        />
-    <EditText
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextHotelReservationaddNotes"
-        android:layout_gravity="right"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CHECK-IN DATE AND TIME"
+            android:id="@+id/textViewHotelReservationsdate"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <DatePicker
+                android:layout_width="170dp"
+                android:layout_height="450dp"
+                android:id="@+id/DatePickerHotelReservationsdate"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+
+            <TimePicker
+                android:layout_width="205dp"
+                android:layout_height="400dp"
+                android:id="@+id/TimePickerHotelReservationstime"
+                />
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CHECK-OUT DATE AND TIME"
+            android:id="@+id/textViewHotelReservationedate"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <DatePicker
+                android:layout_width="170dp"
+                android:layout_height="450dp"
+                android:id="@+id/DatePickerHotelReservationedate"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+
+            <TimePicker
+                android:layout_width="205dp"
+                android:layout_height="400dp"
+                android:id="@+id/TimePickerHotelReservationetime"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CONFIRMATION #"
+                android:id="@+id/textViewHotelReservationconfirmationNo"
+                android:layout_below="@+id/textView4"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+
+            <EditText
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextHotelReservationconfirmationNo"
+                android:layout_gravity="right"
+                />
+        </LinearLayout>
+
+        <!---
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD ATTACHMENTS"
+            android:id="@+id/buttonHotelReservationaddAttachments"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            />
+            -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NOTES"
+                android:id="@+id/textViewHotelReservationaddNotes"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+
+            <EditText
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextHotelReservationaddNotes"
+                />
+        </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SAVE"
+            android:id="@+id/buttonHotelReservationsave"
+            android:layout_gravity="center_horizontal"
+
+            />
+
     </LinearLayout>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SAVE"
-        android:id="@+id/buttonHotelReservationsave"
-        android:layout_gravity="center_horizontal"
-
-        />
-
-</LinearLayout>
 </ScrollView>

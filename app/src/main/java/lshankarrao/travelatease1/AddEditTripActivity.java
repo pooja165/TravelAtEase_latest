@@ -3,21 +3,20 @@ package lshankarrao.travelatease1;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
-public class AddEditTripActivity extends AppCompatActivity implements View.OnClickListener {
+public class AddEditTripActivity extends ActionBarActivity implements View.OnClickListener {
 
     TripDbHelper db;
     //tripDB could be replaced be db.
     TripDbHelper tripDB;
     Cursor cursor;
-
 
     String title, city, state, country, notes;
     String startDate, endDate, startTime, endTime;
@@ -116,5 +115,14 @@ public class AddEditTripActivity extends AppCompatActivity implements View.OnCli
         Intent intent = new Intent(AddEditTripActivity.this, TripListActivity.class);
         //intent.putExtra("id", id);
         startActivity(intent);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        if (menu != null) {
+
+            menu.findItem(R.id.action_addtrip).setVisible(false);
+        }
+        return true;
     }
 }

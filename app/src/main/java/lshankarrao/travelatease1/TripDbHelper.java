@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,12 +92,12 @@ public class TripDbHelper extends SQLiteOpenHelper {
     public TripDbHelper(Context context) {
         super(context, DB_NAME, null, VERSION);     // we use default cursor factory (null, 3rd arg)
         this.context = context;
-        Toast.makeText(context, "TripDbHelper constructor!!!", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, "TripDbHelper constructor!!!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Toast.makeText(context, "TripDbHelper onCreate!!!", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, "TripDbHelper onCreate!!!", Toast.LENGTH_SHORT).show();
         db.execSQL(SQL_CREATE_TRIP_TABLE);
         db.execSQL(SQL_CREATE_EVENT_TABLE);
         db.execSQL(SQL_CREATE_HOTEL_TABLE);
@@ -116,7 +115,7 @@ public class TripDbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_TRANSPORT_TABLE);
         db.execSQL(SQL_CREATE_OTHER_RES_TABLE);
 
-        Toast.makeText(context, "Upgrading DB and dropping data!!!", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, "Upgrading DB and dropping data!!!", Toast.LENGTH_SHORT).show();
     }
 
     public int getMaxRecID() {
@@ -294,12 +293,11 @@ public class TripDbHelper extends SQLiteOpenHelper {
                     c.getString(c.getColumnIndex("state")),
                     c.getString(c.getColumnIndex("country")),
                     c.getInt(c.getColumnIndex("tripId")));
+            eventInfo.id = c.getInt(c.getColumnIndex("_id"));
             c.moveToNext();
             infos.add(eventInfo);
         }
 
         return infos;
     }
-
-
 }

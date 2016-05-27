@@ -13,6 +13,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 /**
  * Created by lakshmi on 5/23/2016.
  */
@@ -82,6 +84,13 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
         //tla.notifyDataSetChanged();
         eventListView.setAdapter(ela);
 
+//        List<EventInfo> eventInfos = tripDb.getEventInfo(tripId);
+/*        for(EventInfo ev: eventInfos){
+            Log.i("event totle: ", ev.title);
+            Log.i("event id ", ev.id+"");
+        }*/
+
+
 //        List<EventInfo> eventInfo = tripDb.getEventInfo(tripId);
 //        if (eventInfo != null) {
 //            for (EventInfo info : eventInfo) {
@@ -103,7 +112,7 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
         int id = item.getItemId();
 
         if (id == R.id.editTrip) {
-            Intent intent = new Intent(ViewTripItineraryActivity.this, AddEditTripActivity.class);
+            Intent intent = new Intent(ViewTripItineraryActivity.this, EditTripActivity.class);
             intent.putExtra("id", tripId);
             startActivity(intent); // when back pressed/save pressed go to TripListActivity
             return true;

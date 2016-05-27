@@ -1,7 +1,7 @@
 package lshankarrao.travelatease1;
 
 public class EventInfo {
-   // protected int id;
+   protected int id;
     protected String title;
     protected String city;
     protected String state;
@@ -20,7 +20,7 @@ public class EventInfo {
     public EventInfo(String title, String startDate, String endDate,
                      String startTime, String endTime, String address,
                      String city, String state, String country, int tripId) {
-        //this.id = id;
+        this.id = id;
         this.title = title;
         this.address = address;
         this.city = city;

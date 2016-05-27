@@ -1,13 +1,11 @@
 package lshankarrao.travelatease1;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
@@ -15,7 +13,7 @@ import android.widget.TimePicker;
 /**
  * Created by pooja on 5/21/16.
  */
-public class TransportReservationActivity extends AppCompatActivity implements View.OnClickListener{
+public class TransportReservationActivity extends ActionBarActivity implements View.OnClickListener{
 
     TripDbHelper db;
 
@@ -116,6 +114,15 @@ public class TransportReservationActivity extends AppCompatActivity implements V
 
         //Intent intent = new Intent(TransportReservationActivity.this, AddEditEventActivity.class);
         //startActivity(intent);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        if (menu != null) {
+
+            menu.findItem(R.id.action_addtrip).setVisible(false);
+        }
+        return true;
     }
 
 }
