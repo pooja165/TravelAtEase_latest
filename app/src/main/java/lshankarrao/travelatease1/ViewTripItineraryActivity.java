@@ -13,8 +13,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.List;
-
 /**
  * Created by lakshmi on 5/23/2016.
  */
@@ -36,7 +34,7 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_trip_activity);
         tripDb = new TripDbHelper(this);
-//eventId //id
+        //eventId //id
         Intent tripIntent = getIntent();
         tripId = tripIntent.getIntExtra("id", -1);
         if(tripId == -1){
@@ -49,6 +47,9 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
         TextView titleDisplay = (TextView) findViewById(R.id.textViewVTATitle);
         String s = tripInfo.getTitle();
         titleDisplay.setText(s);
+        if(s == null){
+            Log.i("empty s ","");
+        }
 
         TextView placeDisplay = (TextView) findViewById(R.id.textViewVTAPlace);
         String t = tripInfo.getCity() + ", "+ tripInfo.getState() +", " + tripInfo.getCountry();
@@ -71,7 +72,11 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
                 "From: "+ tripInfo.getStartDate() + "\t"+
                 "To: "+ tripInfo.getEndDate();
         titleDisplay.setText(s);
-        Log.i("string:  ",s);
+        if(s == null || s.isEmpty()){
+            Log.i("empty s ","");
+        }
+
+       Log.i("string:  ", s);
 
         tripTitle = tripInfo.getTitle();
         tripStartDate = tripInfo.getStartDate();

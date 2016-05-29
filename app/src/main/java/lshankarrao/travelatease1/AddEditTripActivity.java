@@ -1,7 +1,9 @@
 package lshankarrao.travelatease1;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -11,6 +13,9 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 public class AddEditTripActivity extends ActionBarActivity implements View.OnClickListener {
 
     TripDbHelper db;
@@ -18,8 +23,7 @@ public class AddEditTripActivity extends ActionBarActivity implements View.OnCli
     TripDbHelper tripDB;
     Cursor cursor;
 
-    String title, city, state, country, notes;
-    String startDate, endDate, startTime, endTime;
+
     TimePicker timePicker1, timePicker2;
     DatePicker datePicker1, datePicker2;
     //String id_time;
@@ -55,10 +59,13 @@ public class AddEditTripActivity extends ActionBarActivity implements View.OnCli
 
 
 
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     public void onClick(View v) {
 
         db = new TripDbHelper(this);
+        String title, city, state, country, notes;
+        String startDate, endDate, startTime, endTime;
 
         EditText eTitle = (EditText) findViewById(R.id.editTextAddEditTriptitle);
         title = eTitle.getText().toString();
@@ -76,6 +83,26 @@ public class AddEditTripActivity extends ActionBarActivity implements View.OnCli
 
         endDate = (datePicker2.getMonth()+1)+":"+datePicker2.getDayOfMonth()+":"+datePicker2.getYear();
         endTime = timePicker2.getCurrentHour()+":"+timePicker2.getCurrentMinute();
+
+        Calendar stCalendar = new GregorianCalendar();
+        Calendar endCalendar = new GregorianCalendar();
+
+        stCalendar.set(datePicker1.getYear(),
+                datePicker1.getMonth(),
+                datePicker1.getDayOfMonth(),
+                timePicker1.getCurrentHour(),
+                timePicker1.getCurrentMinute());
+
+        endCalendar.set(datePicker2.getYear(),
+                datePicker2.getMonth(),
+                datePicker2.getDayOfMonth(),
+                timePicker2.getCurrentHour(),
+                timePicker2.getCurrentMinute());
+
+        long stTimeMillis = stCalendar.getTimeInMillis();
+        long endTimeMillis = endCalendar.getTimeInMillis();
+
+
 
         /*
         EditText eStartDate = (EditText) findViewById(R.id.editTextAddEditTripsdate);
@@ -95,25 +122,16 @@ public class AddEditTripActivity extends ActionBarActivity implements View.OnCli
         info.endDate = endDate;
         info.startTime = startTime;
         info.endTime = endTime;
+        info.stTimeMillis = stTimeMillis;
+        info.endTimeMillis = endTimeMillis;
         //info.events = null;
 
         long id = db.addTripInfo(info);
-
-        title = null;
-        city = null;
-        state = null;
-        country = null;
-        notes = null;
-        startDate = null;
-        endDate = null;
-        startTime = null;
-        endTime = null;
-
         Log.i("pooja", "addTripInfo id : "+id);
 
 
-        Intent intent = new Intent(AddEditTripActivity.this, TripListActivity.class);
-        //intent.putExtra("id", id);
+        Intent intent = new Intent(AddEditTripActivity.this, ViewTripItineraryActivity.class);
+        intent.putExtra("id", (int)id);
         startActivity(intent);
     }
     @Override

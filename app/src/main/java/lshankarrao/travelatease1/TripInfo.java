@@ -11,6 +11,8 @@ public class TripInfo {
     protected String endDate;
     protected String startTime;
     protected String endTime;
+    protected long stTimeMillis;
+    protected long endTimeMillis;
     //protected String events;
 
     public TripInfo() {
@@ -18,7 +20,7 @@ public class TripInfo {
     }
 
     public TripInfo(String title, String city, String state, String country,
-                    String startDate, String endDate, String startTime, String endTime, String notes) {
+                    String startDate, String endDate, String startTime, String endTime, String notes, long stTimeMillis, long endTimeMillis) {
         //this.id = id;
         this.title = title;
         this.city = city;
@@ -29,6 +31,8 @@ public class TripInfo {
         this.endDate = endDate;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.stTimeMillis= stTimeMillis;
+        this.endTimeMillis= endTimeMillis;
         //this.events = events;
     }
 /*
@@ -111,6 +115,13 @@ public class TripInfo {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public long getEndTimeMillis() {
+        return endTimeMillis;
+    }
+    public long getStTimeMillis() {
+        return stTimeMillis;
     }
 
     /*

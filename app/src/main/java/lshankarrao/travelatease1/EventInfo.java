@@ -12,14 +12,16 @@ public class EventInfo {
     protected int tripId;
     protected String startTime;
     protected String endTime;
+    protected long stTimeMillis;
+    protected long endTimeMillis;
 
     public EventInfo() {
 
     }
 
-    public EventInfo(String title, String startDate, String endDate,
+    public EventInfo(int id, String title, String startDate, String endDate,
                      String startTime, String endTime, String address,
-                     String city, String state, String country, int tripId) {
+                     String city, String state, String country, int tripId, long stTimeMillis, long endTimeMillis) {
         this.id = id;
         this.title = title;
         this.address = address;
@@ -41,6 +43,11 @@ public class EventInfo {
     public void setId(int id) {
         this.id = id;
     }*/
+
+    public int getId() {
+        return id;
+    }
+
     public String getTitle() {
     return title;
 }
@@ -89,7 +96,7 @@ public class EventInfo {
         this.startDate = startDate;
     }
 
-    public String getEndDateDate() {
+    public String getEndDate() {
         return endDate;
     }
 
@@ -120,4 +127,13 @@ public class EventInfo {
     public void setEndDate(int tripId) {
         this.tripId = tripId;
     }
+
+    public long getStTimeMillis() {
+        return stTimeMillis;
+    }
+
+    public long getEndTimeMillis() {
+        return endTimeMillis;
+    }
+
 }

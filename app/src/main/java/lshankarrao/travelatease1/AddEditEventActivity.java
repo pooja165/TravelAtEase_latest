@@ -1,6 +1,8 @@
 package lshankarrao.travelatease1;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -10,21 +12,22 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 /**
  * Created by pooja on 5/21/16.
  */
 public class AddEditEventActivity extends ActionBarActivity implements View.OnClickListener{
 
     TripDbHelper db;
+    int tripId;
+    long eventId;
 
-    String city, state, country, address, title;
-    String startDate, endDate, startTime, endTime;
-    int tripId=0;
-    long eventId=0;
     TimePicker timePicker1, timePicker2;
     DatePicker datePicker1, datePicker2;
-    Button hotelReservationbutton, transportReservationbutton, otherReservationbutton;
-    Button checkweather, planningRem, tripDonebutton;
+    Button hotelReservationbutton, transportReservationbutton, otherReservationbutton, doneButton;
+    Button checkweather, planningRem, saveButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +45,16 @@ public class AddEditEventActivity extends ActionBarActivity implements View.OnCl
         checkweather = (Button) findViewById(R.id.buttonAddEditEventweather);
         planningRem = (Button) findViewById(R.id.buttonAddEditEventplanningReminders);
 
-        tripDonebutton = (Button) findViewById(R.id.buttonAddEditEventsave);
-        tripDonebutton.setOnClickListener(this);
+        saveButton = (Button) findViewById(R.id.buttonAddEditEventsave);
+        saveButton.setOnClickListener(this);
 
         hotelReservationbutton = (Button) findViewById(R.id.buttonAddEditEventhotel);
+
+        tripId = getIntent().getIntExtra("id", -1);
+        if(tripId == -1){
+            Log.i(" AEEA invalid trip id", tripId+"");
+            return;
+        }
 
         //hotelReservationbutton.setEnabled(false);
         hotelReservationbutton.setOnClickListener(new View.OnClickListener() {
@@ -78,12 +87,13 @@ public class AddEditEventActivity extends ActionBarActivity implements View.OnCl
                 startActivity(intent);
             }
         });
-        Button done = (Button) findViewById(R.id.buttonAddEditEventDone);
-        done.setOnClickListener(new View.OnClickListener() {
+        doneButton = (Button) findViewById(R.id.buttonAddEditEventDone);
+        doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AddEditEventActivity.this, TripListActivity.class);
-                intent.putExtra("eventId", eventId);
+                Intent intent = new Intent(AddEditEventActivity.this, ViewTripItineraryActivity.class);
+                intent.putExtra("id", tripId);
+                //intent.putExtra("eventId", eventId);
                 startActivity(intent);
             }
         });
@@ -93,12 +103,16 @@ public class AddEditEventActivity extends ActionBarActivity implements View.OnCl
         otherReservationbutton.setEnabled(false);
         checkweather.setEnabled(false);
         planningRem.setEnabled(false);
+        doneButton.setEnabled(false);
 
     }
 
-    public void onClick(View v) {
+    @TargetApi(Build.VERSION_CODES.M)
+    public void onClick(View v) { // Save button on click.
 
         db = new TripDbHelper(this);
+        String city, state, country, address, title;
+        String startDate, endDate, startTime, endTime;
 
         EditText etitle = (EditText) findViewById(R.id.editTextAddEditEventtitle);
         title = etitle.getText().toString();
@@ -120,6 +134,24 @@ public class AddEditEventActivity extends ActionBarActivity implements View.OnCl
         endDate = (datePicker2.getMonth()+1)+":"+datePicker2.getDayOfMonth()+":"+datePicker2.getYear();
         endTime = timePicker2.getCurrentHour()+":"+timePicker2.getCurrentMinute();
 
+        Calendar stCalendar = new GregorianCalendar();
+        Calendar endCalendar = new GregorianCalendar();
+
+        stCalendar.set(datePicker1.getYear(),
+                datePicker1.getMonth(),
+                datePicker1.getDayOfMonth(),
+                timePicker1.getCurrentHour(),
+                timePicker1.getCurrentMinute());
+
+        endCalendar.set(datePicker2.getYear(),
+                datePicker2.getMonth(),
+                datePicker2.getDayOfMonth(),
+                timePicker2.getCurrentHour(),
+                timePicker2.getCurrentMinute());
+
+        long stTimeMillis = stCalendar.getTimeInMillis();
+        long endTimeMillis = endCalendar.getTimeInMillis();
+
         EventInfo info = new EventInfo();
 
         info.title =title;
@@ -131,31 +163,20 @@ public class AddEditEventActivity extends ActionBarActivity implements View.OnCl
         info.endDate = endDate;
         info.startTime = startTime;
         info.endTime = endTime;
-        info.tripId =  getIntent().getIntExtra("id", -1);
-        if(tripId == -1){
-            Log.i("invalid trip ID",tripId+"");
-            return;
-        } ;//Integer.parseInt(getIntent().getExtras().get("id").toString());
+        info.stTimeMillis = stTimeMillis;
+        info.endTimeMillis = endTimeMillis;
+        info.tripId =  tripId ;//Integer.parseInt(getIntent().getExtras().get("id").toString());
 
         eventId = db.addEventInfo(info);
 
-        title = null;
-        address = null;
-        city = null;
-        state = null;
-        country = null;
-        startDate = null;
-        endDate = null;
-        startTime = null;
-        endTime = null;
-        tripId = 0;
 
         hotelReservationbutton.setEnabled(true);
         transportReservationbutton.setEnabled(true);
         otherReservationbutton.setEnabled(true);
         checkweather.setEnabled(true);
         planningRem.setEnabled(true);
-        tripDonebutton.setEnabled(false);
+        saveButton.setEnabled(false);
+        doneButton.setEnabled(true);
 
         //Log.i("pooja", "in addEventInfo id : " + getIntent().getExtras().get("id"));
         /*

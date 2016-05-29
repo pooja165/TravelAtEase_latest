@@ -17,6 +17,17 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, TripListActivity.class);
+                intent.putExtra("tripKind", "upcoming");
+                startActivity(intent);
+            }
+        });
+
+        Button pastTrips = (Button) findViewById(R.id.button_pastTrips);
+        pastTrips.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, TripListActivity.class);
+                intent.putExtra("tripKind", "past");
                 startActivity(intent);
             }
         });

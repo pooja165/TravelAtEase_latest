@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class TripDbHelper extends SQLiteOpenHelper {
@@ -26,7 +27,9 @@ public class TripDbHelper extends SQLiteOpenHelper {
             "  endDate TEXT," +
             "  startTime TEXT," +
             "  endTime TEXT," +
-            "  notes TEXT);";
+            "  notes TEXT," +
+                    "stTimeMillis INTEGER, " +
+                    "endTimeMillis INTEGER);";
 
     static private final String SQL_CREATE_EVENT_TABLE =
             "CREATE TABLE eventInfo (" +
@@ -40,7 +43,9 @@ public class TripDbHelper extends SQLiteOpenHelper {
                     "  city TEXT," +
                     "  state TEXT," +
                     "  country TEXT," +
-                    "  tripId INTEGER);";
+                    "  tripId INTEGER," +
+                    "  stTimeMillis INTEGER," +
+                    "  endTimeMillis INTEGER);";
 
     static private final String SQL_CREATE_HOTEL_TABLE =
             "CREATE TABLE hotelInfo (" +
@@ -137,8 +142,27 @@ public class TripDbHelper extends SQLiteOpenHelper {
     public Cursor fetchAllEventsForTrip(int tripId) {
         SQLiteDatabase db = this.getReadableDatabase();
         //return db.rawQuery("SELECT * FROM eventInfo;", null);
-        return db.rawQuery("SELECT * FROM eventInfo WHERE tripId=" + tripId + ";", null);
+        return db.rawQuery("SELECT * FROM eventInfo WHERE tripId=" + tripId + " ORDER BY stTimeMillis;", null);
     }
+
+    public Cursor fetchUpcomingTrips(){
+        Calendar calendar = Calendar.getInstance();
+        long currentTime = calendar.getTimeInMillis();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String q = "SELECT * FROM tripInfo WHERE stTimeMillis>=" + currentTime + " ORDER BY stTimeMillis;";
+        return db.rawQuery(q,null);
+    }
+
+    public Cursor fetchPastTrips(){
+        Calendar calendar = Calendar.getInstance();
+        long currentTime = calendar.getTimeInMillis();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String q = "SELECT * FROM tripInfo WHERE endTimeMillis<" + currentTime + " ORDER BY stTimeMillis;";
+        return db.rawQuery(q,null);
+    }
+
     public long addTripInfo(TripInfo ci) {
         SQLiteDatabase db = this.getReadableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -152,6 +176,8 @@ public class TripDbHelper extends SQLiteOpenHelper {
         contentValues.put("startTime", ci.startTime);
         contentValues.put("endTime", ci.endTime);
         contentValues.put("notes", ci.notes);
+        contentValues.put("stTimeMillis", ci.stTimeMillis);
+        contentValues.put("endTimeMillis",ci.endTimeMillis);
         //contentValues.put("events", ci.events);
         return db.insert("tripInfo", null, contentValues);
     }
@@ -169,6 +195,8 @@ public class TripDbHelper extends SQLiteOpenHelper {
         contentValues.put("startTime", ci.startTime);
         contentValues.put("endTime", ci.endTime);
         contentValues.put("tripId", ci.tripId);
+        contentValues.put("stTimeMillis", ci.stTimeMillis);
+        contentValues.put("endTimeMillis",ci.endTimeMillis);
         return db.insert("eventInfo", null, contentValues);
     }
 
@@ -261,7 +289,9 @@ public class TripDbHelper extends SQLiteOpenHelper {
                 c.getString(c.getColumnIndex("endDate")),
                 c.getString(c.getColumnIndex("startTime")),
                 c.getString(c.getColumnIndex("endTime")),
-                c.getString(c.getColumnIndex("notes"))
+                c.getString(c.getColumnIndex("notes")),
+                c.getLong(c.getColumnIndex("stTimeMillis")),
+                c.getLong(c.getColumnIndex("endTimeMillis"))
         );
 
 
@@ -283,7 +313,8 @@ public class TripDbHelper extends SQLiteOpenHelper {
         Log.i("count = ", c.getCount() + "");
         List<EventInfo> infos = new ArrayList<EventInfo>();
         while (!c.isAfterLast()) {
-            EventInfo eventInfo = new EventInfo(c.getString(c.getColumnIndex("title")),
+            EventInfo eventInfo = new EventInfo(c.getInt(c.getColumnIndex("_id")),
+                    c.getString(c.getColumnIndex("title")),
                     c.getString(c.getColumnIndex("startDate")),
                     c.getString(c.getColumnIndex("endDate")),
                     c.getString(c.getColumnIndex("startTime")),
@@ -292,7 +323,9 @@ public class TripDbHelper extends SQLiteOpenHelper {
                     c.getString(c.getColumnIndex("city")),
                     c.getString(c.getColumnIndex("state")),
                     c.getString(c.getColumnIndex("country")),
-                    c.getInt(c.getColumnIndex("tripId")));
+                    c.getInt(c.getColumnIndex("tripId")),
+                    c.getLong(c.getColumnIndex("stTimeMillis")),
+                    c.getLong(c.getColumnIndex("endTimeMillis")));
             eventInfo.id = c.getInt(c.getColumnIndex("_id"));
             c.moveToNext();
             infos.add(eventInfo);

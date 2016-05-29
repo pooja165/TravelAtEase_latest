@@ -28,12 +28,38 @@ public class TripListActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_list);
         tripListView = (ListView) findViewById(R.id.listViewTLTripList);
-        tripListView.setOnItemClickListener(this);
         tripDB = new TripDbHelper(this);
-        cursor = tripDB.fetchAllTrips();
+
+        Intent intent = getIntent();
+        String tripKind = intent.getStringExtra("tripKind");
+
+//        Log.i("tripKind ",tripKind);
+
+        if(tripKind.equals("upcoming")){
+            cursor = tripDB.fetchUpcomingTrips();
+        }
+        else if(tripKind.equals("past")){
+            cursor = tripDB.fetchPastTrips();
+        }
+//        else{// just fetches all trips.
+//            cursor = tripDB.fetchAllTrips();
+//            Log.i("Log_nodu","all trips");
+//        }
+
+//        Cursor testCursor = tripDB.fetchAllTrips();
+//        while(testCursor!=null && testCursor.getCount() > 0 && !testCursor.isAfterLast()){
+//            long st_time = testCursor.getLong(testCursor.getColumnIndex("stTimeMillis"));
+//            long end_time = testCursor.getLong(testCursor.getColumnIndex("endTimeMillis"));
+//            Log.i("st time := ",st_time+"");
+//            Log.i("end time := ",end_time+"");
+//            testCursor.moveToNext();
+//        }
+
         tla = new TripListAdapter(this, cursor, 0);
         //tla.notifyDataSetChanged();
         tripListView.setAdapter(tla);
+
+        tripListView.setOnItemClickListener(this);
     }
 
     @Override
