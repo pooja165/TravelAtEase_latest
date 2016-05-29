@@ -90,22 +90,4 @@
         android:textColor="@color/bright_foreground_inverse_material_dark"
         android:textSize="15sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start Time"
-        android:id="@+id/textView"
-        android:layout_below="@+id/textViewVTAEventListToDate"
-        android:layout_alignParentLeft="true"
-        android:textColor="@color/bright_foreground_inverse_material_dark" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/textViewVTAEventListStartTime"
-        android:layout_below="@+id/textViewVTAEventListToDate"
-        android:layout_toRightOf="@id/textView7"
-        android:textColor="@color/bright_foreground_inverse_material_dark" />
-
 </RelativeLayout>

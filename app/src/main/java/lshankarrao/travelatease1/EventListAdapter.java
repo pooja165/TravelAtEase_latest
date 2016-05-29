@@ -40,18 +40,15 @@ public class EventListAdapter extends CursorAdapter {
         Log.i("new trip name displayed", eventPlace);
         ((TextView)view.findViewById(R.id.textViewVTAEventListPlace)).setText(eventPlace);
 
-        String eventFrom = cursor.getString(cursor.getColumnIndex("startDate"));
+        String eventFrom = cursor.getString(cursor.getColumnIndex("startDate")) + "    "+
+                cursor.getString(cursor.getColumnIndex("startTime"));
         Log.i("new trip name displayed", eventFrom);
         ((TextView)view.findViewById(R.id.textViewVTAEventListFromDate)).setText(eventFrom);
 
-        String eventTo = cursor.getString(cursor.getColumnIndex("endDate"));
+        String eventTo = cursor.getString(cursor.getColumnIndex("endDate")) + "    "+
+                cursor.getString(cursor.getColumnIndex("startTime"));
         Log.i("new trip name displayed", eventTo);
         ((TextView)view.findViewById(R.id.textViewVTAEventListToDate)).setText(eventTo);
-
-        String eventStTime = cursor.getString(cursor.getColumnIndex("startTime"));
-        Log.i("new trip name displayed", eventStTime);
-        ((TextView)view.findViewById(R.id.textViewVTAEventListStartTime)).setText(eventStTime);
-
 
     }
 }

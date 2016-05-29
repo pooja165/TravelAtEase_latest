@@ -60,8 +60,10 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
         placeDisplay.setSelected(true);
 
         TextView durationDisplay = (TextView) findViewById(R.id.textViewVTADuration);
-        String u = tripInfo.getStartDate() + " to " + tripInfo.getEndDate();
+        String u = tripInfo.getStartDate() + " " + tripInfo.getStartTime()+ " to " + tripInfo.getEndDate() + " "+tripInfo.getEndTime();
         durationDisplay.setText(u);
+
+
 //        durationDisplay.setEllipsize(TextUtils.TruncateAt.MARQUEE);
 //        durationDisplay.setSingleLine(true);
 //        durationDisplay.setMarqueeRepeatLimit(6);
@@ -129,7 +131,11 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
             startActivity(intent); //startActivityForResult
             return true;
 
-        }else if(id == R.id.setTripPlanningReminders){
+        }else if(id == R.id.shareItinerary){
+            //TODO send email.
+
+        }
+        else if(id == R.id.setTripPlanningReminders){
             //calling set planning reminder activity
             Intent newIntent = new Intent(ViewTripItineraryActivity.this,SetTripPlanningReminderActivity.class);
             newIntent.putExtra("StartDate", tripStartDate);
