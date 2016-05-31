@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -101,6 +102,11 @@ public class AddEditTripActivity extends ActionBarActivity implements View.OnCli
 
         long stTimeMillis = stCalendar.getTimeInMillis();
         long endTimeMillis = endCalendar.getTimeInMillis();
+
+        if(endTimeMillis<=stTimeMillis){
+            Toast.makeText(getApplicationContext(),"Enter valid time. End time is <= Start time.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
 
 

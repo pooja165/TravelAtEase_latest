@@ -29,7 +29,7 @@ public class TripListActivity extends AppCompatActivity implements AdapterView.O
         setContentView(R.layout.activity_trip_list);
         tripListView = (ListView) findViewById(R.id.listViewTLTripList);
         tripDB = new TripDbHelper(this);
-
+        //tripDB.logAllTrips();
         Intent intent = getIntent();
         String tripKind = intent.getStringExtra("tripKind");
 

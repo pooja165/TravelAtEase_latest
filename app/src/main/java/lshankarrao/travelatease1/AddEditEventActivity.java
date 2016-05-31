@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -151,6 +152,20 @@ public class AddEditEventActivity extends ActionBarActivity implements View.OnCl
 
         long stTimeMillis = stCalendar.getTimeInMillis();
         long endTimeMillis = endCalendar.getTimeInMillis();
+        TripDbHelper tripDbHelper = new TripDbHelper(this);
+
+        TripInfo tripInfo = tripDbHelper.getTripInfo(tripId);
+        double tripStTime = tripInfo.getStTimeMillis();
+        double tripEndTime = tripInfo.getEndTimeMillis();
+        //new TripInfo();Cursor c = tripInfo.g
+        if(endTimeMillis<=stTimeMillis ){
+            Toast.makeText(getApplicationContext(),"Enter valid time. End time is <= Start time ", Toast.LENGTH_SHORT).show();
+            return;
+        }else if(endTimeMillis>tripEndTime || stTimeMillis<tripStTime){
+            Toast.makeText(getApplicationContext(),"Enter valid time. Event time not within trip time ", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
 
         EventInfo info = new EventInfo();
 

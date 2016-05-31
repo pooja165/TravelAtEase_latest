@@ -18,16 +18,16 @@ public class TripDbHelper extends SQLiteOpenHelper {
 
     static private final String SQL_CREATE_TRIP_TABLE =
             "CREATE TABLE tripInfo (" +
-            "  _id INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "  title TEXT," +
-            "  city TEXT," +
-            "  state TEXT," +
-            "  country TEXT," +
-            "  startDate TEXT," +
-            "  endDate TEXT," +
-            "  startTime TEXT," +
-            "  endTime TEXT," +
-            "  notes TEXT," +
+                    "  _id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "  title TEXT," +
+                    "  city TEXT," +
+                    "  state TEXT," +
+                    "  country TEXT," +
+                    "  startDate TEXT," +
+                    "  endDate TEXT," +
+                    "  startTime TEXT," +
+                    "  endTime TEXT," +
+                    "  notes TEXT," +
                     "stTimeMillis INTEGER, " +
                     "endTimeMillis INTEGER);";
 
@@ -139,28 +139,29 @@ public class TripDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM tripInfo;", null);
     }
+
     public Cursor fetchAllEventsForTrip(int tripId) {
         SQLiteDatabase db = this.getReadableDatabase();
         //return db.rawQuery("SELECT * FROM eventInfo;", null);
         return db.rawQuery("SELECT * FROM eventInfo WHERE tripId=" + tripId + " ORDER BY stTimeMillis;", null);
     }
 
-    public Cursor fetchUpcomingTrips(){
+    public Cursor fetchUpcomingTrips() {
         Calendar calendar = Calendar.getInstance();
         long currentTime = calendar.getTimeInMillis();
 
         SQLiteDatabase db = this.getReadableDatabase();
         String q = "SELECT * FROM tripInfo WHERE stTimeMillis>=" + currentTime + " ORDER BY stTimeMillis;";
-        return db.rawQuery(q,null);
+        return db.rawQuery(q, null);
     }
 
-    public Cursor fetchPastTrips(){
+    public Cursor fetchPastTrips() {
         Calendar calendar = Calendar.getInstance();
         long currentTime = calendar.getTimeInMillis();
 
         SQLiteDatabase db = this.getReadableDatabase();
         String q = "SELECT * FROM tripInfo WHERE endTimeMillis<" + currentTime + " ORDER BY stTimeMillis;";
-        return db.rawQuery(q,null);
+        return db.rawQuery(q, null);
     }
 
     public long addTripInfo(TripInfo ci) {
@@ -177,7 +178,7 @@ public class TripDbHelper extends SQLiteOpenHelper {
         contentValues.put("endTime", ci.endTime);
         contentValues.put("notes", ci.notes);
         contentValues.put("stTimeMillis", ci.stTimeMillis);
-        contentValues.put("endTimeMillis",ci.endTimeMillis);
+        contentValues.put("endTimeMillis", ci.endTimeMillis);
         //contentValues.put("events", ci.events);
         return db.insert("tripInfo", null, contentValues);
     }
@@ -196,7 +197,7 @@ public class TripDbHelper extends SQLiteOpenHelper {
         contentValues.put("endTime", ci.endTime);
         contentValues.put("tripId", ci.tripId);
         contentValues.put("stTimeMillis", ci.stTimeMillis);
-        contentValues.put("endTimeMillis",ci.endTimeMillis);
+        contentValues.put("endTimeMillis", ci.endTimeMillis);
         return db.insert("eventInfo", null, contentValues);
     }
 
@@ -262,6 +263,25 @@ public class TripDbHelper extends SQLiteOpenHelper {
          */
     }
 
+    public void logAllTrips() {
+        Cursor c = fetchAllTrips();
+        Log.i("no. of trips= ", c.getCount()+"");
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            Log.i("", c.getString(c.getColumnIndex("title")));
+            Log.i("", c.getString(c.getColumnIndex("city")));
+            Log.i("", c.getString(c.getColumnIndex("state")));
+            Log.i("", c.getString(c.getColumnIndex("country")));
+            Log.i("", c.getString(c.getColumnIndex("startDate")));
+            Log.i("", c.getString(c.getColumnIndex("endDate")));
+            Log.i("", c.getString(c.getColumnIndex("startTime")));
+            Log.i("", c.getString(c.getColumnIndex("endTime")));
+            Log.i("", c.getString(c.getColumnIndex("notes")));
+            c.moveToNext();
+        }
+    }
+
+
     public TripInfo getTripInfo(int id) {
         Log.i("id", id + "");
 
@@ -281,7 +301,8 @@ public class TripDbHelper extends SQLiteOpenHelper {
         //need to query for events with this trip id stored.
         //get the event ids for all the trips which have the current "id" stored in the trip id field.
         //Cursor d = db.rawQuery("SELECT * FROM eventInfo WHERE tripId=" +id+"", null);
-        TripInfo tripInfo = new TripInfo(c.getString(c.getColumnIndex("title")),
+        TripInfo tripInfo = new TripInfo(
+                c.getString(c.getColumnIndex("title")),
                 c.getString(c.getColumnIndex("city")),
                 c.getString(c.getColumnIndex("state")),
                 c.getString(c.getColumnIndex("country")),

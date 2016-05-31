@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
+import java.util.Calendar;
+
 /**
  * Created by lakshmi on 5/24/2016.
  */
@@ -29,9 +31,15 @@ public class EventListAdapter extends CursorAdapter {
         Log.i("bV ", cursor.getCount() + "");
         Log.i("BV event id ", cursor.getInt(cursor.getColumnIndex("_id"))+"");
 
+        Calendar current = Calendar.getInstance();
+
         String eventTitle = cursor.getString(cursor.getColumnIndex("title"));
         Log.i("new trip name displayed", eventTitle);
         ((TextView)view.findViewById(R.id.textViewVTAEventListTitle)).setText(eventTitle);
+        Log.i("end time + curr time= ",cursor.getLong(cursor.getColumnIndex("endTimeMillis"))+" "+current.getTimeInMillis()+"");
+        if(cursor.getLong(cursor.getColumnIndex("endTimeMillis"))< current.getTimeInMillis() ){
+            ((TextView)view.findViewById(R.id.textViewVTAEventListTitle)).setBackgroundColor(0xFFFF0000);
+        }
 
         int tripID = cursor.getInt(cursor.getColumnIndex("tripId"));
         Log.i("bla bla id ", tripID + "");
@@ -46,7 +54,7 @@ public class EventListAdapter extends CursorAdapter {
         ((TextView)view.findViewById(R.id.textViewVTAEventListFromDate)).setText(eventFrom);
 
         String eventTo = cursor.getString(cursor.getColumnIndex("endDate")) + "    "+
-                cursor.getString(cursor.getColumnIndex("startTime"));
+                cursor.getString(cursor.getColumnIndex("endTime"));
         Log.i("new trip name displayed", eventTo);
         ((TextView)view.findViewById(R.id.textViewVTAEventListToDate)).setText(eventTo);
 
