@@ -108,6 +108,11 @@ public class TripListActivity extends AppCompatActivity implements AdapterView.O
             startActivity(intent); //startActivityForResult
             return true;
         }
+        else if(id == R.id.action_addtrip){
+            Intent intent = new Intent(TripListActivity.this, AddEditTripActivity.class);
+            startActivity(intent); //startActivityForResult
+            return true;
+        }
         return true;
     }
 

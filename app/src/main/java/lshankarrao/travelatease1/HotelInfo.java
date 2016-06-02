@@ -10,12 +10,18 @@ public class HotelInfo {
     protected String notes;
     protected long eventId;
 
+    public int getId() {
+        return id;
+    }
+
+    protected int id;
+
     public HotelInfo() {
 
     }
 
-    public HotelInfo(String hotel, String address, String checkin_date, String checkout_date, String checkin_time, String checkout_time, String confirmationNo, String notes, long eventId) {
-        //this.id = id;
+    public HotelInfo(int id, String hotel, String address, String checkin_date, String checkout_date, String checkin_time, String checkout_time, String confirmationNo, String notes, long eventId) {
+        this.id = id;
         this.address = address;
         this.hotel = hotel;
         this.checkin_date = checkin_date;

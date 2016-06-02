@@ -30,5 +30,10 @@
         android:title="Share Itinerary"
         android:orderInCategory="140"
         />
+    <item
+        android:id="@+id/locationBasedNotification"
+        android:title="Turn ON Location-based Notification"
+        android:orderInCategory="140"
+        />
 
 </menu>

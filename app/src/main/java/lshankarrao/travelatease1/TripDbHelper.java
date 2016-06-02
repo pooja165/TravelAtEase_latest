@@ -354,4 +354,52 @@ public class TripDbHelper extends SQLiteOpenHelper {
 
         return infos;
     }
+
+    public Cursor getCurrentTrip(){
+        Calendar current = Calendar.getInstance();
+        long currentTimeInMillis = current.getTimeInMillis();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String q = "SELECT * FROM tripInfo WHERE stTimeMillis<=" + currentTimeInMillis + " AND endTimeMillis>="+ currentTimeInMillis +" ORDER BY endTimeMillis;";
+        return db.rawQuery(q, null);
+    }
+
+    public List<HotelInfo> getHotelsInfo(int eventId) {
+        Log.i("id", eventId + "");
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        //query for basic trip details
+        Cursor c = db.rawQuery("SELECT * FROM hotelInfo WHERE eventId=" + eventId + ";", null);
+        if (c == null || c.getCount() < 1) {
+            Log.i("problem", "checkout");
+            return null;
+        }
+        c.moveToFirst();
+        Log.i("count = ", c.getCount() + "");
+        List<HotelInfo> infos = new ArrayList<HotelInfo>();
+        while (!c.isAfterLast()) {
+            HotelInfo hotelInfo = new HotelInfo(
+                    c.getInt(c.getColumnIndex("_id")),
+                    c.getString(c.getColumnIndex("hotel")),
+                    c.getString(c.getColumnIndex("address")),
+                    c.getString(c.getColumnIndex("checkin_date")),
+                    c.getString(c.getColumnIndex("checkout_date")),
+                    c.getString(c.getColumnIndex("checkin_time")),
+                    c.getString(c.getColumnIndex("checkout_time")),
+                    c.getString(c.getColumnIndex("confirmationNo")),
+                    c.getString(c.getColumnIndex("notes")),
+                    c.getInt(c.getColumnIndex("eventId")));
+            hotelInfo.eventId = c.getInt(c.getColumnIndex("_id"));
+            c.moveToNext();
+            infos.add(hotelInfo);
+        }
+        return infos;
+    }
+
+    public Cursor fetchAllHotelsForEvent(int eventId){
+        SQLiteDatabase db = this.getReadableDatabase();
+        //return db.rawQuery("SELECT * FROM eventInfo;", null);
+        return db.rawQuery("SELECT * FROM hotelInfo WHERE eventId=" + eventId + ";", null);//order by time not done yet.
+    }
+
 }

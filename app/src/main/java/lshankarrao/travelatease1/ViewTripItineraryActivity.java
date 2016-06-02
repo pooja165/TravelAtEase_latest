@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Created by lakshmi on 5/23/2016.
  */
-public class ViewTripItineraryActivity extends AppCompatActivity{
+public class ViewTripItineraryActivity extends AppCompatActivity {
 
     TripDbHelper tripDb;
     Cursor cursor;
@@ -36,11 +36,13 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
     String tripStartTime;
     String tripTimings;
     String tripPlace;
-    final int REMINDER_DURATION =12345;
+    final int REMINDER_DURATION = 12345;
     String choice;
     String mfullTripDetails;
-    String mEventDetails = "Trip includes the below Events"+ "\n";
-    List<String> mAllEventsDetails;
+    String mEventDetails = "Trip includes the below Events" + "\n";
+    String mAllHotelDetails = "\n Hotel Reservation details for the Event: " + "\n";
+    List<String> mAllEventsDetailsInOnePlace;//not used
+    TripInfo tripInfo;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,22 +52,22 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
         //eventId //id
         Intent tripIntent = getIntent();
         tripId = tripIntent.getIntExtra("id", -1);
-        if(tripId == -1){
-            Log.i("invalid trip id","View Trip activity");
+        if (tripId == -1) {
+            Log.i("invalid trip id", "View Trip activity");
             return;
         }
-        Log.i("tripId: VTA ", tripId+"");
+        Log.i("tripId: VTA ", tripId + "");
 
-        TripInfo tripInfo = tripDb.getTripInfo(tripId);
+        tripInfo = tripDb.getTripInfo(tripId);
         TextView titleDisplay = (TextView) findViewById(R.id.textViewVTATitle);
         tripTitle = tripInfo.getTitle();
         titleDisplay.setText(tripTitle);
-        if(tripTitle == null){
-            Log.i("empty s ","");
+        if (tripTitle == null) {
+            Log.i("empty s ", "");
         }
 
         TextView placeDisplay = (TextView) findViewById(R.id.textViewVTAPlace);
-        tripPlace = tripInfo.getCity() + ", "+ tripInfo.getState() +", " + tripInfo.getCountry();
+        tripPlace = tripInfo.getCity() + ", " + tripInfo.getState() + ", " + tripInfo.getCountry();
         placeDisplay.setText(tripPlace);
         placeDisplay.setEllipsize(TextUtils.TruncateAt.MARQUEE);
         placeDisplay.setSingleLine(true);
@@ -73,7 +75,7 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
         placeDisplay.setSelected(true);
 
         TextView durationDisplay = (TextView) findViewById(R.id.textViewVTADuration);
-        tripTimings = tripInfo.getStartDate() + " " + tripInfo.getStartTime()+ " to " + tripInfo.getEndDate() + " "+tripInfo.getEndTime();
+        tripTimings = tripInfo.getStartDate() + " " + tripInfo.getStartTime() + " to " + tripInfo.getEndDate() + " " + tripInfo.getEndTime();
         durationDisplay.setText(tripTimings);
 
 
@@ -83,14 +85,14 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
 //        durationDisplay.setSelected(true);
 
         mfullTripDetails = tripInfo.getTitle() + "\n" +
-                "PLACE: "+ tripPlace + "\n" +
-                "Timings: " + tripTimings + "\n"+"\n";
+                "PLACE: " + tripPlace + "\n" +
+                "Timings: " + tripTimings + "\n" + "\n";
         titleDisplay.setText(tripTitle);
-        if(tripTitle == null || tripTitle.isEmpty()){
-            Log.i("empty s ","");
+        if (tripTitle == null || tripTitle.isEmpty()) {
+            Log.i("empty s ", "");
         }
 
-       Log.i("string:  ", tripTitle);
+        Log.i("string:  ", tripTitle);
 
         this.tripTitle = tripInfo.getTitle();
         tripStartDate = tripInfo.getStartDate();
@@ -107,12 +109,12 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
         String eventPlace;
         String eventTitle;
 
-        mAllEventsDetails = new ArrayList<String>();
-        if(cursor.getCount()>0) {
+        mAllEventsDetailsInOnePlace = new ArrayList<String>();
+        if (cursor.getCount() > 0) {
             List<EventInfo> eventInfos = tripDb.getEventInfo(tripId);
             for (EventInfo ev : eventInfos) {
                 eventPlace = "<br><b>Place:</b> " + ev.city + ", " + ev.state + ", " + ev.country + "<br>";
-                eventTimings = "<i>Timings:</i> " + ev.startDate + " @ " + ev.startTime + " to " + ev.endDate + "<i><b>@</b></i>" + ev.endTime;
+                eventTimings = "<h2 style=\"color:blue\"><i>Timings:</i> " + ev.startDate + " @ " + ev.startTime + " to " + ev.endDate + "<i><b>@</b></i>" + ev.endTime + "</h2>";
                 eventTitle = ev.title;
                 Log.i("event title: ", ev.title);
                 Log.i("event id ", ev.id + "");
@@ -120,7 +122,21 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
                         "<br>" + eventTitle + "<br>" +
                         "<br>" + eventPlace + "<br>" +
                         "<br>" + eventTimings + "<br>";
-                mAllEventsDetails.add(mEventDetails);
+                mAllEventsDetailsInOnePlace.add(mEventDetails);
+                Cursor hotelCursor = tripDb.fetchAllHotelsForEvent(ev.id);
+                if (hotelCursor.getCount() > 0) {
+                    String hotelName, hotelPlace, hotelTimings, hotelConfirmationNo;
+                    List<HotelInfo> hotelInfos = tripDb.getHotelsInfo(ev.id);
+                    for (HotelInfo hotelInfo : hotelInfos) {
+                        hotelName = "Hotel: " + hotelInfo.hotel;
+                        hotelPlace = "Address: " + hotelInfo.address;
+                        hotelTimings = "Check-in: " + hotelInfo.checkin_date + " at " + hotelInfo.checkin_time +
+                                "\nCheck-out: " + hotelInfo.checkout_date + " at " + hotelInfo.checkout_time;
+                        hotelConfirmationNo = "Confirmation No: " + hotelInfo.confirmationNo;
+                        mAllHotelDetails = mAllHotelDetails + hotelName + "\n" + hotelPlace + "\n" + hotelTimings + "\n" + hotelConfirmationNo;
+                    }
+                }
+
             }
         }
 
@@ -150,20 +166,30 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
             intent.putExtra("id", tripId);
             startActivity(intent); // when back pressed/save pressed go to TripListActivity
             return true;
-        }else if(id == R.id.action_home){
+        } else if (id == R.id.action_home) {
 
             Intent intent = new Intent(ViewTripItineraryActivity.this, MainActivity.class);
             startActivity(intent); //startActivityForResult
             return true;
-        }
-        else if (id == R.id.addEvent) {
+        } else if (id == R.id.addEvent) {
 
             Intent intent = new Intent(ViewTripItineraryActivity.this, AddEditEventActivity.class);
             intent.putExtra("id", tripId);
             startActivity(intent); //startActivityForResult
             return true;
 
-        }else if(id == R.id.shareItinerary){
+        } else if (id == R.id.setTripPlanningReminders) {
+            //calling set planning reminder activity
+            Intent newIntent = new Intent(ViewTripItineraryActivity.this, SetTripPlanningReminderActivity.class);
+            newIntent.putExtra("StartDate", tripStartDate);
+            newIntent.putExtra("StartTime", tripStartTime);
+            newIntent.putExtra("Id", tripId);
+            newIntent.putExtra("Title", tripTitle);
+            startActivity(newIntent);
+
+        } else if (id == R.id.shareItinerary) {
+            // Html.TagHandler
+
             //
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Enter email ids below(comma separated)");
@@ -182,10 +208,14 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
 
                     Intent i = new Intent(Intent.ACTION_SEND);
                     i.setType("message/rfc822");
-                    i.putExtra(Intent.EXTRA_EMAIL  , emailAddrs.split(","));
-                    i.putExtra(Intent.EXTRA_SUBJECT, tripTitle+" Itinerary");
+                    i.putExtra(Intent.EXTRA_EMAIL, emailAddrs.split(","));
+                    i.putExtra(Intent.EXTRA_SUBJECT, tripTitle + " Itinerary");
                     //i.putExtra(Intent.EXTRA_TEXT   , mfullTripDetails+ mEventDetails);
-                    i.putExtra(Intent.EXTRA_TEXT   , Html.fromHtml(mfullTripDetails + mEventDetails));
+                    i.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(new StringBuilder().append("<h1 style=\"background-color:yellow;color:blue;\">This is a heading</h1>")
+                            .append("<p><b>Some Content</b></p>")
+                            .append("<small><p>More content</p></small>")
+                            .toString()));
+                    //("<font color='#0023FF'>mfullTripDetails</font>"+mfullTripDetails + mEventDetails + mAllHotelDetails));
                     try {
                         startActivity(Intent.createChooser(i, "Send mail..."));
                     } catch (android.content.ActivityNotFoundException ex) {
@@ -203,17 +233,16 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
 
             builder.show();
 
+        } else if (id == R.id.locationBasedNotification) {
+            //TODO
+            Intent locationIntent = new Intent(ViewTripItineraryActivity.this,
+                    LocationBasedNotifierActivity.class);
+            String place = tripInfo.city + " " + tripInfo.state + " " + tripInfo.country;
+            locationIntent.putExtra("tripPlace", place);
+            locationIntent.putExtra("tripId", tripId);
+            startActivity(locationIntent);
         }
-        else if(id == R.id.setTripPlanningReminders){
-            //calling set planning reminder activity
-            Intent newIntent = new Intent(ViewTripItineraryActivity.this,SetTripPlanningReminderActivity.class);
-            newIntent.putExtra("StartDate", tripStartDate);
-            newIntent.putExtra("StartTime", tripStartTime);
-            newIntent.putExtra("Id", tripId);
-            newIntent.putExtra("Title", tripTitle);
-            startActivity(newIntent);
 
-        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -230,4 +259,34 @@ public class ViewTripItineraryActivity extends AppCompatActivity{
         startActivity(intent); // when back pressed/save pressed go to TripListActivity
 
     }
+
+//    public String writeItineraryToFile() {
+//        String file = Environment.getExternalStorageDirectory().getAbsolutePath();
+//        OutputStream out = null;
+//        try {
+//            out = new BufferedOutputStream(new FileOutputStream(file + "/" + tripInfo.title));
+//
+//            finally{
+//                if (out != null) {
+//                    out.close();
+//                }
+//            }
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+//    public static String createHTML() {//static not needed.
+//        String format =
+//                "<html>" +
+//                        "<body>" +
+//                        "<h2 style=\"background-color:cyan\">\n" +
+//                        "Background-color set by using cyan\n" +
+//                        "</h2>" +
+//                        "</body>" +
+//                "</html>";
+//        return String.format(format, study.title, study.name);
+//    }
 }

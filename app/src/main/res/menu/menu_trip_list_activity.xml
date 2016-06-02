@@ -15,4 +15,10 @@
         android:orderInCategory="200"
         app:showAsAction="never"
         android:title="Uninstall"/>
+    <item
+        android:id="@+id/action_addtrip"
+        android:icon="@drawable/add"
+        android:orderInCategory="100"
+        app:showAsAction="always|withText"
+        android:title="ADD NOTE"/>
 </menu>

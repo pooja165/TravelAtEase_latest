@@ -2,14 +2,15 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/bright_foreground_material_dark">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="lshankarrao.travelatease1.MainActivity"
-    android:background="#c7ced0">
+    android:background="@drawable/background">
 
     <Button
         android:layout_width="300dp"
@@ -20,7 +21,7 @@
         android:layout_margin="45dp"
         android:padding="30dp"
         android:textSize="25sp"
-        android:background="#cdd0db"
+        android:background="@android:color/holo_orange_dark"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold" />
 
@@ -34,8 +35,9 @@
         android:padding="30dp"
         android:layout_margin="45dp"
         android:textColor="@color/colorPrimary"
-        android:background="#cdd0db"
-        android:textStyle="bold" />
+        android:background="@android:color/holo_blue_bright"
+        android:textStyle="bold"
+        android:visibility="invisible"/>
 
     <Button
         android:layout_width="300dp"
@@ -47,7 +49,7 @@
         android:layout_margin="45dp"
         android:padding="30dp"
         android:textColor="@color/colorPrimary"
-        android:background="#cdd0db"
+        android:background="@android:color/holo_orange_light"
         android:textStyle="bold" />
 
 </LinearLayout>
