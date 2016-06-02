@@ -103,7 +103,7 @@ public class LocationBasedNotificationHandler extends IntentService implements G
                 new android.support.v4.app.NotificationCompat.Builder(getApplicationContext())
                         .setSmallIcon(R.drawable.jinggling_on)
                         .setContentTitle("Location Update...!")
-                        .setContentText("TEMPORARY")
+                        .setContentText("We safely reached "+tripPlace)
                         .setContentIntent(resultPendingIntent)
                         .setVisibility(VISIBILITY_PRIVATE)
                         .setAutoCancel(true);

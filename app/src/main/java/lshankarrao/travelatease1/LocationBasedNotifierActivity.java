@@ -4,12 +4,16 @@ import android.Manifest;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -39,6 +43,7 @@ public class LocationBasedNotifierActivity extends AppCompatActivity
     AddressToGeocode addressToGeocode;
     //Context context;
     String tripPlace;
+    TextView place;
     int tripId;
 
     @Override
@@ -52,6 +57,8 @@ public class LocationBasedNotifierActivity extends AppCompatActivity
         addressToGeocode = new AddressToGeocode();
         LatLng latLng = addressToGeocode.AddressToLatLng(tripPlace,
                 this);
+
+        place = (TextView) findViewById(R.id.textViewLBNAplace);
 
         Log.i("LatLng",latLng.latitude+" "+latLng.longitude);
 
@@ -148,6 +155,7 @@ public class LocationBasedNotifierActivity extends AppCompatActivity
     public void onResult(@NonNull Status status) {
         toast("onResult() called : status=" + status.toString());
         googleApiClient.disconnect();
+        place.setText(tripPlace);
     }
 
 //   @Override
@@ -165,5 +173,30 @@ public class LocationBasedNotifierActivity extends AppCompatActivity
 
     private void toast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_location_based_notifier_activity, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_uninstall) {
+            Uri packageURI = Uri.parse("package:"+ActionBarActivity.class.getPackage().getName());
+            Intent deleteIntent = new Intent(Intent.ACTION_DELETE, packageURI);
+            startActivity(deleteIntent);
+            return true;
+        }
+        else if (id == R.id.action_home) {
+
+            Intent intent = new Intent(LocationBasedNotifierActivity.this, MainActivity.class);
+            startActivity(intent); //startActivityForResult
+            return true;
+        }
+        return true;
     }
 }

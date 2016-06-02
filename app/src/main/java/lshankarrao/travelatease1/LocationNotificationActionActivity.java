@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -18,7 +20,25 @@ public class LocationNotificationActionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_location_notification_action);
         maybeSendEmail(getIntent().getStringExtra("tripPlace"));
+
+        Button itinerary = (Button) findViewById(R.id.buttonLNAgoToItinerary);
+        itinerary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int tripId = getIntent().getIntExtra("tripId", -1);
+                if (tripId > 0) {
+                    Intent goToItinerary = new Intent(LocationNotificationActionActivity.this, ViewTripItineraryActivity.class);
+                    goToItinerary.putExtra("id", tripId);
+                    startActivity(goToItinerary);
+                } else {
+                    Intent goHome = new Intent(LocationNotificationActionActivity.this, ViewTripItineraryActivity.class);
+                    startActivity(goHome);
+                }
+            }
+        });
+
     }
 
     private void maybeSendEmail(final String place) {
@@ -59,6 +79,8 @@ public class LocationNotificationActionActivity extends AppCompatActivity {
         });
 
         builder.show();
+
+
     }
 }
 
