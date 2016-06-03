@@ -14,7 +14,7 @@ import android.widget.Toast;
 /**
  * Created by vijay on 6/3/2016.
  */
-public class LocationBasedNotificationPic extends AppCompatActivity {
+public class LocationBasedNotificationActionJustText extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -38,7 +38,7 @@
         <activity android:name=".SetTripPlanningReminderActivity"></activity>
         <activity android:name=".LocationNotificationActionActivity"></activity>
         <activity android:name=".LocationBasedNotifierActivity"></activity>
-        <activity android:name=".LocationBasedNotificationPic"></activity>
+        <activity android:name=".LocationBasedNotificationActionJustText"></activity>
         <service android:name=".LocationBasedNotificationHandler"
             android:enabled="true"
             android:exported="true">

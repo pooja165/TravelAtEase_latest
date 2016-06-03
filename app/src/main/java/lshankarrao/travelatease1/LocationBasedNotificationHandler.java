@@ -100,7 +100,7 @@ public class LocationBasedNotificationHandler extends IntentService implements G
                         resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Intent rIntent = new Intent(LocationBasedNotificationHandler.this,
-                LocationBasedNotificationPic.class);
+                LocationBasedNotificationActionJustText.class);
         rIntent.putExtra("tripPlace", tripPlace);
         rIntent.putExtra("tripId", tripId);
         PendingIntent rPendingIntent =
