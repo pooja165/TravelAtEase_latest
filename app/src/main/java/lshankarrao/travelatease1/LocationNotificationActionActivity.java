@@ -38,7 +38,13 @@ public class LocationNotificationActionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_notification_action);
 
+        Intent captureImageIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (captureImageIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(captureImageIntent, REQUEST_IMAGE_CAPTURE);//Common Intents.
+        }
+
         cb = (CheckBox) findViewById(R.id.checkBoxLNAtakePic);
+
 
 
 
@@ -98,7 +104,7 @@ public class LocationNotificationActionActivity extends AppCompatActivity {
                 i.setType("message/rfc822");
                 i.putExtra(Intent.EXTRA_EMAIL, emailAddrs.split(","));
                 i.putExtra(Intent.EXTRA_SUBJECT, "Location Update");
-                i.putExtra(Intent.EXTRA_TEXT, "Saying hello from " + place);
+                i.putExtra(Intent.EXTRA_TEXT, "Reached Safely. Saying hello from " + place);
                 //i.putExtra(Intent.EXTRA_TEXT   , Html.fromHtml(mfullTripDetails + mEventDetails));
                 try {
                     startActivity(Intent.createChooser(i, "Send mail..."));
@@ -116,8 +122,6 @@ public class LocationNotificationActionActivity extends AppCompatActivity {
         });
 
         builder.show();
-
-
     }
 
     public void maybeSendEmailWithPhoto(final String place, final String filepath){

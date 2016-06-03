@@ -99,14 +99,25 @@ public class LocationBasedNotificationHandler extends IntentService implements G
                 PendingIntent.getActivity(getApplicationContext(), notificationId,
                         resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        Intent rIntent = new Intent(LocationBasedNotificationHandler.this,
+                LocationBasedNotificationPic.class);
+        rIntent.putExtra("tripPlace", tripPlace);
+        rIntent.putExtra("tripId", tripId);
+        PendingIntent rPendingIntent =
+                PendingIntent.getActivity(getApplicationContext(), notificationId,
+                        rIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
         android.support.v4.app.NotificationCompat.Builder mBuilder =
                 new android.support.v4.app.NotificationCompat.Builder(getApplicationContext())
                         .setSmallIcon(R.drawable.jinggling_on)
                         .setContentTitle("Location Update...!")
-                        .setContentText("We safely reached "+tripPlace)
+                        .setContentText("Say hello to Friends/Family ")
                         .setContentIntent(resultPendingIntent)
                         .setVisibility(VISIBILITY_PRIVATE)
-                        .setAutoCancel(true);
+                        .setAutoCancel(true)
+                .addAction(R.drawable.jinggling_on, "With Picture", resultPendingIntent)
+                .addAction(R.drawable.jinggling_on, "Just Text", rPendingIntent);
+
         // .addAction(R.drawable.ic_fish, "Fish", resultPendingIntent);
 
         //mBuilder.setStyle(createBigContent(numEvents, eventsList));
@@ -119,24 +130,13 @@ public class LocationBasedNotificationHandler extends IntentService implements G
         notificationId++;
     }
 
-    //    private void cancelNotification() {
-    //        ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).cancel(2222);
-    //    }
     private void stopGeofencing() {
         toast("stop geofencing ...");
 
-        // abstract PendingResult<Status> removeGeofences(GoogleApiClient client, List<String> geofenceRequestIds)
         List<String> geofenceReqIDs = new ArrayList<>();
         geofenceReqIDs.add(requestId);
         LocationServices.GeofencingApi.removeGeofences(googleApiClient, geofenceReqIDs).setResultCallback(this);
-        //.setResultCallback(null);// TODO: Complete this Stop geofencing Not able to send thid
 
-
-        //    LocationServices.GeofencingApi.removeGeofences(
-        //            googleApiClient,
-        //            // This is the same pending intent that was used in addGeofences().
-        //            this
-        //    ).setResultCallback(this);
     }
 
     private void toast(String msg) {
