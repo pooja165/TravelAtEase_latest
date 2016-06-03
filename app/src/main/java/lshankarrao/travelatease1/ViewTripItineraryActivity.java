@@ -39,10 +39,11 @@ public class ViewTripItineraryActivity extends AppCompatActivity {
     final int REMINDER_DURATION = 12345;
     String choice;
     String mfullTripDetails;
-    String mEventDetails = "Trip includes the below Events" + "\n";
-    String mAllHotelDetails = "\n Hotel Reservation details for the Event: " + "\n";
+    String mCompleteEventDetails ="";// = "Trip includes the below Events" + "\n";
     List<String> mAllEventsDetailsInOnePlace;//not used
     TripInfo tripInfo;
+    String endTime,stTime;
+    String[] st_mon_day_year,end_mon_day_year;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,6 +80,14 @@ public class ViewTripItineraryActivity extends AppCompatActivity {
         durationDisplay.setText(tripTimings);
 
 
+        st_mon_day_year = tripDb.getDateFromMilli(tripInfo.stTimeMillis,"MMM/dd/yy");
+        end_mon_day_year = tripDb.getDateFromMilli(tripInfo.endTimeMillis,"MMM/dd/yy");
+
+        stTime = tripDb.getTimeFromMilli(tripInfo.stTimeMillis,"hh:mm aaa");
+        endTime = tripDb.getTimeFromMilli(tripInfo.endTimeMillis,"hh:mm aaa");
+        Log.i("start timings: ", st_mon_day_year[0]+st_mon_day_year[1]+st_mon_day_year[2]+stTime);
+        Log.i("end timings: ", end_mon_day_year[0]+end_mon_day_year[1]+end_mon_day_year[2]+endTime);
+
 //        durationDisplay.setEllipsize(TextUtils.TruncateAt.MARQUEE);
 //        durationDisplay.setSingleLine(true);
 //        durationDisplay.setMarqueeRepeatLimit(6);
@@ -105,36 +114,60 @@ public class ViewTripItineraryActivity extends AppCompatActivity {
         //tla.notifyDataSetChanged();
         eventListView.setAdapter(ela);
 
-        String eventTimings;
+        String eventDate;
         String eventPlace;
         String eventTitle;
 
         mAllEventsDetailsInOnePlace = new ArrayList<String>();
-        if (cursor.getCount() > 0) {
-            List<EventInfo> eventInfos = tripDb.getEventInfo(tripId);
+        List<EventInfo> eventInfos = tripDb.getEventInfo(tripId);
+        if (eventInfos != null) {
             for (EventInfo ev : eventInfos) {
-                eventPlace = "<br><b>Place:</b> " + ev.city + ", " + ev.state + ", " + ev.country + "<br>";
-                eventTimings = "<h2 style=\"color:blue\"><i>Timings:</i> " + ev.startDate + " @ " + ev.startTime + " to " + ev.endDate + "<i><b>@</b></i>" + ev.endTime + "</h2>";
+                String[] ev_st_mon_day_year = tripDb.getDateFromMilli(ev.stTimeMillis,"MMM/dd/yy");
+                Log.i("abracada: ",ev.getStTimeMillis()+"");//ev_st_mon_day_year[0]+ev_st_mon_day_year[1]+ev_st_mon_day_year[2]+
+                String[] ev_end_mon_day_year = tripDb.getDateFromMilli(ev.endTimeMillis,"MMM/dd/yy");
+                Log.i("dabba", ev_end_mon_day_year[0]+ev_end_mon_day_year[1]+ev_end_mon_day_year[2]);
+
+                String ev_stTime = tripDb.getTimeFromMilli(ev.getStTimeMillis(),"hh:mm aaa");
+                String ev_endTime = tripDb.getTimeFromMilli(ev.getEndTimeMillis(),"hh:mm aaa");
+                eventPlace = ev.city + ", " + ev.state + ", " + ev.country;
+                eventDate = "<p>"+ev_st_mon_day_year[0] +" "+ ev_st_mon_day_year[1] +", "+ev_st_mon_day_year[2]+" - "+ ev_end_mon_day_year[0] +" "+ ev_end_mon_day_year[1] +", "+ev_end_mon_day_year[2]+"<br>"+ev_stTime+"</p>";
+                // "<h2 style=\"color:blue\"><i>Timings:</i> " + ev.startDate + " @ " + ev.startTime + " to " + ev.endDate + "<i><b>@</b></i>" + ev.endTime + "</h2>";
                 eventTitle = ev.title;
                 Log.i("event title: ", ev.title);
                 Log.i("event id ", ev.id + "");
-                mEventDetails = mEventDetails + "<br>" +
-                        "<br>" + eventTitle + "<br>" +
-                        "<br>" + eventPlace + "<br>" +
-                        "<br>" + eventTimings + "<br>";
-                mAllEventsDetailsInOnePlace.add(mEventDetails);
+                mCompleteEventDetails = mCompleteEventDetails +
+                        "<br><h4>" + eventTitle + "</h4>"+
+                        "" + eventDate +
+                        "" + "    "+eventPlace +
+                        "<br>" + "    "+ev_stTime +" to " + ev_endTime+
+                        "<br>" + "     Note: "+"Get some snacks! :) ";
+
+                mAllEventsDetailsInOnePlace.add(mCompleteEventDetails);
                 Cursor hotelCursor = tripDb.fetchAllHotelsForEvent(ev.id);
                 if (hotelCursor.getCount() > 0) {
-                    String hotelName, hotelPlace, hotelTimings, hotelConfirmationNo;
+                    String hotelName, hotelPlace, hotelDate, hotelCheckinTime, hotelTimings, hotelConfirmationNo;
                     List<HotelInfo> hotelInfos = tripDb.getHotelsInfo(ev.id);
+                    String allHotelDetails = ""; //= "\n Hotel Reservation details for the Event: " + "\n";
                     for (HotelInfo hotelInfo : hotelInfos) {
+
                         hotelName = "Hotel: " + hotelInfo.hotel;
                         hotelPlace = "Address: " + hotelInfo.address;
                         hotelTimings = "Check-in: " + hotelInfo.checkin_date + " at " + hotelInfo.checkin_time +
                                 "\nCheck-out: " + hotelInfo.checkout_date + " at " + hotelInfo.checkout_time;
+                        hotelDate = hotelInfo.checkin_date + " - "+ hotelInfo.checkout_date;
+                        hotelCheckinTime = "Check-in: " + hotelInfo.checkin_time ;
                         hotelConfirmationNo = "Confirmation No: " + hotelInfo.confirmationNo;
-                        mAllHotelDetails = mAllHotelDetails + hotelName + "\n" + hotelPlace + "\n" + hotelTimings + "\n" + hotelConfirmationNo;
+
+
+                        allHotelDetails = allHotelDetails+
+                                "<br>"+
+                                "<br>"+"    "+hotelName +
+                                "<br>"+"    "+hotelDate+
+                                "<br>"+"        "+hotelPlace +
+                                "<br>"+"        "+hotelConfirmationNo+
+                                "<br>"+"        "+hotelTimings ;
                     }
+                    mCompleteEventDetails = mCompleteEventDetails + allHotelDetails;
                 }
 
             }
@@ -162,7 +195,8 @@ public class ViewTripItineraryActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.editTrip) {
-            Intent intent = new Intent(ViewTripItineraryActivity.this, EditTripActivity.class);
+            Intent intent = new Intent(ViewTripItineraryActivity.this, AddEditTripActivity.class);
+            intent.putExtra("purpose","edit");
             intent.putExtra("id", tripId);
             startActivity(intent); // when back pressed/save pressed go to TripListActivity
             return true;
@@ -188,15 +222,12 @@ public class ViewTripItineraryActivity extends AppCompatActivity {
             startActivity(newIntent);
 
         } else if (id == R.id.shareItinerary) {
-            // Html.TagHandler
 
-            //
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Enter email ids below(comma separated)");
 
 // Set up the input
             final EditText input = new EditText(this);
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
             input.setInputType(InputType.TYPE_CLASS_TEXT);
             builder.setView(input);
 
@@ -210,12 +241,14 @@ public class ViewTripItineraryActivity extends AppCompatActivity {
                     i.setType("message/rfc822");
                     i.putExtra(Intent.EXTRA_EMAIL, emailAddrs.split(","));
                     i.putExtra(Intent.EXTRA_SUBJECT, tripTitle + " Itinerary");
-                    //i.putExtra(Intent.EXTRA_TEXT   , mfullTripDetails+ mEventDetails);
-                    i.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(new StringBuilder().append("<h1 style=\"background-color:yellow;color:blue;\">This is a heading</h1>")
-                            .append("<p><b>Some Content</b></p>")
-                            .append("<small><p>More content</p></small>")
+                    //i.putExtra(Intent.EXTRA_TEXT   , mfullTripDetails+ mCompleteEventDetails);
+                    i.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(new StringBuilder()
+                            .append("<h1>"+tripInfo.title+"</h1>")
+                            .append("<b>"+tripInfo.city+", "+tripInfo.state+"</b>")
+                            .append("<p><b>"+st_mon_day_year[0] +" "+ st_mon_day_year[1] +" " +st_mon_day_year[2] +" - "+ end_mon_day_year[0] +" "+ end_mon_day_year[1] +", "+end_mon_day_year[2]+"</b></p>")
+                            .append(mCompleteEventDetails)
                             .toString()));
-                    //("<font color='#0023FF'>mfullTripDetails</font>"+mfullTripDetails + mEventDetails + mAllHotelDetails));
+                    //("<font color='#0023FF'>mfullTripDetails</font>"+mfullTripDetails + mCompleteEventDetails + mAllHotelDetails));
                     try {
                         startActivity(Intent.createChooser(i, "Send mail..."));
                     } catch (android.content.ActivityNotFoundException ex) {

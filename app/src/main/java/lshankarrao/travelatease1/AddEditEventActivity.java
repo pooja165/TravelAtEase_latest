@@ -154,9 +154,12 @@ public class AddEditEventActivity extends ActionBarActivity implements View.OnCl
         long endTimeMillis = endCalendar.getTimeInMillis();
         TripDbHelper tripDbHelper = new TripDbHelper(this);
 
+        Log.i(" check maadu: ",stTimeMillis+"");
+        Log.i(",",endTimeMillis+"");
+
         TripInfo tripInfo = tripDbHelper.getTripInfo(tripId);
-        double tripStTime = tripInfo.getStTimeMillis();
-        double tripEndTime = tripInfo.getEndTimeMillis();
+        long tripStTime = tripInfo.getStTimeMillis();
+        long tripEndTime = tripInfo.getEndTimeMillis();
         //new TripInfo();Cursor c = tripInfo.g
         if(endTimeMillis<=stTimeMillis ){
             Toast.makeText(getApplicationContext(),"Enter valid time. End time is <= Start time ", Toast.LENGTH_SHORT).show();

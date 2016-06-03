@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -400,6 +401,45 @@ public class TripDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         //return db.rawQuery("SELECT * FROM eventInfo;", null);
         return db.rawQuery("SELECT * FROM hotelInfo WHERE eventId=" + eventId + ";", null);//order by time not done yet.
+    }
+
+    public String[] getDateFromMilli(long milliSeconds, String dateFormat)
+    {
+        // Create a DateFormatter object for displaying date in specified format.
+        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
+
+        // Create a calendar object that will convert the date and time value in milliseconds to date.
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(milliSeconds);
+        return formatter.format(calendar.getTime()).split("/");
+    }
+    public String getTimeFromMilli(long milliSeconds, String dateFormat)
+    {
+        // Create a DateFormatter object for displaying date in specified format.
+        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
+
+        // Create a calendar object that will convert the date and time value in milliseconds to date.
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(milliSeconds);
+        return formatter.format(calendar.getTime());
+    }
+
+    public void updateTripInfo(TripInfo info, int tripId) {
+        String updateqry = "UPDATE tripInfo SET " +
+                "title="+info.title+
+                ",city="+info.city+
+                ",state="+info.state+
+                ",country="+info.country+
+                ",startDate="+info.title+
+                ",endDate="+info.city+
+                ",startTime="+info.state+
+                ",endTime="+info.country+
+                ",notes="+info.city+
+                ",stTimeMillis="+info.state+
+                ",endTimeMillis="+info.country+
+                " WHERE _id="+tripId+";";
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.execSQL(updateqry);
     }
 
 }

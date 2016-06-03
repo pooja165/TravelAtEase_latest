@@ -21,7 +21,8 @@ public class EventInfo {
 
     public EventInfo(int id, String title, String startDate, String endDate,
                      String startTime, String endTime, String address,
-                     String city, String state, String country, int tripId, long stTimeMillis, long endTimeMillis) {
+                     String city, String state, String country, int tripId,
+                     long stTimeMillis, long endTimeMillis) {
         this.id = id;
         this.title = title;
         this.address = address;
@@ -33,6 +34,8 @@ public class EventInfo {
         this.tripId = tripId;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.stTimeMillis = stTimeMillis;
+        this.endTimeMillis = endTimeMillis;
     }
 /*
     public int getId() {

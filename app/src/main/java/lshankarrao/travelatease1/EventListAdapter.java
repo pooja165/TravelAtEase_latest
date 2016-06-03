@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -38,7 +39,7 @@ public class EventListAdapter extends CursorAdapter {
         ((TextView)view.findViewById(R.id.textViewVTAEventListTitle)).setText(eventTitle);
         Log.i("end time + curr time= ",cursor.getLong(cursor.getColumnIndex("endTimeMillis"))+" "+current.getTimeInMillis()+"");
         if(cursor.getLong(cursor.getColumnIndex("endTimeMillis"))< current.getTimeInMillis() ){
-            ((TextView)view.findViewById(R.id.textViewVTAEventListTitle)).setBackgroundColor(0xFFFF0000);
+            ((RelativeLayout)view.findViewById(R.id.relativeLayoutEventListCustomRow)).setBackgroundColor(0xfff1f1f1);
         }
 
         int tripID = cursor.getInt(cursor.getColumnIndex("tripId"));

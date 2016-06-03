@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#c9f8ed">
 
     <TextView
         android:layout_width="match_parent"
@@ -14,7 +15,7 @@
         android:textSize="25sp"
         android:gravity="center_vertical|center_horizontal"
         android:textStyle="bold"
-        android:background="#7ea9f9"
+        android:background="@android:color/holo_blue_bright"
         android:layout_margin="20dp" />
 
     <TextView
@@ -23,7 +24,8 @@
         android:text="New Text"
         android:id="@+id/textViewTLcustomRowDuration"
         android:layout_below="@+id/textViewTLcustomRowTitle"
-        android:textColor="#7ea9f9"
+        android:textColor="@android:color/white"
         android:textSize="20sp"
-        android:gravity="center_vertical|center_horizontal" />
+        android:gravity="center_vertical|center_horizontal"
+        android:textStyle="bold" />
 </RelativeLayout>

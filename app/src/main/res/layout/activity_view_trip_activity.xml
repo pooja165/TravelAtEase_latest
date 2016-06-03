@@ -2,7 +2,8 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
 
     <ImageView
         android:layout_width="100dp"
@@ -22,7 +23,7 @@
         android:id="@+id/textViewVTATitle"
         android:textSize="30sp"
         android:gravity="center_vertical|center_horizontal"
-        android:background="#e8ebf9"
+        android:background="#63ffff"
         android:layout_toRightOf="@id/imageView"/>
 
     <TextView
@@ -32,7 +33,7 @@
         android:id="@+id/textViewVTAPlace"
         android:ellipsize="marquee"
         android:layout_below="@+id/textViewVTATitle"
-        android:background="#7ea9f9"
+        android:background="#6dff40"
         android:textColor="@android:color/primary_text_dark_nodisable"
         android:textIsSelectable="false"
         android:textSize="20sp" />
@@ -43,8 +44,8 @@
         android:text="New Text"
         android:id="@+id/textViewVTADuration"
         android:layout_below="@+id/textViewVTAPlace"
-        android:background="#7ea9f9"
-        android:textColor="@android:color/primary_text_dark_nodisable"
+        android:background="#fefe3e"
+        android:textColor="@color/switch_thumb_disabled_material_dark"
         android:textSize="20sp" />
 
     <ListView
@@ -53,7 +54,7 @@
         android:id="@+id/listViewTLAEventList"
         android:layout_below="@+id/textViewVTADuration"
 
-        android:background="#e0e4f8"
+        android:background="@drawable/background"
         android:padding="10dp" />
 
 </RelativeLayout>

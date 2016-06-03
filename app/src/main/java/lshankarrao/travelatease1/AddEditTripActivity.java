@@ -29,17 +29,50 @@ public class AddEditTripActivity extends ActionBarActivity implements View.OnCli
     DatePicker datePicker1, datePicker2;
     //String id_time;
     //static int id = 0;
+    TripDbHelper tripDbHelper;
+    TripInfo tripInfo;
+    boolean purposeEdit = false;
+    int tripId;
 
     protected void onCreate(Bundle savedInstanceState) {
         tripDB = new TripDbHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_trip);
 
+
         timePicker1 = (TimePicker)findViewById(R.id.TimePickerAddEditTripstime);
         datePicker1 = (DatePicker)findViewById(R.id.DatePickerAddEditTripsdate);
 
         timePicker2 = (TimePicker)findViewById(R.id.TimePickerAddEditTripetime);
         datePicker2 = (DatePicker)findViewById(R.id.DatePickerAddEditTripedate);
+
+        if(getIntent().hasExtra("purpose") && getIntent().getStringExtra("purpose").equals("edit")){
+            //perform edit action
+            tripId = getIntent().getIntExtra("id", -1);
+            if(tripId == -1){
+                Log.i("trip id invalid! ", "");
+                return;
+            }
+            purposeEdit = true;
+            tripDbHelper = new TripDbHelper(this);
+            tripInfo = tripDbHelper.getTripInfo(tripId);
+
+            EditText tvTitle = (EditText)findViewById(R.id.editTextAddEditTriptitle);
+            tvTitle.setText(tripInfo.getTitle());
+
+            EditText tvcity = (EditText)findViewById(R.id.editTextAddEditTripcity);
+            tvcity.setText(tripInfo.getCity());
+
+            EditText tvstate = (EditText)findViewById(R.id.editTextAddEditTripstate);
+            tvstate.setText(tripInfo.getState());
+
+            EditText tvcountry = (EditText)findViewById(R.id.editTextAddEditTripcountry);
+            tvstate.setText(tripInfo.getCountry());
+
+            EditText tvnotes = (EditText)findViewById(R.id.editTextAddEditTripnotes);
+            tvstate.setText(tripInfo.getNotes());
+        }
+
 
         timePicker1.setIs24HourView(true);
         timePicker2.setIs24HourView(true);
@@ -131,6 +164,10 @@ public class AddEditTripActivity extends ActionBarActivity implements View.OnCli
         info.stTimeMillis = stTimeMillis;
         info.endTimeMillis = endTimeMillis;
         //info.events = null;
+
+        if(purposeEdit == true){
+            db.updateTripInfo(info, tripId);
+        }
 
         long id = db.addTripInfo(info);
         Log.i("pooja", "addTripInfo id : "+id);
