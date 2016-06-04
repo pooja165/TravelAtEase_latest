@@ -58,19 +58,24 @@ public class AddEditTripActivity extends ActionBarActivity implements View.OnCli
             tripInfo = tripDbHelper.getTripInfo(tripId);
 
             EditText tvTitle = (EditText)findViewById(R.id.editTextAddEditTriptitle);
+            Log.i("state qwert",tripInfo.getTitle());
             tvTitle.setText(tripInfo.getTitle());
 
             EditText tvcity = (EditText)findViewById(R.id.editTextAddEditTripcity);
+            Log.i("state qwert",tripInfo.getCity());
             tvcity.setText(tripInfo.getCity());
 
             EditText tvstate = (EditText)findViewById(R.id.editTextAddEditTripstate);
+            Log.i("state qwert",tripInfo.getState());
             tvstate.setText(tripInfo.getState());
 
             EditText tvcountry = (EditText)findViewById(R.id.editTextAddEditTripcountry);
-            tvstate.setText(tripInfo.getCountry());
+            Log.i("state qwert",tripInfo.getCountry());
+            tvcountry.setText(tripInfo.getCountry());
 
             EditText tvnotes = (EditText)findViewById(R.id.editTextAddEditTripnotes);
-            tvstate.setText(tripInfo.getNotes());
+            Log.i("state qwert",tripInfo.getNotes());
+            tvnotes.setText(tripInfo.getNotes());
         }
 
 

@@ -430,15 +430,15 @@ public class TripDbHelper extends SQLiteOpenHelper {
                 ",city="+info.city+
                 ",state="+info.state+
                 ",country="+info.country+
-                ",startDate="+info.title+
-                ",endDate="+info.city+
-                ",startTime="+info.state+
-                ",endTime="+info.country+
-                ",notes="+info.city+
-                ",stTimeMillis="+info.state+
-                ",endTimeMillis="+info.country+
+                ",startDate="+info.startDate+
+                ",endDate="+info.endDate+
+                ",startTime="+info.startTime+
+                ",endTime="+info.endTime+
+                ",notes="+info.notes+
+                ",stTimeMillis="+info.stTimeMillis+
+                ",endTimeMillis="+info.endTimeMillis+
                 " WHERE _id="+tripId+";";
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(updateqry);
     }
 

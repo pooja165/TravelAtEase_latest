@@ -35,11 +35,11 @@ public class EventListAdapter extends CursorAdapter {
         Calendar current = Calendar.getInstance();
 
         String eventTitle = cursor.getString(cursor.getColumnIndex("title"));
-        Log.i("new trip name displayed", eventTitle);
         ((TextView)view.findViewById(R.id.textViewVTAEventListTitle)).setText(eventTitle);
         Log.i("end time + curr time= ",cursor.getLong(cursor.getColumnIndex("endTimeMillis"))+" "+current.getTimeInMillis()+"");
         if(cursor.getLong(cursor.getColumnIndex("endTimeMillis"))< current.getTimeInMillis() ){
-            ((RelativeLayout)view.findViewById(R.id.relativeLayoutEventListCustomRow)).setBackgroundColor(0xfff1f1f1);
+            ((RelativeLayout)view.findViewById(R.id.relativeLayoutEventListCustomRow)).setBackgroundColor(0xFFA3A3A3);//fff1f1f1);
+            ((TextView)view.findViewById(R.id.textViewVTAEventListTitle)).setBackgroundColor(0xFFA3A3A3);
         }
 
         int tripID = cursor.getInt(cursor.getColumnIndex("tripId"));
