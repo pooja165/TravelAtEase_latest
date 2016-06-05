@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:elevation="@dimen/abc_action_bar_stacked_max_height"
+    android:background="#00ddff">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:text="New Text"
         android:id="@+id/textViewTLcustomRowTitle"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:maxHeight="60dp"
-        android:textColor="#fafbfc"
+        android:textColor="@color/colorPrimary"
         android:textSize="25sp"
         android:gravity="center_vertical|center_horizontal"
         android:textStyle="bold"
-        android:background="@android:color/holo_blue_bright"
-        android:layout_margin="20dp" />
+        android:background="#d5ebec"
+        android:layout_margin="20dp"
+        android:padding="5dp"
+        android:elevation="@dimen/abc_action_button_min_height_material" />
 
     <TextView
         android:layout_width="match_parent"
@@ -23,8 +27,18 @@
         android:text="New Text"
         android:id="@+id/textViewTLcustomRowDuration"
         android:layout_below="@+id/textViewTLcustomRowTitle"
-        android:textColor="@android:color/holo_green_dark"
+        android:textColor="@android:color/background_light"
         android:textSize="20sp"
         android:gravity="center_vertical|center_horizontal"
         android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:text=""
+        android:id="@+id/textView13"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textViewTLcustomRowDuration"
+        android:background="#f9f9f9"
+        android:layout_marginTop="5dp" />
 </RelativeLayout>

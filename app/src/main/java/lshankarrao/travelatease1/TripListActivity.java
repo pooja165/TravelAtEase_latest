@@ -21,6 +21,7 @@ public class TripListActivity extends ActionBarActivity2 implements AdapterView.
     private TripListAdapter tla;
     TripDbHelper tripDB;
     Cursor cursor;
+    String tripKind;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class TripListActivity extends ActionBarActivity2 implements AdapterView.
         tripDB = new TripDbHelper(this);
         //tripDB.logAllTrips();
         Intent intent = getIntent();
-        String tripKind = intent.getStringExtra("tripKind");
+        tripKind = intent.getStringExtra("tripKind");
 
 //        Log.i("tripKind ",tripKind);
 
@@ -67,6 +68,7 @@ public class TripListActivity extends ActionBarActivity2 implements AdapterView.
         existingTrips.putExtra("position", position+1);
         int tripId = cursor.getInt(cursor.getColumnIndex("_id"));
         existingTrips.putExtra("id",tripId);
+        existingTrips.putExtra("tripKind",tripKind);
         Log.i("position", position+"+1");
         Log.i("TLA Trip ID", tripId+"");
         startActivity(existingTrips);
@@ -119,6 +121,10 @@ public class TripListActivity extends ActionBarActivity2 implements AdapterView.
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
-
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(TripListActivity.this, MainActivity.class);
+        startActivity(intent); //startActivityForResult
+    }
 }

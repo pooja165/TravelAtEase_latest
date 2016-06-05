@@ -59,6 +59,10 @@ public class LocationBasedNotifierActivity extends ActionBarActivity2
 
         place = (TextView) findViewById(R.id.textViewLBNAplace);
 
+        if(latLng ==null){
+            Toast.makeText(getApplicationContext(), "Invalid place", Toast.LENGTH_SHORT);
+            return;
+        }
         Log.i("LatLng",latLng.latitude+" "+latLng.longitude);
 
         // Create an instance of GoogleAPIClient.

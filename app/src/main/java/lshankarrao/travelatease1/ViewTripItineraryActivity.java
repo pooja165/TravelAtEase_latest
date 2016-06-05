@@ -43,6 +43,7 @@ public class ViewTripItineraryActivity extends ActionBarActivity2 {
     TripInfo tripInfo;
     String endTime,stTime;
     String[] st_mon_day_year,end_mon_day_year;
+    String tripKind = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,6 +58,7 @@ public class ViewTripItineraryActivity extends ActionBarActivity2 {
             return;
         }
         Log.i("tripId: VTA ", tripId + "");
+        tripKind =tripIntent.getStringExtra("tripKind");
 
         tripInfo = tripDb.getTripInfo(tripId);
         TextView titleDisplay = (TextView) findViewById(R.id.textViewVTATitle);
@@ -286,9 +288,17 @@ public class ViewTripItineraryActivity extends ActionBarActivity2 {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(ViewTripItineraryActivity.this, MainActivity.class);
-        //TODO go to triplistActivity MUST:-pass tripkind.
-        startActivity(intent); // when back pressed/save pressed go to TripListActivity
+        if(tripKind!=null) {
+
+            Intent intent = new Intent(ViewTripItineraryActivity.this, TripListActivity.class);
+            intent.putExtra("tripKind", tripKind);
+            //TODO go to triplistActivity MUST:-pass tripkind.
+            startActivity(intent); // when back pressed/save pressed go to TripListActivity
+        }else {
+            Intent intent = new Intent(ViewTripItineraryActivity.this, MainActivity.class);
+            //TODO go to triplistActivity MUST:-pass tripkind.
+            startActivity(intent);
+        }
 
     }
 

@@ -39,7 +39,7 @@ public class EventListAdapter extends CursorAdapter {
         Log.i("end time + curr time= ",cursor.getLong(cursor.getColumnIndex("endTimeMillis"))+" "+current.getTimeInMillis()+"");
         if(cursor.getLong(cursor.getColumnIndex("endTimeMillis"))< current.getTimeInMillis() ){
             ((RelativeLayout)view.findViewById(R.id.relativeLayoutEventListCustomRow)).setBackgroundColor(0xFFA3A3A3);//fff1f1f1);
-            ((TextView)view.findViewById(R.id.textViewVTAEventListTitle)).setBackgroundColor(0xFFA3A3A3);
+            ((TextView)view.findViewById(R.id.textViewVTAEventListTitle)).setBackgroundColor(0xFFADA8A8);
         }
 
         int tripID = cursor.getInt(cursor.getColumnIndex("tripId"));
