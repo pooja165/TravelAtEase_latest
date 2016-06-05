@@ -29,8 +29,8 @@ public class TripDbHelper extends SQLiteOpenHelper {
                     "  startTime TEXT," +
                     "  endTime TEXT," +
                     "  notes TEXT," +
-                    "stTimeMillis INTEGER, " +
-                    "endTimeMillis INTEGER);";
+                    "  stTimeMillis INTEGER, " +
+                    "  endTimeMillis INTEGER);";
 
     static private final String SQL_CREATE_EVENT_TABLE =
             "CREATE TABLE eventInfo (" +

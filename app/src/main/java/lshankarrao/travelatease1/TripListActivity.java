@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +16,7 @@ import android.widget.Toast;
 /**
  * Created by lakshmi on 5/23/2016.
  */
-public class TripListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class TripListActivity extends ActionBarActivity2 implements AdapterView.OnItemClickListener {
     private ListView tripListView;
     private TripListAdapter tla;
     TripDbHelper tripDB;

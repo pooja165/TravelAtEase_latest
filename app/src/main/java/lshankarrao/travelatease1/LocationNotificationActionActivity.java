@@ -9,9 +9,9 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -26,7 +26,7 @@ import java.util.Date;
 /**
  * Created by vijay on 5/30/2016.
  */
-public class LocationNotificationActionActivity extends AppCompatActivity {
+public class LocationNotificationActionActivity extends ActionBarActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     Bitmap photoBitmap;
@@ -202,6 +202,16 @@ public class LocationNotificationActionActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return root ;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        if (menu != null) {
+
+            menu.findItem(R.id.action_addtrip).setVisible(false);
+        }
+        return true;
     }
 }
 

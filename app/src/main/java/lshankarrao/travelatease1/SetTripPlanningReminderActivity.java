@@ -6,8 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -21,7 +21,7 @@ import java.util.Random;
 /**
  * Created by lakshmi on 5/24/2016.
  */
-public class SetTripPlanningReminderActivity extends AppCompatActivity{
+public class SetTripPlanningReminderActivity extends ActionBarActivity{
 
     Calendar calendar;
     int tripId;
@@ -107,11 +107,14 @@ public class SetTripPlanningReminderActivity extends AppCompatActivity{
                     alarmManager.set(AlarmManager.RTC_WAKEUP, when, PendingIntent.getBroadcast(getApplicationContext(), x, intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA));
                     Toast.makeText(getApplicationContext(), "Alarm Set 2 " + x, Toast.LENGTH_SHORT).show();
                     x++;
+                    String message = "Reminder Set!";
+                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
                 }
                 else {
                     String message = "Please select an option to Set Reminder!";
                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
                 }
+                return;
             }
         });
     }
@@ -135,5 +138,23 @@ public class SetTripPlanningReminderActivity extends AppCompatActivity{
 //        }
 
         return calendar;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        if (menu != null) {
+
+            menu.findItem(R.id.action_addtrip).setVisible(false);
+        }
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent goBackToItinerary = new Intent(SetTripPlanningReminderActivity.this, ViewTripItineraryActivity.class);
+        goBackToItinerary.putExtra("id", tripId);
+        startActivity(goBackToItinerary);
     }
 }

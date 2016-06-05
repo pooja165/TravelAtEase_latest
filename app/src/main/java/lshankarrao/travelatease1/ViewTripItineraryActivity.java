@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -24,7 +23,7 @@ import java.util.List;
 /**
  * Created by lakshmi on 5/23/2016.
  */
-public class ViewTripItineraryActivity extends AppCompatActivity {
+public class ViewTripItineraryActivity extends ActionBarActivity2 {
 
     TripDbHelper tripDb;
     Cursor cursor;

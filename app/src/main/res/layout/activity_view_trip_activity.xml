@@ -23,9 +23,9 @@
         android:id="@+id/textViewVTATitle"
         android:textSize="30sp"
         android:gravity="center_vertical|center_horizontal"
-        android:background="#181964"
         android:layout_toRightOf="@id/imageView"
-        android:textColor="#ffffff" />
+        android:textColor="#181964"
+        android:background="#ffffff" />
 
     <TextView
         android:layout_width="match_parent"
