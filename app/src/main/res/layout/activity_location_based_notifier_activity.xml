@@ -42,7 +42,7 @@
         android:id="@+id/textViewLBNAplace"
         android:layout_below="@+id/textView10"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/wallet_link_text_light"
+        android:textColor="@color/colorPrimary"
         android:textSize="18sp"
         android:textStyle="bold"
         android:padding="15dp"
