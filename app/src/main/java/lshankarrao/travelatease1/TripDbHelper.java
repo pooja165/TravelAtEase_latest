@@ -266,7 +266,7 @@ public class TripDbHelper extends SQLiteOpenHelper {
 
     public void logAllTrips() {
         Cursor c = fetchAllTrips();
-        Log.i("no. of trips= ", c.getCount()+"");
+        Log.i("no. of trips= ", c.getCount() + "");
         c.moveToFirst();
         while (!c.isAfterLast()) {
             Log.i("", c.getString(c.getColumnIndex("title")));
@@ -290,7 +290,7 @@ public class TripDbHelper extends SQLiteOpenHelper {
         //query for basic trip details
         Cursor c = db.rawQuery("SELECT * FROM tripInfo WHERE _id=" + id + ";", null);
         if (c == null || c.getCount() < 1) {
-            Log.i("kirik", "agide");
+            Log.i("kirik 1", "agide");
             return new TripInfo();
         }
         c.moveToFirst();
@@ -356,12 +356,12 @@ public class TripDbHelper extends SQLiteOpenHelper {
         return infos;
     }
 
-    public Cursor getCurrentTrip(){
+    public Cursor getCurrentTrip() {
         Calendar current = Calendar.getInstance();
         long currentTimeInMillis = current.getTimeInMillis();
 
         SQLiteDatabase db = this.getReadableDatabase();
-        String q = "SELECT * FROM tripInfo WHERE stTimeMillis<=" + currentTimeInMillis + " AND endTimeMillis>="+ currentTimeInMillis +" ORDER BY endTimeMillis;";
+        String q = "SELECT * FROM tripInfo WHERE stTimeMillis<=" + currentTimeInMillis + " AND endTimeMillis>=" + currentTimeInMillis + " ORDER BY endTimeMillis;";
         return db.rawQuery(q, null);
     }
 
@@ -397,14 +397,13 @@ public class TripDbHelper extends SQLiteOpenHelper {
         return infos;
     }
 
-    public Cursor fetchAllHotelsForEvent(int eventId){
+    public Cursor fetchAllHotelsForEvent(int eventId) {
         SQLiteDatabase db = this.getReadableDatabase();
         //return db.rawQuery("SELECT * FROM eventInfo;", null);
         return db.rawQuery("SELECT * FROM hotelInfo WHERE eventId=" + eventId + ";", null);//order by time not done yet.
     }
 
-    public String[] getDateFromMilli(long milliSeconds, String dateFormat)
-    {
+    public String[] getDateFromMilli(long milliSeconds, String dateFormat) {
         // Create a DateFormatter object for displaying date in specified format.
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
 
@@ -413,8 +412,8 @@ public class TripDbHelper extends SQLiteOpenHelper {
         calendar.setTimeInMillis(milliSeconds);
         return formatter.format(calendar.getTime()).split("/");
     }
-    public String getTimeFromMilli(long milliSeconds, String dateFormat)
-    {
+
+    public String getTimeFromMilli(long milliSeconds, String dateFormat) {
         // Create a DateFormatter object for displaying date in specified format.
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
 
@@ -426,20 +425,27 @@ public class TripDbHelper extends SQLiteOpenHelper {
 
     public void updateTripInfo(TripInfo info, int tripId) {
         String updateqry = "UPDATE tripInfo SET " +
-                "title="+info.title+
-                ",city="+info.city+
-                ",state="+info.state+
-                ",country="+info.country+
-                ",startDate="+info.startDate+
-                ",endDate="+info.endDate+
-                ",startTime="+info.startTime+
-                ",endTime="+info.endTime+
-                ",notes="+info.notes+
-                ",stTimeMillis="+info.stTimeMillis+
-                ",endTimeMillis="+info.endTimeMillis+
-                " WHERE _id="+tripId+";";
+                "title='" + info.title +
+                "', city='" + info.city +
+                "', state='" + info.state +
+                "', country='" + info.country +
+                "', startDate='" + info.startDate +
+                "', endDate='" + info.endDate +
+                "', startTime='" + info.startTime +
+                "', endTime='" + info.endTime +
+                "', notes='" + info.notes +
+                "', stTimeMillis=" + info.stTimeMillis +
+                ", endTimeMillis=" + info.endTimeMillis +
+                "  WHERE _id=" + tripId + ";";
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(updateqry);
+    }
+
+    public void deleteEntry(String table, int id) {
+        Log.i("delete trip","");
+        String delete = "DELETE FROM " + table + " WHERE _id= " + id + ";";
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(delete);
     }
 
 }

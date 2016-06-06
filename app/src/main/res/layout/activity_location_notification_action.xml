@@ -10,7 +10,7 @@
         android:id="@+id/buttonLNAgoToItinerary"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:background="@android:color/holo_green_light"
+        android:background="@color/colorAccent"
         android:layout_margin="20dp"
         android:padding="20dp"
         android:textColor="@color/bright_foreground_material_dark"
@@ -37,7 +37,7 @@
         android:layout_above="@+id/buttonLNAsend"
         android:layout_centerHorizontal="true"
         android:checked="false"
-        android:textColor="@android:color/holo_red_light"
+        android:textColor="#9236b9"
         android:textStyle="bold"
         android:textSize="20sp" />
 </RelativeLayout>

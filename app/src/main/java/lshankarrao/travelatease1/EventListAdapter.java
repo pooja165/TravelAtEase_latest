@@ -33,6 +33,11 @@ public class EventListAdapter extends CursorAdapter {
         Log.i("BV event id ", cursor.getInt(cursor.getColumnIndex("_id"))+"");
 
         Calendar current = Calendar.getInstance();
+//        if(cursor.getCount()==2) {
+//            Log.i("BV event id ", cursor.getInt(cursor.getColumnIndex("_id"))+"");
+//            //((RelativeLayout) view.findViewById(R.id.relativeLayoutVTA)).setBackgroundColor(0xFFFFFF);
+//            ((ListView) view.findViewById(R.id.listViewTLAEventList)).setBackgroundColor(0xFFFFFF);
+//        }
 
         String eventTitle = cursor.getString(cursor.getColumnIndex("title"));
         ((TextView)view.findViewById(R.id.textViewVTAEventListTitle)).setText(eventTitle);

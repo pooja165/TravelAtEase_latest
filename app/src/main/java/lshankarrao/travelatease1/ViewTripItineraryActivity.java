@@ -17,7 +17,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -80,7 +79,6 @@ public class ViewTripItineraryActivity extends ActionBarActivity2 {
         tripTimings = tripInfo.getStartDate() + " " + tripInfo.getStartTime() + " to " + tripInfo.getEndDate() + " " + tripInfo.getEndTime();
         durationDisplay.setText(tripTimings);
 
-
         st_mon_day_year = tripDb.getDateFromMilli(tripInfo.stTimeMillis,"MMM/dd/yy");
         end_mon_day_year = tripDb.getDateFromMilli(tripInfo.endTimeMillis,"MMM/dd/yy");
 
@@ -119,7 +117,7 @@ public class ViewTripItineraryActivity extends ActionBarActivity2 {
         String eventPlace;
         String eventTitle;
 
-        mAllEventsDetailsInOnePlace = new ArrayList<String>();
+        //mAllEventsDetailsInOnePlace = new ArrayList<String>();
         List<EventInfo> eventInfos = tripDb.getEventInfo(tripId);
         if (eventInfos != null) {
             for (EventInfo ev : eventInfos) {
@@ -143,7 +141,7 @@ public class ViewTripItineraryActivity extends ActionBarActivity2 {
                         "<br>" + "    "+ev_stTime +" to " + ev_endTime+
                         "<br>" + "     Note: "+"Get some snacks! :) ";
 
-                mAllEventsDetailsInOnePlace.add(mCompleteEventDetails);
+                //mAllEventsDetailsInOnePlace.add(mCompleteEventDetails);
                 Cursor hotelCursor = tripDb.fetchAllHotelsForEvent(ev.id);
                 if (hotelCursor.getCount() > 0) {
                     String hotelName, hotelPlace, hotelDate, hotelCheckinTime, hotelTimings, hotelConfirmationNo;
@@ -268,13 +266,52 @@ public class ViewTripItineraryActivity extends ActionBarActivity2 {
             builder.show();
 
         } else if (id == R.id.locationBasedNotification) {
-            //TODO
             Intent locationIntent = new Intent(ViewTripItineraryActivity.this,
                     LocationBasedNotifierActivity.class);
             String place = tripInfo.city + " " + tripInfo.state + " " + tripInfo.country;
             locationIntent.putExtra("tripPlace", place);
             locationIntent.putExtra("tripId", tripId);
             startActivity(locationIntent);
+        } else if(id == R.id.deleteTrip){
+            cursor = tripDb.fetchAllEventsForTrip(tripId);
+            List<EventInfo> eventInfos = tripDb.getEventInfo(tripId);
+            if (eventInfos != null) {
+                for(EventInfo ev: eventInfos){
+                    //get hotel details
+                    Cursor hotelCursor = tripDb.fetchAllHotelsForEvent(ev.id);
+                    if (hotelCursor.getCount() > 0) {
+                        //delete all entries
+                        List<HotelInfo> hotelInfos = tripDb.getHotelsInfo(ev.id);
+                        for(HotelInfo hotel: hotelInfos){
+                            tripDb.deleteEntry("hotelInfo", hotel.getId());
+                        }
+                    }
+//                    //get transport details + delete all entries
+//                    Cursor transportCursor = tripDb.fetchAllTransportResForEvent(ev.id);
+//                    if (transportCursor.getCount() > 0) {
+//                        //delete all entries
+//                    }
+//                    //get other res details + delete all entries
+//                    Cursor otherResCursor = tripDb.fetchAllOtherResForEvent(ev.id);
+//                    if (otherResCursor.getCount() > 0) {
+//                        //delete all entries
+//                    }
+                    tripDb.deleteEntry("eventInfo", ev.getId());
+                }
+            }
+            tripDb.deleteEntry("tripInfo", tripId);
+            if(tripKind!=null) {
+
+                Intent intent = new Intent(ViewTripItineraryActivity.this, TripListActivity.class);
+                intent.putExtra("tripKind", tripKind);
+                //TODO go to triplistActivity MUST:-pass tripkind.
+                startActivity(intent); // when back pressed/save pressed go to TripListActivity
+            }else {
+                Intent intent = new Intent(ViewTripItineraryActivity.this, MainActivity.class);
+                //TODO go to triplistActivity MUST:-pass tripkind.
+                startActivity(intent);
+            }
+
         }
 
         return super.onOptionsItemSelected(item);

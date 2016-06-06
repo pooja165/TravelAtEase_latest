@@ -102,7 +102,7 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
         android:id="@+id/textView12"
         android:layout_below="@+id/textViewVTAEventListToDate"
         android:background="#0b021c" />

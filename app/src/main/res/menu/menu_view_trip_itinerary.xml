@@ -35,5 +35,10 @@
         android:title="Turn ON Location-based Notification"
         android:orderInCategory="140"
         />
+    <item
+        android:id="@+id/deleteTrip"
+        android:title="Delete Trip"
+        android:orderInCategory="140"
+        />
 
 </menu>

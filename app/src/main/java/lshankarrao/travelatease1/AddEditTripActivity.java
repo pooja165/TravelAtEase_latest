@@ -172,14 +172,14 @@ public class AddEditTripActivity extends ActionBarActivity implements View.OnCli
 
         if(purposeEdit == true){
             db.updateTripInfo(info, tripId);
+        }else {
+            tripId = (int)db.addTripInfo(info);
+            Log.i("pooja", "addTripInfo id : " + tripId);
         }
-
-        long id = db.addTripInfo(info);
-        Log.i("pooja", "addTripInfo id : "+id);
 
 
         Intent intent = new Intent(AddEditTripActivity.this, ViewTripItineraryActivity.class);
-        intent.putExtra("id", (int)id);
+        intent.putExtra("id", tripId);
         startActivity(intent);
     }
     @Override
