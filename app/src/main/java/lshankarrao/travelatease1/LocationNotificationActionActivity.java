@@ -24,7 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by vijay on 5/30/2016.
+ * Created by lakshmi on 5/30/2016.
  */
 public class LocationNotificationActionActivity extends ActionBarActivity {
 
@@ -90,7 +90,6 @@ public class LocationNotificationActionActivity extends ActionBarActivity {
 
 // Set up the input
         final EditText input = new EditText(this);
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
 
@@ -130,7 +129,6 @@ public class LocationNotificationActionActivity extends ActionBarActivity {
 
 // Set up the input
         final EditText input = new EditText(this);
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
 
