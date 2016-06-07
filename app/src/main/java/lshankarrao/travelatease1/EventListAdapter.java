@@ -16,6 +16,7 @@ import java.util.Calendar;
  * Created by lakshmi on 5/24/2016.
  */
 public class EventListAdapter extends CursorAdapter {
+    TripDbHelper tripDb;
     public EventListAdapter(Context context, Cursor c, int flags) {
 
         super(context, c, flags);
@@ -28,6 +29,8 @@ public class EventListAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
+
+        tripDb = new TripDbHelper(context);
         //get title
         Log.i("bV ", cursor.getCount() + "");
         Log.i("BV event id ", cursor.getInt(cursor.getColumnIndex("_id"))+"");
@@ -50,19 +53,46 @@ public class EventListAdapter extends CursorAdapter {
         int tripID = cursor.getInt(cursor.getColumnIndex("tripId"));
         Log.i("bla bla id ", tripID + "");
 
-        String eventPlace = cursor.getString(cursor.getColumnIndex("city"));
+        String eventPlace =
+                cursor.getString(cursor.getColumnIndex("address"))+", "+
+                cursor.getString(cursor.getColumnIndex("city"))+", "+
+                cursor.getString(cursor.getColumnIndex("state"))+", "+
+                cursor.getString(cursor.getColumnIndex("country"));
+
         Log.i("new trip name displayed", eventPlace);
         ((TextView)view.findViewById(R.id.textViewVTAEventListPlace)).setText(eventPlace);
 
-        String eventFrom = cursor.getString(cursor.getColumnIndex("startDate")) + "    "+
-                cursor.getString(cursor.getColumnIndex("startTime"));
-        Log.i("new trip name displayed", eventFrom);
-        ((TextView)view.findViewById(R.id.textViewVTAEventListFromDate)).setText(eventFrom);
+        long stTimeMilli = cursor.getLong(cursor.getColumnIndex("stTimeMillis"));
+        long endTimeMilli = cursor.getLong(cursor.getColumnIndex("endTimeMillis"));
+        int eventId = (int)cursor.getInt(cursor.getColumnIndex("_id"));
+        Log.i("event id ", eventId+"");
 
-        String eventTo = cursor.getString(cursor.getColumnIndex("endDate")) + "    "+
-                cursor.getString(cursor.getColumnIndex("endTime"));
-        Log.i("new trip name displayed", eventTo);
-        ((TextView)view.findViewById(R.id.textViewVTAEventListToDate)).setText(eventTo);
+        Log.i("end time ms ",endTimeMilli+"");
+        Log.i("end time ms ",stTimeMilli+"");
+
+        String[] ev_st_mon_day_year = tripDb.getDateFromMilli(stTimeMilli, "MMM/dd/yyyy");
+        String[] ev_end_mon_day_year = tripDb.getDateFromMilli(endTimeMilli, "MMM/dd/yyyy");
+
+        String eventFrom = ev_st_mon_day_year[0] + " " + ev_st_mon_day_year[1] + ", " + ev_st_mon_day_year[2] +
+                " to " + ev_end_mon_day_year[0] + " " + ev_end_mon_day_year[1] + ", " + ev_end_mon_day_year[2];
+                /*cursor.getString(cursor.getColumnIndex("startDate")) + "    "+
+                cursor.getString(cursor.getColumnIndex("startTime"));*/
+        Log.i("event duration ", eventFrom);
+        ((TextView)view.findViewById(R.id.textViewVTAEventListDuration)).setText(eventFrom);
+
+        Cursor hotelCursor = tripDb.fetchAllHotelsForEvent(eventId);
+        int hotelCount = hotelCursor.getCount();
+        String reservations="";
+        if(hotelCount >0){
+            reservations = hotelCount + " hotel/s";
+        }
+        else {
+            reservations = "None";
+        }
+
+
+        Log.i("new trip name displayed", reservations);
+        ((TextView)view.findViewById(R.id.textViewVTAEventListReservations)).setText(reservations);
 
     }
 }

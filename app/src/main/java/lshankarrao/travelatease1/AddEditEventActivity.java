@@ -24,6 +24,7 @@ public class AddEditEventActivity extends ActionBarActivity implements View.OnCl
     TripDbHelper db;
     int tripId;
     long eventId;
+    String tripKind;
 
     TimePicker timePicker1, timePicker2;
     DatePicker datePicker1, datePicker2;
@@ -50,7 +51,7 @@ public class AddEditEventActivity extends ActionBarActivity implements View.OnCl
         saveButton.setOnClickListener(this);
 
         hotelReservationbutton = (Button) findViewById(R.id.buttonAddEditEventhotel);
-
+        tripKind = getIntent().getStringExtra("tripKind");
         tripId = getIntent().getIntExtra("id", -1);
         if(tripId == -1){
             Log.i(" AEEA invalid trip id", tripId+"");
@@ -94,6 +95,7 @@ public class AddEditEventActivity extends ActionBarActivity implements View.OnCl
             public void onClick(View v) {
                 Intent intent = new Intent(AddEditEventActivity.this, ViewTripItineraryActivity.class);
                 intent.putExtra("id", tripId);
+                intent.putExtra("tripKind", tripKind);
                 //intent.putExtra("eventId", eventId);
                 startActivity(intent);
             }

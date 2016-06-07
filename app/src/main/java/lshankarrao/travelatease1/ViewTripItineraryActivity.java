@@ -98,7 +98,7 @@ public class ViewTripItineraryActivity extends ActionBarActivity2 {
 
         TextView durationDisplay = (TextView) findViewById(R.id.textViewVTADuration);
         tripTimings = st_mon_day_year[0] + " " + st_mon_day_year[1] + ", " + st_mon_day_year[2] +
-                " - " + end_mon_day_year[0] + " " + end_mon_day_year[1] + ", " + end_mon_day_year[2];
+                " to " + end_mon_day_year[0] + " " + end_mon_day_year[1] + ", " + end_mon_day_year[2];
                 //tripInfo.getStartDate() + " " + tripInfo.getStartTime() + " to " + tripInfo.getEndDate() + " " + tripInfo.getEndTime();
         durationDisplay.setText(tripTimings);
 
@@ -150,7 +150,10 @@ public class ViewTripItineraryActivity extends ActionBarActivity2 {
                 String ev_stTime = tripDb.getTimeFromMilli(ev.getStTimeMillis(), "hh:mm aaa");
                 String ev_endTime = tripDb.getTimeFromMilli(ev.getEndTimeMillis(), "hh:mm aaa");
                 eventPlace = ev.city + ", " + ev.state + ", " + ev.country;
-                eventDate = "<p>" + ev_st_mon_day_year[0] + " " + ev_st_mon_day_year[1] + ", " + ev_st_mon_day_year[2] + " - " + ev_end_mon_day_year[0] + " " + ev_end_mon_day_year[1] + ", " + ev_end_mon_day_year[2] + "<br>" + ev_stTime + "</p>";
+                eventDate =
+                        "<p>" + ev_st_mon_day_year[0] + " " + ev_st_mon_day_year[1] + ", " + ev_st_mon_day_year[2] +
+                        " - " + ev_end_mon_day_year[0] + " " + ev_end_mon_day_year[1] + ", " + ev_end_mon_day_year[2] +
+                                "<br>" + ev_stTime + "</p>";
                 // "<h2 style=\"color:blue\"><i>Timings:</i> " + ev.startDate + " @ " + ev.startTime + " to " + ev.endDate + "<i><b>@</b></i>" + ev.endTime + "</h2>";
                 eventTitle = ev.title;
                 Log.i("event title: ", ev.title);
@@ -279,6 +282,7 @@ public class ViewTripItineraryActivity extends ActionBarActivity2 {
     private void addEventOption() {
         Intent intent = new Intent(ViewTripItineraryActivity.this, AddEditEventActivity.class);
         intent.putExtra("id", tripId);
+        intent.putExtra("tripKind", tripKind);
         startActivity(intent); //startActivityForResult
     }
 

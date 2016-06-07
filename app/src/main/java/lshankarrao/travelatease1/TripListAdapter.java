@@ -13,6 +13,10 @@ import android.widget.TextView;
  * Created by lakshmi on 5/23/2016.
  */
 public class TripListAdapter extends CursorAdapter {
+
+    String[] st_mon_day_year, end_mon_day_year;
+    TripInfo tripInfo;
+    TripDbHelper tripDb;
     public TripListAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);
     }
@@ -30,9 +34,29 @@ public class TripListAdapter extends CursorAdapter {
         Log.i("new trip name displayed", tripTitle);
         ((TextView)view.findViewById(R.id.textViewTLcustomRowTitle)).setText(tripTitle);
 
-        String duration = cursor.getString(cursor.getColumnIndex("startDate")) +" to " + cursor.getString(cursor.getColumnIndex("endDate"));
+        int tripId = cursor.getInt(cursor.getColumnIndex("_id"));
 
-        ((TextView)view.findViewById(R.id.textViewTLcustomRowDuration)).setText(duration);
+        tripDb = new TripDbHelper(context);
+        tripInfo = tripDb.getTripInfo(tripId);
+
+        st_mon_day_year = tripDb.getDateFromMilli(tripInfo.stTimeMillis, "MMM/dd/yyyy");
+        end_mon_day_year = tripDb.getDateFromMilli(tripInfo.endTimeMillis, "MMM/dd/yyyy");
+
+
+                //cursor.getString(cursor.getColumnIndex("startDate")) +" to " + cursor.getString(cursor.getColumnIndex("endDate"));
+
+        String startDateAndNumEvents ="starts "+st_mon_day_year[2] + ", "+ st_mon_day_year[0] + " " + st_mon_day_year[1];;
+
+        Cursor c = tripDb.fetchAllEventsForTrip(tripId);
+        int count = c.getCount();
+        if(count == 1){
+            startDateAndNumEvents = startDateAndNumEvents+ "\n"+count+" Event";
+        }
+        else if(count > 1){
+            startDateAndNumEvents = startDateAndNumEvents+ "\n"+count+" Events";
+        }
+
+        ((TextView)view.findViewById(R.id.textViewTLcustomRowDuration)).setText(startDateAndNumEvents);
 
 
     }

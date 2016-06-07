@@ -17,13 +17,15 @@
         android:gravity="center_vertical|center_horizontal"
         android:textStyle="bold"
         android:background="#d5ebec"
-        android:layout_margin="20dp"
         android:padding="5dp"
-        android:elevation="@dimen/abc_action_button_min_height_material" />
+        android:elevation="@dimen/abc_action_button_min_height_material"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/textViewTLcustomRowDuration"
         android:layout_below="@+id/textViewTLcustomRowTitle"
