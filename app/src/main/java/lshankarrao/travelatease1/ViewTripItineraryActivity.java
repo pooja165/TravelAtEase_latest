@@ -60,7 +60,7 @@ public class ViewTripItineraryActivity extends ActionBarActivity2 {
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(ViewTripItineraryActivity.this, "Time for an upgrade!" + position, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ViewTripItineraryActivity.this, "Time for an upgrade!" + position, Toast.LENGTH_SHORT).show();
                 navigationBarOptionsHandling(position);
             }
         });

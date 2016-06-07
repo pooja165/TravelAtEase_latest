@@ -86,7 +86,7 @@
         android:layout_width="250dp"
         android:layout_height="match_parent"
         android:layout_gravity="left|start"
-        android:background="#e1baf8" />
+        android:background="@drawable/background_white_fabric_texture" />
 
 </android.support.v4.widget.DrawerLayout>
 

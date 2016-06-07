@@ -97,12 +97,49 @@ public class EventListAdapter extends CursorAdapter {
         }
         else {
             reservations = "None";
+            hotelDetails = "No hotel reservations to show";
+        }
+
+
+        Log.i("new trip name displayed", reservations);
+        ((TextView)view.findViewById(R.id.textViewEventListHotelResDetails)).setText(hotelDetails);
+
+
+        ((ImageView)view.findViewById(R.id.imageViewTransport)).setVisibility(View.INVISIBLE);
+        Cursor transportCursor = tripDb.fetchAllTransportForEvent(eventId);
+        int transportCount = transportCursor.getCount();
+        String transportDetails=null;
+        if(transportCount >0){
+            reservations = reservations+", "+transportCount + " transport/s";
+            transportCursor.moveToFirst();
+            transportDetails = transportCursor.getString(transportCursor.getColumnIndex("fromPlace"))
+                    +" \nTimings: "+
+                    transportCursor.getString(transportCursor.getColumnIndex("fromDate"))+ " at "+
+                    transportCursor.getString(transportCursor.getColumnIndex("fromTime"))+" \nConf No: "+
+                    transportCursor.getString(transportCursor.getColumnIndex("confNo"));
+            if(transportCursor.getString(transportCursor.getColumnIndex("typeofTransport")).equals("Car")) {
+                ((ImageView) view.findViewById(R.id.imageViewTransport)).setImageResource(R.drawable.car_icon);
+            }
+            else if(transportCursor.getString(transportCursor.getColumnIndex("typeofTransport")).equals("Flight")){
+                ((ImageView) view.findViewById(R.id.imageViewTransport)).setImageResource(R.drawable.flight_icon);
+            }
+            else if(transportCursor.getString(transportCursor.getColumnIndex("typeofTransport")).equals("Bus")){
+                ((ImageView) view.findViewById(R.id.imageViewTransport)).setImageResource(R.drawable.bus_icon);
+            }
+            else if(transportCursor.getString(transportCursor.getColumnIndex("typeofTransport")).equals("Train")){
+                ((ImageView) view.findViewById(R.id.imageViewTransport)).setImageResource(R.drawable.train_icon);
+            }
+            ((ImageView)view.findViewById(R.id.imageViewTransport)).setVisibility(View.VISIBLE);
+        }
+        else {
+            reservations = "None";
+            transportDetails = "No transport reservations to show";
         }
 
 
         Log.i("new trip name displayed", reservations);
         ((TextView)view.findViewById(R.id.textViewVTAEventListReservations)).setText(reservations);
-        ((TextView)view.findViewById(R.id.textViewEventListHotelResDetails)).setText(hotelDetails);
+        ((TextView)view.findViewById(R.id.textViewEventListTransportResDetails)).setText(transportDetails);
 
 
     }

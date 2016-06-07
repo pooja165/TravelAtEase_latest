@@ -114,7 +114,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hotel Res Details"
+        android:text="Hotel Res"
         android:id="@+id/textViewEventListHotelResDetails"
         android:layout_below="@+id/textViewVTAEventListReservations"
 
@@ -125,11 +125,39 @@
         android:layout_marginLeft="10dp"
         android:textColor="#181da0"
         android:layout_marginBottom="5dp" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:id="@+id/imageViewTransport"
+        android:layout_below="@+id/textViewEventListHotelResDetails"
+        android:layout_alignLeft="@+id/textViewVTAEventListTitle"
+        android:layout_alignStart="@+id/textViewVTAEventListTitle"
+        android:layout_marginLeft="20dp"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Transport Res"
+        android:id="@+id/textViewEventListTransportResDetails"
+        android:layout_below="@+id/textViewEventListHotelResDetails"
+
+        android:layout_alignBaseline="@+id/imageViewTransport"
+        android:layout_toRightOf="@+id/imageViewTransport"
+        android:layout_toEndOf="@+id/imageViewTransport"
+        android:gravity="bottom"
+        android:layout_marginLeft="10dp"
+        android:textColor="#181da0"
+        android:layout_marginBottom="5dp" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:id="@+id/textViewSpace"
-        android:layout_below="@+id/textViewEventListHotelResDetails"
+        android:layout_below="@+id/textViewEventListTransportResDetails"
         android:background="#0b021c" />
+
+
 
 </RelativeLayout>
