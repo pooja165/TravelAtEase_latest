@@ -10,7 +10,7 @@
         android:orderInCategory="80"
         app:showAsAction="always"
         android:title="Home"/>
-    <item
+   <!-- <item
         android:id="@+id/addEvent"
         android:title="Add Event"
         android:orderInCategory="100"
@@ -39,6 +39,6 @@
         android:id="@+id/deleteTrip"
         android:title="Delete Trip"
         android:orderInCategory="140"
-        />
+        /> -->
 
 </menu>

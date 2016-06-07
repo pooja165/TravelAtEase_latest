@@ -84,6 +84,10 @@ public class ViewTripItineraryActivity extends ActionBarActivity2 {
             Log.i("empty s ", "");
         }
 
+        st_mon_day_year = tripDb.getDateFromMilli(tripInfo.stTimeMillis, "MMM/dd/yyyy");
+        end_mon_day_year = tripDb.getDateFromMilli(tripInfo.endTimeMillis, "MMM/dd/yyyy");
+
+
         TextView placeDisplay = (TextView) findViewById(R.id.textViewVTAPlace);
         tripPlace = tripInfo.getCity() + ", " + tripInfo.getState() + ", " + tripInfo.getCountry();
         placeDisplay.setText(tripPlace);
@@ -93,11 +97,11 @@ public class ViewTripItineraryActivity extends ActionBarActivity2 {
         placeDisplay.setSelected(true);
 
         TextView durationDisplay = (TextView) findViewById(R.id.textViewVTADuration);
-        tripTimings = tripInfo.getStartDate() + " " + tripInfo.getStartTime() + " to " + tripInfo.getEndDate() + " " + tripInfo.getEndTime();
+        tripTimings = st_mon_day_year[0] + " " + st_mon_day_year[1] + ", " + st_mon_day_year[2] +
+                " - " + end_mon_day_year[0] + " " + end_mon_day_year[1] + ", " + end_mon_day_year[2];
+                //tripInfo.getStartDate() + " " + tripInfo.getStartTime() + " to " + tripInfo.getEndDate() + " " + tripInfo.getEndTime();
         durationDisplay.setText(tripTimings);
 
-        st_mon_day_year = tripDb.getDateFromMilli(tripInfo.stTimeMillis, "MMM/dd/yy");
-        end_mon_day_year = tripDb.getDateFromMilli(tripInfo.endTimeMillis, "MMM/dd/yy");
 
         stTime = tripDb.getTimeFromMilli(tripInfo.stTimeMillis, "hh:mm aaa");
         endTime = tripDb.getTimeFromMilli(tripInfo.endTimeMillis, "hh:mm aaa");
@@ -310,7 +314,7 @@ public class ViewTripItineraryActivity extends ActionBarActivity2 {
                 i.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(new StringBuilder()
                         .append("<h1>" + tripInfo.title + "</h1>")
                         .append("<b>" + tripInfo.city + ", " + tripInfo.state + "</b>")
-                        .append("<p><b>" + st_mon_day_year[0] + " " + st_mon_day_year[1] + " " + st_mon_day_year[2] + " - " + end_mon_day_year[0] + " " + end_mon_day_year[1] + ", " + end_mon_day_year[2] + "</b></p>")
+                        .append("<p><b>" + st_mon_day_year[0] + " " + st_mon_day_year[1] + ", " + st_mon_day_year[2] + " - " + end_mon_day_year[0] + " " + end_mon_day_year[1] + ", " + end_mon_day_year[2] + "</b></p>")
                         .append(mCompleteEventDetails)
                         .toString()));
                 //("<font color='#0023FF'>mfullTripDetails</font>"+mfullTripDetails + mCompleteEventDetails + mAllHotelDetails));
