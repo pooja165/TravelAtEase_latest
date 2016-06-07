@@ -2,6 +2,7 @@ package lshankarrao.travelatease1;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,6 +36,8 @@ public class AddEditEventActivity extends ActionBarActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_event);
 
+        db = new TripDbHelper(this);
+
         timePicker1 = (TimePicker)findViewById(R.id.TimePickerAddEditEventstime);
         datePicker1 = (DatePicker)findViewById(R.id.DatePickerAddEditEventsdate);
 
@@ -62,9 +65,17 @@ public class AddEditEventActivity extends ActionBarActivity implements View.OnCl
         hotelReservationbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AddEditEventActivity.this, HotelReservationActivity.class);
-                intent.putExtra("eventId", eventId);
-                startActivity(intent);
+                Cursor hotelCursor = db.fetchAllHotelsForEvent((int)eventId);
+                if (hotelCursor.getCount() == 0) {
+
+                    Intent intent = new Intent(AddEditEventActivity.this, HotelReservationActivity.class);
+                    intent.putExtra("eventId", eventId);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "1 hotel already added", Toast.LENGTH_SHORT).show();
+                    hotelReservationbutton.setEnabled(false);
+                }
             }
         });
 
@@ -74,9 +85,16 @@ public class AddEditEventActivity extends ActionBarActivity implements View.OnCl
         transportReservationbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Cursor transportCursor = db.fetchAllTransportForEvent((int)eventId);
+                if (transportCursor.getCount() == 0) {
                 Intent intent = new Intent(AddEditEventActivity.this, TransportReservationActivity.class);
                 intent.putExtra("eventId", eventId);
                 startActivity(intent);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "1 transport already added", Toast.LENGTH_SHORT).show();
+                    transportReservationbutton.setEnabled(false);
+                }
             }
         });
         otherReservationbutton = (Button) findViewById(R.id.buttonAddEditEventother);
@@ -84,9 +102,17 @@ public class AddEditEventActivity extends ActionBarActivity implements View.OnCl
         otherReservationbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AddEditEventActivity.this, OtherReservationActivity.class);
-                intent.putExtra("eventId", eventId);
-                startActivity(intent);
+                //TODO
+                Cursor otherResCursor = db.fetchAllOtherResForEvent((int)eventId);
+                if (otherResCursor.getCount() == 0) {
+                    Intent intent = new Intent(AddEditEventActivity.this, OtherReservationActivity.class);
+                    intent.putExtra("eventId", eventId);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "1 Reservation already added", Toast.LENGTH_SHORT).show();
+                    otherReservationbutton.setEnabled(false);
+                }
             }
         });
         doneButton = (Button) findViewById(R.id.buttonAddEditEventDone);
@@ -113,7 +139,7 @@ public class AddEditEventActivity extends ActionBarActivity implements View.OnCl
     @TargetApi(Build.VERSION_CODES.M)
     public void onClick(View v) { // Save button on click.
 
-        db = new TripDbHelper(this);
+
         String city, state, country, address, title;
         String startDate, endDate, startTime, endTime;
 
@@ -188,7 +214,6 @@ public class AddEditEventActivity extends ActionBarActivity implements View.OnCl
         info.tripId =  tripId ;//Integer.parseInt(getIntent().getExtras().get("id").toString());
 
         eventId = db.addEventInfo(info);
-
 
         hotelReservationbutton.setEnabled(true);
         transportReservationbutton.setEnabled(true);

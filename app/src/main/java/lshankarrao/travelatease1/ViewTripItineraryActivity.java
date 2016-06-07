@@ -193,6 +193,30 @@ public class ViewTripItineraryActivity extends ActionBarActivity2 {
                     mCompleteEventDetails = mCompleteEventDetails + allHotelDetails;
                 }
 
+
+
+                Cursor transportCursor = tripDb.fetchAllTransportForEvent(ev.id);
+                int transportCount = transportCursor.getCount();
+
+                if(transportCount >0){
+                    transportCursor.moveToFirst();
+                    String typeOfTransport = transportCursor.getString(transportCursor.getColumnIndex("typeofTransport"));
+                    String fromPlace = transportCursor.getString(transportCursor.getColumnIndex("fromPlace"));
+                    String timings = transportCursor.getString(transportCursor.getColumnIndex("fromDate")) + " at "+
+                            transportCursor.getString(transportCursor.getColumnIndex("fromTime"));
+                    String confNo = transportCursor.getString(transportCursor.getColumnIndex("confNo"));
+
+
+                    String transportDetails = "<br>"+"<br>"+
+                            typeOfTransport + " Reservation Details: <br>"
+                            + fromPlace+"<br>"
+                            + timings+ "<br>"
+                            + "Conf No: "+confNo+"<br>";
+
+                    mCompleteEventDetails = mCompleteEventDetails + "\n" + transportDetails;
+                }
+
+
             }
         }
 //        List<EventInfo> eventInfo = tripDb.getEventInfo(tripId);
