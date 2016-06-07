@@ -403,6 +403,18 @@ public class TripDbHelper extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM hotelInfo WHERE eventId=" + eventId + ";", null);//order by time not done yet.
     }
 
+    public Cursor fetchAllTransportForEvent(int eventId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        //return db.rawQuery("SELECT * FROM eventInfo;", null);
+        return db.rawQuery("SELECT * FROM transportInfo WHERE eventId=" + eventId + ";", null);//order by time not done yet.
+    }
+
+    public Cursor fetchAllOtherResForEvent(int eventId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        //return db.rawQuery("SELECT * FROM eventInfo;", null);
+        return db.rawQuery("SELECT * FROM otherResInfo WHERE eventId=" + eventId + ";", null);//order by time not done yet.
+    }
+
     public String[] getDateFromMilli(long milliSeconds, String dateFormat) {
         // Create a DateFormatter object for displaying date in specified format.
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);

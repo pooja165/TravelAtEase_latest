@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -80,11 +81,19 @@ public class EventListAdapter extends CursorAdapter {
         Log.i("event duration ", eventFrom);
         ((TextView)view.findViewById(R.id.textViewVTAEventListDuration)).setText(eventFrom);
 
+        ((ImageView)view.findViewById(R.id.imageViewHotel)).setVisibility(View.INVISIBLE);
         Cursor hotelCursor = tripDb.fetchAllHotelsForEvent(eventId);
         int hotelCount = hotelCursor.getCount();
         String reservations="";
+        String hotelDetails=null;
         if(hotelCount >0){
             reservations = hotelCount + " hotel/s";
+            hotelCursor.moveToFirst();
+            hotelDetails = "Hotel: "+hotelCursor.getString(hotelCursor.getColumnIndex("hotel"))+" \nCheck-in: "+
+                    hotelCursor.getString(hotelCursor.getColumnIndex("checkin_date"))+" \nConf No: "+
+                    hotelCursor.getString(hotelCursor.getColumnIndex("confirmationNo"));
+            ((ImageView)view.findViewById(R.id.imageViewHotel)).setVisibility(View.VISIBLE);
+            //((ImageView)view.findViewById(R.id.imageViewHotel)).setImageSrc(R.)
         }
         else {
             reservations = "None";
@@ -93,6 +102,8 @@ public class EventListAdapter extends CursorAdapter {
 
         Log.i("new trip name displayed", reservations);
         ((TextView)view.findViewById(R.id.textViewVTAEventListReservations)).setText(reservations);
+        ((TextView)view.findViewById(R.id.textViewEventListHotelResDetails)).setText(hotelDetails);
+
 
     }
 }
