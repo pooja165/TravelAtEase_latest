@@ -1,6 +1,7 @@
 package lshankarrao.travelatease1;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -62,7 +63,7 @@ public class HotelReservationActivity extends ActionBarActivity implements View.
         checkin_time = timePicker1.getCurrentHour()+":"+timePicker1.getCurrentMinute();
 
         checkout_date = (datePicker2.getMonth()+1)+":"+datePicker2.getDayOfMonth()+":"+datePicker2.getYear();
-        checkin_time = timePicker2.getCurrentHour()+":"+timePicker2.getCurrentMinute();
+        checkout_time = timePicker2.getCurrentHour()+":"+timePicker2.getCurrentMinute();
 
         HotelInfo info = new HotelInfo();
 
@@ -70,23 +71,15 @@ public class HotelReservationActivity extends ActionBarActivity implements View.
         info.hotel =  hotel;
         info.checkout_date = checkout_date;
         info.checkin_date = checkin_date;
-        this.checkin_time = checkin_time;
-        this.checkout_time = checkout_time;
+        info.checkin_time = checkin_time;
+        info.checkout_time = checkout_time;
         info.confirmationNo = confirmationNo;
         info.notes = notes;
         info.eventId =  Long.parseLong(getIntent().getExtras().get("eventId").toString());
 
+        Log.i("adding here check_out ", checkout_time);
+
         db.addHotelInfo(info);
-
-        address = null;
-        hotel = null;
-        checkout_time = null;
-        checkin_time = null;
-        checkout_date = null;
-        checkin_date = null;
-
-        confirmationNo = null;
-        notes = null;
 
         finish();
 

@@ -28,6 +28,7 @@ public class HotelInfo {
         this.checkout_date = checkout_date;
         this.checkin_time = checkin_time;
         this.checkout_time = checkout_time;
+        this.checkout_time = checkout_time;
         this.confirmationNo = confirmationNo;
         this.notes = notes;
         this.eventId = eventId;

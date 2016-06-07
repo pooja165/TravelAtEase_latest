@@ -173,6 +173,8 @@ public class ViewTripItineraryActivity extends ActionBarActivity2 {
                     String allHotelDetails = ""; //= "\n Hotel Reservation details for the Event: " + "\n";
                     for (HotelInfo hotelInfo : hotelInfos) {
 
+                        //Log.i("check_out ", hotelInfo.checkout_time);
+
                         hotelName = "Hotel: " + hotelInfo.hotel;
                         hotelPlace = "Address: " + hotelInfo.address;
                         hotelTimings = "Check-in: " + hotelInfo.checkin_date + " at " + hotelInfo.checkin_time +

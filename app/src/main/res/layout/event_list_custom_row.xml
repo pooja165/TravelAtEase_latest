@@ -35,9 +35,9 @@
         android:layout_below="@+id/textViewVTAEventListTitle"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textColor="@color/colorPrimary"
         android:textSize="15sp"
-        android:paddingLeft="20dp" />
+        android:paddingLeft="20dp"
+        android:textColor="@color/colorPrimary" />
 
     <TextView
         android:layout_width="match_parent"
@@ -123,7 +123,7 @@
         android:layout_toEndOf="@+id/imageViewHotel"
         android:gravity="bottom"
         android:layout_marginLeft="10dp"
-        android:textColor="#181da0"
+        android:textColor="#3daf1e"
         android:layout_marginBottom="5dp" />
 
     <ImageView
@@ -148,7 +148,7 @@
         android:layout_toEndOf="@+id/imageViewTransport"
         android:gravity="bottom"
         android:layout_marginLeft="10dp"
-        android:textColor="#181da0"
+        android:textColor="#f927e0"
         android:layout_marginBottom="5dp" />
 
     <TextView
