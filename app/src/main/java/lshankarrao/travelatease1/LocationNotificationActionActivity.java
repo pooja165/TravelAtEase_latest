@@ -169,7 +169,7 @@ public class LocationNotificationActionActivity extends ActionBarActivity {
         }
         if(photoBitmap != null){
             String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmmss").format(new Date());
-            String imgFileName = timeStamp + ".jpeg";
+            String imgFileName = "imageTrip" + ".jpeg";
             String directoryPathImage = saveImageToExternalStorage(photoBitmap, imgFileName)+"/"+imgFileName;
             Log.i("image path: ", directoryPathImage);
             maybeSendEmailWithPhoto(getIntent().getStringExtra("tripPlace"), directoryPathImage);

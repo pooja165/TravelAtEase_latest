@@ -103,16 +103,19 @@ public class AddEditEventActivity extends ActionBarActivity implements View.OnCl
             @Override
             public void onClick(View view) {
                 //TODO
-                Cursor otherResCursor = db.fetchAllOtherResForEvent((int)eventId);
-                if (otherResCursor.getCount() == 0) {
-                    Intent intent = new Intent(AddEditEventActivity.this, OtherReservationActivity.class);
-                    intent.putExtra("eventId", eventId);
-                    startActivity(intent);
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "1 Reservation already added", Toast.LENGTH_SHORT).show();
-                    otherReservationbutton.setEnabled(false);
-                }
+
+                otherReservationbutton.setEnabled(false);
+                Toast.makeText(getApplicationContext(), "To do Later", Toast.LENGTH_SHORT).show();
+//                Cursor otherResCursor = db.fetchAllOtherResForEvent((int)eventId);
+//                if (otherResCursor.getCount() == 0) {
+//                    Intent intent = new Intent(AddEditEventActivity.this, OtherReservationActivity.class);
+//                    intent.putExtra("eventId", eventId);
+//                    startActivity(intent);
+//                }
+//                else{
+//                    Toast.makeText(getApplicationContext(), "1 Reservation already added", Toast.LENGTH_SHORT).show();
+//                    otherReservationbutton.setEnabled(false);
+//                }
             }
         });
         doneButton = (Button) findViewById(R.id.buttonAddEditEventDone);

@@ -105,7 +105,7 @@ public class SetTripPlanningReminderActivity extends ActionBarActivity{
 
                     //set the alarm for particular time
                     alarmManager.set(AlarmManager.RTC_WAKEUP, when, PendingIntent.getBroadcast(getApplicationContext(), x, intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA));
-                    Toast.makeText(getApplicationContext(), "Alarm Set 2 " + x, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Alarm Set", Toast.LENGTH_SHORT).show();
                     x++;
                     String message = "Reminder Set!";
                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();

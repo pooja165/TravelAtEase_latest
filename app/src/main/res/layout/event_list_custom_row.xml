@@ -122,7 +122,7 @@
         android:layout_toRightOf="@+id/imageViewHotel"
         android:layout_toEndOf="@+id/imageViewHotel"
         android:gravity="bottom"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
         android:textColor="#3daf1e"
         android:layout_marginBottom="5dp" />
 
@@ -147,7 +147,7 @@
         android:layout_toRightOf="@+id/imageViewTransport"
         android:layout_toEndOf="@+id/imageViewTransport"
         android:gravity="bottom"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
         android:textColor="#f927e0"
         android:layout_marginBottom="5dp" />
 

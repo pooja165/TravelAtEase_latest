@@ -92,9 +92,9 @@ public class ViewTripItineraryActivity extends ActionBarActivity2 {
         tripPlace = tripInfo.getCity() + ", " + tripInfo.getState() + ", " + tripInfo.getCountry();
         placeDisplay.setText(tripPlace);
         placeDisplay.setEllipsize(TextUtils.TruncateAt.MARQUEE);
-        placeDisplay.setSingleLine(true);
-        placeDisplay.setMarqueeRepeatLimit(10);
-        placeDisplay.setSelected(true);
+//        placeDisplay.setSingleLine(true);
+//        placeDisplay.setMarqueeRepeatLimit(10);
+//        placeDisplay.setSelected(true);
 
         TextView durationDisplay = (TextView) findViewById(R.id.textViewVTADuration);
         tripTimings = st_mon_day_year[0] + " " + st_mon_day_year[1] + ", " + st_mon_day_year[2] +

@@ -5,6 +5,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -107,6 +109,7 @@ public class LocationBasedNotificationHandler extends IntentService implements G
                 PendingIntent.getActivity(getApplicationContext(), notificationId,
                         rIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        Uri uri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         android.support.v4.app.NotificationCompat.Builder mBuilder =
                 new android.support.v4.app.NotificationCompat.Builder(getApplicationContext())
                         .setSmallIcon(R.drawable.jinggling_on)
@@ -116,7 +119,8 @@ public class LocationBasedNotificationHandler extends IntentService implements G
                         .setVisibility(VISIBILITY_PRIVATE)
                         .setAutoCancel(true)
                 .addAction(R.drawable.jinggling_on, "With Picture", resultPendingIntent)
-                .addAction(R.drawable.jinggling_on, "Just Text", rPendingIntent);
+                .addAction(R.drawable.jinggling_on, "Just Text", rPendingIntent)
+                .setSound(uri);
 
         // .addAction(R.drawable.ic_fish, "Fish", resultPendingIntent);
 

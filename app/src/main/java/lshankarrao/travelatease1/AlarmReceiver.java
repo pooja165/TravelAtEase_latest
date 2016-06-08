@@ -6,6 +6,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
@@ -55,16 +57,19 @@ public class AlarmReceiver extends BroadcastReceiver{
         List<EventInfo> eventInfoList = tripDb.getEventInfo(id);
         String s;
         int i = 1;
-        for(EventInfo ev: eventInfoList){
-            s = "Event "+i+": "+ev.getTitle() + " @ " + ev.getCity() +" starts "+ ev.getStartDate();
-            eventsList.add(s);
-            Log.i("event totle: ", ev.title);
-            Log.i("event id ", ev.id+"");
-            i++;
+        if(eventInfoList != null) {
+            for (EventInfo ev : eventInfoList) {
+                s = "Event " + i + ": " + ev.getTitle() + " @ " + ev.getCity() + " starts " + ev.getStartDate();
+                eventsList.add(s);
+                Log.i("event totle: ", ev.title);
+                Log.i("event id ", ev.id + "");
+                i++;
+            }
         }
         Calendar calendar = Calendar.getInstance();
         long when = calendar.getTimeInMillis();
 
+        Uri uri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context)
                         .setSmallIcon(R.drawable.jinggling_on)
@@ -73,10 +78,13 @@ public class AlarmReceiver extends BroadcastReceiver{
                         .setContentIntent(resultPendingIntent)
                         .setWhen(when)
                         .setVisibility(VISIBILITY_PRIVATE)
-                        .setAutoCancel(true);
+                        .setAutoCancel(true)
+                        .setSound(uri);
         // .addAction(R.drawable.ic_fish, "Fish", resultPendingIntent);
 
-        mBuilder.setStyle(createBigContent(numEvents, eventsList));
+        if(eventsList != null){
+            mBuilder.setStyle(createBigContent(numEvents, eventsList));
+        }
 
         NotificationManager mNotificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
